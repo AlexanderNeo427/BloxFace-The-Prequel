@@ -20,20 +20,24 @@ public class TopDownFollowCam : MonoBehaviour
     private float cameraAngle = 40f;
 
     [SerializeField] [Range (10f, 250f)] 
-    [Tooltip ("Distance from the player")]
     private float distanceFromPlayer = 100f;
 
     [SerializeField] [Range(1f, 50f)]
-    [Tooltip("Field of View")]
     private float fieldOfView = 12f;
+
+    private Camera m_camera;
 
     private void Start()
     {
-        GetComponent<Camera>().fieldOfView = fieldOfView;
+        m_camera = GetComponent<Camera>();
     }
 
     private void LateUpdate()
     {
+        // TODO : Once the settings are finalised,
+        //        should probably stop setting FOV every frame
+
+        m_camera.fieldOfView = fieldOfView;
         Vector3 dir = Quaternion.Euler(cameraAngle - 90f, 0f, 0f) * Vector3.up;
 
         transform.position = playerTransform.position + (dir * distanceFromPlayer);

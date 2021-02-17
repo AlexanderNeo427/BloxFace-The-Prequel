@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour
     private float playerHealth = 100f;
 
     private float m_health;
+
     public GameObject pistol;
     public GameObject shotgun;
     public GameObject sniper;
@@ -20,9 +21,10 @@ public class PlayerInfo : MonoBehaviour
     public static int grenadeAmount = 3;
 
     // Getters
-    public float HP    { get { return m_health; } }
-    public Vector3 pos { get { return transform.position; } }
-    public Vector3 dir { get { return transform.forward; } }
+    public float   MaxHP { get { return playerHealth; } }
+    public float   HP    { get { return m_health; } }
+    public Vector3 pos   { get { return transform.position; } }
+    public Vector3 dir   { get { return transform.forward; } }
 
     private void Awake()
     {
@@ -84,7 +86,8 @@ public class PlayerInfo : MonoBehaviour
         }
         if (machineGun.activeSelf && Input.GetMouseButton(0))
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || 
+                Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 transform.Translate(Vector3.back * 9f * Time.deltaTime);
             }

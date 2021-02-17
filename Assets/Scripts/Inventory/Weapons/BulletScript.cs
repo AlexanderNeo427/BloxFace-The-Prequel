@@ -12,14 +12,16 @@ public class BulletScript : MonoBehaviour
     {
         float yRotation = Random.Range(-1, 1);
 
-        Quaternion bulletRotatio = Quaternion.Euler(0, yRotation, 0);
-        dir = bulletRotatio * Vector3.forward;
+        Quaternion bulletRotation = Quaternion.Euler(0, yRotation, 0);
+        dir = bulletRotation * transform.forward;
+
+        transform.localRotation *= Quaternion.Euler(90, 0, 0);
     }
 
     void Update()
     {
-        transform.Translate(dir * Time.deltaTime * speed);
-        maxDistance += 1 * Time.deltaTime;
+        transform.Translate(dir * Time.deltaTime * speed, Space.World);
+        maxDistance += Time.deltaTime;
 
         if (maxDistance >= 10f)
         {
@@ -29,7 +31,7 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Unit Cube Wall(Clone)")
+        if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
         }

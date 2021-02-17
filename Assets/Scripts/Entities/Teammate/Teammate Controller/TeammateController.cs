@@ -7,7 +7,7 @@ using UnityEngine.AI;
  *  Attach this script to the root GameObject
  *  Hopefully that GameObject is your Teammate model/prefab
  */
-public class TeammateController : MonoBehaviour
+public class TeammateController : MonoBehaviour, Entity
 {
     [Header ("Customisations")]
 
@@ -50,5 +50,15 @@ public class TeammateController : MonoBehaviour
         {
             Destroy( this.gameObject );
         }
+    }
+
+    public float GetMaxHP()
+    {
+        return health;
+    }
+
+    public float GetCurrentHP()
+    {
+        return m_health;
     }
 }

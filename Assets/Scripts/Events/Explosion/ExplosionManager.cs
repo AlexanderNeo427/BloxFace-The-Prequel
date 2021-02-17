@@ -31,16 +31,16 @@ public class ExplosionManager : Singleton<ExplosionManager>
     private void SpawnExplosion(Vector3 pos, float blastRadius, float damage)
     {
         GameObject explosion = Instantiate(explosionPrefab, pos, Quaternion.identity);
-        explosion.transform.localScale = new Vector3( blastRadius, blastRadius, blastRadius );
+        explosion.transform.localScale = new Vector3( blastRadius * 2, blastRadius * 2, blastRadius * 2 );
 
         // Handle explosion damage
         Collider[] colliders = Physics.OverlapSphere(pos, blastRadius);
-        this.HandleExplosion( damage, colliders );
+        this.HandleExplosion(damage, colliders);
     }
 
     private void HandleExplosion(float damage, Collider[] colliders)
     {
-        foreach (Collider collider in colliders)
+        /*foreach (Collider collider in colliders)
         {
             if (collider.gameObject.CompareTag("Player"))
             {
@@ -57,7 +57,7 @@ public class ExplosionManager : Singleton<ExplosionManager>
                 if (suicideBomberZombie != null)
                     suicideBomberZombie.TakeDamage( damage );
             }
-        }
+        }*/
     }
 
     private void OnDisable()

@@ -9,9 +9,13 @@ public class PlayerShoot : MonoBehaviour
     private float wT;
     public GameObject bullet;
 
+    private PlayerInfo m_playerInfo;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+
         wT = waitTime;
     }
 
@@ -25,12 +29,15 @@ public class PlayerShoot : MonoBehaviour
             PlayerInfo.ammo--;
             wT = waitTime;
         }
+
         wT -= 1 * Time.deltaTime;
     }
 
     // Shooting function - G
     public void Shoot()
     {
-        Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+        Quaternion rotation = Quaternion.Euler(m_playerInfo.dir.x, m_playerInfo.dir.y, m_playerInfo.dir.z);
+        GameObject goBullet = Instantiate(bullet, bulletSpawnPoint.transform.position, rotation);
+        goBullet.transform.forward = m_playerInfo.dir;
     }
 }
