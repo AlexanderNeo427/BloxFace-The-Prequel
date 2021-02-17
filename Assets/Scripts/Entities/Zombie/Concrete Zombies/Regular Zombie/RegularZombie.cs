@@ -1,18 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 /*
- *  Controller script for the Boss zombie
+ *  Controller script for the regular zombie
  *  Attach this script to the enemy model
  */
-[RequireComponent(typeof(NavMeshAgent))]
-public class BossZombie : MonoBehaviour, Zombie
+[RequireComponent (typeof(NavMeshAgent))]
+public class RegularZombie : MonoBehaviour, Zombie, Entity
 {
-    [Header("References")]
-    [SerializeField] private GameObject fireball;
-
     [Header("Stats")]
 
     [SerializeField] [Range(50f, 150f)]
@@ -21,16 +19,16 @@ public class BossZombie : MonoBehaviour, Zombie
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
-    [Header("Attack")]
+    [Header ("Attack")]
 
-    [SerializeField] [Range(5f, 50f)]
-    private float attackDamage;
+    [SerializeField] [Range(5f, 20f)] 
+    private float dmgPerHit;
 
-    [SerializeField] [Range(7f, 10f)]
+    [SerializeField] [Range(2.5f, 5f)]
     private float attackRange;
 
-    [SerializeField] [Range(0.1f, 1.5f)] 
-    [Tooltip ("Time between attacks (in seconds)")]
+    [SerializeField] [Range(0.2f, 1.5f)]
+    [Tooltip ("Time between hits (in seconds)")]
     private float attackSpeed;
 
     public StateMachine  stateMachine { get; private set; }
@@ -38,20 +36,25 @@ public class BossZombie : MonoBehaviour, Zombie
     private PlayerInfo   m_playerInfo;
     private float        m_health;
 
+    public static event Action<float> OnPlayerDamage;
+    public static event Action OnRegularZombieDeath;
+
     private void Start()
     {
         m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         if (m_playerInfo == null)
-            Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
+            Debug.LogError("RegularZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_navMeshAgent.speed = moveSpeed;
-        m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
+        m_navMeshAgent.stoppingDistance = (attackRange * 0.5f);
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateBossZombieChase(this, m_navMeshAgent, m_playerInfo));
-        stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo, attackRange, attackSpeed));
+        stateMachine.AddState(new StateRegularZombieChase(this, m_navMeshAgent, m_playerInfo));
+        stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo, 
+                                                           attackRange, attackSpeed));
+        stateMachine.ChangeState("RegularZombieChase");
 
         m_health = health;
     }
@@ -70,9 +73,7 @@ public class BossZombie : MonoBehaviour, Zombie
 
     public void Attack()
     {
-        Vector3 pos = transform.position + transform.forward * 0.84f;
-        pos += new Vector3(0f, 1.75f, 0f);
-        Instantiate(fireball, pos, transform.rotation);
+        OnPlayerDamage?.Invoke( dmgPerHit );
     }
 
     public void TakeDamage(float dmg)
@@ -81,8 +82,19 @@ public class BossZombie : MonoBehaviour, Zombie
 
         if (m_health <= 0f)
         {
+            OnRegularZombieDeath?.Invoke();
             m_navMeshAgent.isStopped = true;
-            Destroy( this.gameObject, 1f );
+            Destroy( this.gameObject, 1.5f );
         }
+    }
+
+    public float GetMaxHP()
+    {
+        return health;
+    }
+
+    public float GetCurrentHP()
+    {
+        return m_health;
     }
 }

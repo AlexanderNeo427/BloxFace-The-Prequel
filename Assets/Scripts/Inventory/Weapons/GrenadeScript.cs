@@ -33,7 +33,7 @@ public class GrenadeScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Unit Cube Wall(Clone)")
+        if (other.gameObject.CompareTag("Wall"))
         {
             rb.AddForce(-transform.forward * 5, ForceMode.Impulse);
         }
@@ -47,7 +47,7 @@ public class GrenadeScript : MonoBehaviour
         
         foreach(Collider nearbyObject in collider)
         {
-            if (nearbyObject.name == "Unit Cube Wall(Clone)")
+            if (nearbyObject.gameObject.CompareTag("Wall"))
             {
                 Destroy(nearbyObject.gameObject);
             }

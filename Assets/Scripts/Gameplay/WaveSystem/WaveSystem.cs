@@ -9,7 +9,8 @@ public class WaveSystem : MonoBehaviour
     public delegate void SpawnAction();
     public static event SpawnAction OnSpawn;
 
-    public GameObject enemy;
+    [SerializeField] private List<GameObject> enemies;
+    // public GameObject enemy;
     public int xPos;
     public int zPos;
     public int enemyCount;
@@ -61,7 +62,7 @@ public class WaveSystem : MonoBehaviour
                 chosenSpawn = Random.Range(1, 5);
             }
             oldSpawn = chosenSpawn;
-
+            
             // Left
             if (chosenSpawn == 1)
             {
@@ -87,7 +88,8 @@ public class WaveSystem : MonoBehaviour
                 xPos = Random.Range(-13, 12);
             }
 
-            Instantiate(enemy, new Vector3(xPos, 0.92f, zPos), Quaternion.identity);
+            int randIdx = Random.Range( 0, enemies.Count );
+            Instantiate(enemies[randIdx], new Vector3(xPos, 0.92f, zPos), Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
             enemyCount += 1;
         }

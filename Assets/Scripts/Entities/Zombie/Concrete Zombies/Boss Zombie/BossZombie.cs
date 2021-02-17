@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 /*
- *  Controller script for the suicide bomber zombie
+ *  Controller script for the Boss zombie
  *  Attach this script to the enemy model
  */
 [RequireComponent(typeof(NavMeshAgent))]
-public class SuicideBomberZombie : MonoBehaviour, Zombie
+public class BossZombie : MonoBehaviour, Zombie, Entity
 {
+    [Header("References")]
+    [SerializeField] private GameObject fireball;
+
     [Header("Stats")]
 
     [SerializeField] [Range(50f, 150f)]
@@ -22,40 +24,34 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie
     [Header("Attack")]
 
     [SerializeField] [Range(5f, 50f)]
-    private float explosionDamage;
+    private float attackDamage;
 
-    [SerializeField] [Range(2.5f, 8f)]
-    private float blastRadius;
+    [SerializeField] [Range(7f, 10f)]
+    private float attackRange;
+
+    [SerializeField] [Range(0.1f, 1.5f)] 
+    [Tooltip ("Time between attacks (in seconds)")]
+    private float attackSpeed;
 
     public StateMachine  stateMachine { get; private set; }
     private NavMeshAgent m_navMeshAgent;
     private PlayerInfo   m_playerInfo;
     private float        m_health;
-   
-   /*
-    * Spawns explosion at zombies' position with 
-    * specified position, blast radius, and damage
-    * 
-    * @param Vector3 - Spawn position 
-    * @param float   - Blast radius 
-    * @param float   - Damage 
-    */
-    public static event Action<Vector3, float, float> OnSuicideZombieDeath;
 
     private void Start()
     {
         m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         if (m_playerInfo == null)
-            Debug.LogError("SuicideBomberZombie Start() : m_playerInfo is NULL");
+            Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_navMeshAgent.speed = moveSpeed;
-        m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
+        m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateSuicideZombieChase(this, m_navMeshAgent, m_playerInfo));
-        stateMachine.ChangeState("SuicideZombieChase");
+        stateMachine.AddState(new StateBossZombieChase(this, m_navMeshAgent, m_playerInfo));
+        stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo, attackRange, attackSpeed));
 
         m_health = health;
     }
@@ -68,16 +64,15 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie
     private void OnTriggerEnter(Collider other)
     {
         // TODO : work with Gabriel on this
-       /* if (other.gameObject.CompareTag("Bullet"))
-            this.TakeDamage(  );*/
+        /* if (other.gameObject.CompareTag("Bullet"))
+             this.TakeDamage(  );*/
     }
 
     public void Attack()
     {
-        m_health = 0f;
-        OnSuicideZombieDeath?.Invoke( transform.position, blastRadius, explosionDamage );
-        m_navMeshAgent.isStopped = true;
-        Destroy( this.gameObject );
+        Vector3 pos = transform.position + transform.forward * 0.84f;
+        pos += new Vector3(0f, 1.75f, 0f);
+        Instantiate(fireball, pos, transform.rotation);
     }
 
     public void TakeDamage(float dmg)
@@ -86,10 +81,18 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie
 
         if (m_health <= 0f)
         {
-            OnSuicideZombieDeath?.Invoke( transform.position, blastRadius, explosionDamage );
             m_navMeshAgent.isStopped = true;
-            Destroy( this.gameObject );
+            Destroy( this.gameObject, 1f );
         }
     }
-}
 
+    public float GetMaxHP()
+    {
+        return health;
+    }
+
+    public float GetCurrentHP()
+    {
+        return m_health;
+    }
+}
