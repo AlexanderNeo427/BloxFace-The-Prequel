@@ -7,8 +7,19 @@ public class Explosion : MonoBehaviour
     [SerializeField] [Range (0.1f, 0.8f)]
     private float lifeTime = 0.3f;
 
-    private void Start()
+    // private float
+    private float m_lifeTime;
+
+    private void OnEnable()
     {
-        Destroy( this.gameObject, lifeTime );
+        m_lifeTime = lifeTime;
+    }
+
+    private void Update()
+    {
+        m_lifeTime -= Time.deltaTime;
+
+        if (m_lifeTime <= 0f)
+            this.gameObject.SetActive( false );
     }
 }

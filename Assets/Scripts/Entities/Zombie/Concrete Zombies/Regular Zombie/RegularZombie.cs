@@ -46,7 +46,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("RegularZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed;
+        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1f, 3f);
         m_navMeshAgent.stoppingDistance = (attackRange * 0.5f);
 
         // Add states here

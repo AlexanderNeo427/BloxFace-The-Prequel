@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 679106507073661573}
   m_Layer: 0
   m_Name: Boss zombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -414,7 +414,7 @@ NavMeshAgent:
   m_Height: 2.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &679106507073661573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7522851017076094765, guid: 4954a5aca5eb8014d8d26c28832e1531, type: 3}
   health: 150
-  moveSpeed: 3.04
+  moveSpeed: 4.01
   attackDamage: 25.3
   attackRange: 10
   attackSpeed: 0.75
@@ -573,7 +573,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d07ffc301a2afe4d8df9b4b3e34e26b, type: 2}
+  - {fileID: 2100000, guid: 9b8542965a02baa4d989e33ece231480, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -816,7 +816,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2d07ffc301a2afe4d8df9b4b3e34e26b, type: 2}
+  - {fileID: 2100000, guid: 9b8542965a02baa4d989e33ece231480, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
