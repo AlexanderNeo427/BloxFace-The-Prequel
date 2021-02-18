@@ -457,8 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57570c6a2f6054f4abfb3b8c33002c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  moveSpeed: 0
+  health: 114.1
+  moveSpeed: 5.14
 --- !u!195 &1142962787421133843
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 2
 --- !u!65 &439942240
 BoxCollider:
   m_ObjectHideFlags: 0
