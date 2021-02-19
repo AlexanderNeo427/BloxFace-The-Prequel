@@ -77,21 +77,21 @@ public class PlayerInfo : MonoBehaviour
             shotgunDist -= Time.deltaTime;
             if (shotgunDist > 0)
             {
-                transform.Translate(Vector3.back * 50f * Time.deltaTime);
+                transform.Translate(Vector3.back * 25f * Time.deltaTime);
             }
         }
         else
         {
             shotgunDist = 0.25f;
         }
-        if (machineGun.activeSelf && Input.GetMouseButton(0))
-        {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || 
-                Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(Vector3.back * 9f * Time.deltaTime);
-            }
-        }
+        //if (machineGun.activeSelf && Input.GetMouseButton(0))
+        //{
+        //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || 
+        //        Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        //    {
+        //        transform.Translate(Vector3.back * 5f * Time.deltaTime);
+        //    }
+        //}
     }
 
     public void TakeDamage(float dmg)
