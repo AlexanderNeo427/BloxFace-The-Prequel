@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO
 /*
  *  Singleton manager responsible for rendering
  *  HP bar of entities
@@ -22,6 +23,15 @@ public class HealthBarRenderer : Singleton<HealthBarRenderer>
 
     private void LateUpdate()
     {
-        // Render HP bar
+
+    }
+
+    private void AddEnemy(Zombie zombie)
+    {
+        // Add all enemy types here
+        if (tag == "Enemy")
+        {
+
+        }
     }
 }

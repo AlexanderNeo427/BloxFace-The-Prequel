@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 1.5
-  explosionObject: {fileID: 1941075495926888915, guid: bb742901a0848d940b5d2ad19969d71f, type: 3}
+  explosionObject: {fileID: 1941075495926888915, guid: e971da9dd64876b45a6d4b67aeb880e2, type: 3}
   blastRadius: 5
   explforce: 500

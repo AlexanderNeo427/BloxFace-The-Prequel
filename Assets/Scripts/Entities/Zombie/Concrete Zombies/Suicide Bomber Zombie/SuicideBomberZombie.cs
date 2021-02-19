@@ -40,7 +40,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     * @param float   - Blast radius 
     * @param float   - Damage 
     */
-    public static event Action<Vector3, float, float> OnSuicideZombieDeath;
+    public static event Action<Vector3, float, float> OnSuicideZombieExplode;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("SuicideBomberZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed;
+        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1f, 3f);
         m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
 
         // Add states here
@@ -65,17 +65,10 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
         stateMachine.Update();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // TODO : work with Gabriel on this
-       /* if (other.gameObject.CompareTag("Bullet"))
-            this.TakeDamage(  );*/
-    }
-
     public void Attack()
     {
         m_health = 0f;
-        OnSuicideZombieDeath?.Invoke( transform.position, blastRadius, explosionDamage );
+        OnSuicideZombieExplode?.Invoke( transform.position, blastRadius, explosionDamage );
         m_navMeshAgent.isStopped = true;
         Destroy( this.gameObject );
     }
@@ -85,11 +78,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
         m_health -= dmg;
 
         if (m_health <= 0f)
-        {
-            OnSuicideZombieDeath?.Invoke( transform.position, blastRadius, explosionDamage );
-            m_navMeshAgent.isStopped = true;
-            Destroy( this.gameObject );
-        }
+            Destroy( this.gameObject, 1f );
     }
 
     public float GetMaxHP()

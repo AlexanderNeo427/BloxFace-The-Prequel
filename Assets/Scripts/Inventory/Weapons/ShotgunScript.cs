@@ -31,7 +31,7 @@ public class ShotgunScript : MonoBehaviour
     // Shooting function - G
     public void Shoot()
     {
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 20; ++i)
         {
             Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
         }

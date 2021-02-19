@@ -20,7 +20,7 @@ public class MazeGenerator
                 {
                     float rand = Random.Range(0f, 100f);
 
-                    if (rand <= 80f)
+                    if (rand <= 88f)
                         grid.SetContent(x, z, TILE_CONTENT.EMPTY);
                     else
                         grid.SetContent(x, z, TILE_CONTENT.WALL);

@@ -23,7 +23,7 @@ public class BulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += Time.deltaTime;
 
-        if (maxDistance >= 10f)
+        if (maxDistance >= 0.9f)
         {
             Destroy(this.gameObject);
         }
@@ -31,9 +31,10 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy"))
         {
             Destroy(this.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

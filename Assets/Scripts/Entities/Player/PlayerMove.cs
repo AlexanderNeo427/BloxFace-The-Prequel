@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour, Entity
 {
     [SerializeField] [Range(1f, 10f)]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 10f;
 
     private float m_screenWidth;
     private float m_screenHeight;
@@ -26,6 +26,8 @@ public class PlayerMove : MonoBehaviour, Entity
     private CharacterController m_controller;
 
     private PlayerInfo m_playerInfo;
+
+    public GameObject machineGun;
 
 #if UNITY_ANDROID
     [Header("References")]
@@ -99,7 +101,10 @@ public class PlayerMove : MonoBehaviour, Entity
             }
 
             transform.forward = m_moveForce.normalized;
+
             m_controller.Move(m_moveForce.normalized * moveSpeed * Time.deltaTime);
+            
+            
         }
 #elif UNITY_ANDROID    
         if (Input.touchCount > 0)

@@ -33,12 +33,16 @@ public class Fireball : MonoBehaviour
         {
             PlayerInfo playerInfo = other.gameObject.GetComponent<PlayerInfo>();
             playerInfo.TakeDamage( damage );
+
+            Destroy( this.gameObject );
         }
         else if (other.gameObject.CompareTag("Teammate"))
         {
             TeammateController teammateController = null;
             teammateController = other.gameObject.GetComponent<TeammateController>();
             teammateController.TakeDamage( damage );
+
+            Destroy( this.gameObject );
         }
     }
 }
