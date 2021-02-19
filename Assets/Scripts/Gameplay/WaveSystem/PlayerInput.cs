@@ -6,15 +6,21 @@ public class PlayerInput : MonoBehaviour
 {
     public GameObject WSystem;
 
+    private GameObject[] GOs;
+
     private void Start()
     {
+
     }
     // Update is called once per frame
     void Update()
     {
+        GOs = GameObject.FindGameObjectsWithTag("Enemy");
+
         if (Input.GetKeyDown("space"))
         {
-            WSystem.SetActive(!WSystem.activeSelf);
+            foreach (GameObject go in GOs)
+                Destroy(go);
         }
             
     }

@@ -29,6 +29,7 @@ public class SceneManagement : MonoBehaviour
     }
     public void ToInGame()
     {
+        //PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Game");
         AudioManager.instance.Play("Theme");
         AudioManager.instance.StopPlaying("MainMenuTheme");
@@ -45,6 +46,11 @@ public class SceneManagement : MonoBehaviour
     public void ToCredits()
     {
         SceneManager.LoadScene("Credits");
+    }
+
+    public void ToPrevScene()
+    {
+        PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
     }
 
     public void ToExitGame()
