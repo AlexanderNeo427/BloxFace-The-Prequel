@@ -101,21 +101,9 @@ public class PlayerMove : MonoBehaviour, Entity
             }
 
             transform.forward = m_moveForce.normalized;
-            if (machineGun.activeSelf)
-            {
-                if (Input.GetMouseButton(0) && PlayerInfo.ammo > 0)
-                {
-                    m_controller.Move(m_moveForce.normalized * moveSpeed * 0.1f * Time.deltaTime);
-                }
-                else
-                {
-                    m_controller.Move(m_moveForce.normalized * moveSpeed * 0.5f * Time.deltaTime);
-                }
-            }
-            else
-            {
-                m_controller.Move(m_moveForce.normalized * moveSpeed * Time.deltaTime);
-            }
+
+            m_controller.Move(m_moveForce.normalized * moveSpeed * Time.deltaTime);
+            
             
         }
 #elif UNITY_ANDROID    
