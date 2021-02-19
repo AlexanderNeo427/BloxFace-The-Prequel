@@ -5476,7 +5476,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5539086514332256979}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.74
+  m_Radius: 1.04
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -5501,9 +5501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7cb69dfce17f24780638c0b204c0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 121
-  moveSpeed: 4.55
-  explosionDamage: 16.8
+  health: 104
+  moveSpeed: 4.13
+  explosionDamage: 13.3
   blastRadius: 9.7
 --- !u!65 &642194725
 BoxCollider:

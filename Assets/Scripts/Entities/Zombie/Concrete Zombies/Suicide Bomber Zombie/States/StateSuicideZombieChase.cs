@@ -10,17 +10,17 @@ public class StateSuicideZombieChase : State
     private PlayerInfo          m_playerInfo;
 
     public StateSuicideZombieChase(SuicideBomberZombie zombieController,
-                                   NavMeshAgent        navMeshAgent,
                                    PlayerInfo          playerInfo)
     {
         m_zombieController = zombieController;
-        m_navMeshAgent     = navMeshAgent;
+        m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
         m_playerInfo       = playerInfo;
     }
 
     public override void OnStateEnter()
     {
-        m_navMeshAgent.isStopped = false;
+        m_navMeshAgent.isStopped      = false;
+        m_navMeshAgent.updatePosition = true;
     }
 
     public override void OnStateUpdate()
@@ -37,7 +37,6 @@ public class StateSuicideZombieChase : State
 
     public override void OnStateExit()
     {
-        m_navMeshAgent.isStopped = true;
     }
 
     public override string GetStateID()

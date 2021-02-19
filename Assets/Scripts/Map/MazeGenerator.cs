@@ -75,7 +75,7 @@ public class MazeGenerator
         gridManager.ReloadGrid();
     }
 
-    // Helper
+    // Helper func ( Gets the surrounding grid cells of a certain cell )
     private static Vector2Int[] GetNeighbours(Vector2Int middleCell)
     {
         Vector2Int[] neighbours = new Vector2Int[9];

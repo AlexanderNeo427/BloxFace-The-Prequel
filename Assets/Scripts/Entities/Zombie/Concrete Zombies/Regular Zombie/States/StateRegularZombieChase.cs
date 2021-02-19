@@ -5,24 +5,25 @@ using UnityEngine.AI;
 
 public class StateRegularZombieChase : State
 {
+    private const float   SET_DEST_BUFFER = 0.8f;
+
     private RegularZombie m_zombieController;
     private NavMeshAgent  m_navMeshAgent;
     private PlayerInfo    m_playerInfo;
 
+    private float         m_setDestBuffer;
+
     public StateRegularZombieChase(RegularZombie zombieController,
-                                   NavMeshAgent  navMeshAgent,
                                    PlayerInfo    playerInfo)
     {
         m_zombieController = zombieController;
-        m_navMeshAgent     = navMeshAgent;
+        m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
         m_playerInfo       = playerInfo;
     }
     public override void OnStateEnter()
     {
-        if (m_navMeshAgent == null)
-            Debug.LogError("StateRegularZombieChase() NavMeshAgent NULL");
-
-        m_navMeshAgent.isStopped = false;
+        m_navMeshAgent.isStopped      = false;
+        m_navMeshAgent.updatePosition = true;
     }
 
     public override void OnStateUpdate()
@@ -36,7 +37,6 @@ public class StateRegularZombieChase : State
 
     public override void OnStateExit()
     {
-        m_navMeshAgent.isStopped = true;
     }
 
     public override string GetStateID()

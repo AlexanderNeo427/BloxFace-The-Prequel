@@ -4000,6 +4000,8 @@ MonoBehaviour:
   TileSize: 2.34
   WallHeight: 1.6
   unitCubeWall: {fileID: 5606607900694286248, guid: 1b867ec088ce7ad418f1ea8844eefc5a, type: 3}
+  opaqueMaterial: {fileID: 2100000, guid: 9eba40c5020a6b44fb170993aa0c48f0, type: 2}
+  translucentMaterial: {fileID: 2100000, guid: c2c3eb496f35b934d8f6cae890b6b92d, type: 2}
 --- !u!1 &1234030492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,7 +6901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  machineGun: {fileID: 115800177}
 --- !u!136 &2110501625
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7331,38 +7332,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1142962785676812296, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
-    - target: {fileID: 1142962785761168726, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
-    - target: {fileID: 1142962785897786165, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
-    - target: {fileID: 1142962786865780924, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
-    - target: {fileID: 1142962787233018778, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
-    - target: {fileID: 1142962787421133843, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_ObstacleAvoidanceType
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142962787421133844, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: health
-      value: 85.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142962787421133844, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: moveSpeed
-      value: 2.99
-      objectReference: {fileID: 0}
     - target: {fileID: 1142962787421133845, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.31
@@ -7411,10 +7380,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Teammate
       objectReference: {fileID: 0}
-    - target: {fileID: 1142962787536524915, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f518f3fe88ddec145bbb0f157db6d24c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09a94d12146103b4b95a5d8e41b7e95c, type: 3}
 --- !u!1001 &5011101056629804736

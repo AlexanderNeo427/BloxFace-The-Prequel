@@ -36,39 +36,40 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     private PlayerInfo   m_playerInfo;
     private float        m_health;
 
+    // Getterss
+    public float HP          { get { return m_health; } }
+    public float MoveSpeed   { get { return moveSpeed; } }
+    public float Damage      { get { return dmgPerHit; } }
+    public float AttackRange { get { return attackRange; } }
+    public float AttackSpeed { get { return attackSpeed; } }
+
     public static event Action<float> OnPlayerDamage;
-    public static event Action OnRegularZombieDeath;
+
+    // Broadcast this entity's death
+    public static event Action OnDeath;
 
     private void Start()
     {
+        m_health = health;
+
         m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         if (m_playerInfo == null)
             Debug.LogError("RegularZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1f, 3f);
-        m_navMeshAgent.stoppingDistance = (attackRange * 0.5f);
+        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
+        m_navMeshAgent.stoppingDistance = (attackRange * 0.785f);
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateRegularZombieChase(this, m_navMeshAgent, m_playerInfo));
-        stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo, 
-                                                           attackRange, attackSpeed));
+        stateMachine.AddState(new StateRegularZombieChase(this, m_playerInfo));
+        stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo));
         stateMachine.ChangeState("RegularZombieChase");
-
-        m_health = health;
     }
 
     private void Update()
     {
         stateMachine.Update();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // TODO : work with Gabriel on this
-        /* if (other.gameObject.CompareTag("Bullet"))
-             this.TakeDamage(  );*/
     }
 
     public void Attack()
@@ -82,9 +83,8 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health <= 0f)
         {
-            OnRegularZombieDeath?.Invoke();
-            m_navMeshAgent.isStopped = true;
-            Destroy( this.gameObject, 1.5f );
+            OnDeath?.Invoke();
+            Destroy( this.gameObject );
         }
     }
 

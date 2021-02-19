@@ -25,6 +25,8 @@ public class GridManager : Singleton<GridManager>
 
     [Header("References")]
     [SerializeField] private GameObject unitCubeWall;
+    [SerializeField] private Material opaqueMaterial;
+    [SerializeField] private Material translucentMaterial;
 
     public Grid   m_grid { get; private set; }
     private int   m_numTilesX;
@@ -54,6 +56,17 @@ public class GridManager : Singleton<GridManager>
                     GameObject wall = Instantiate(unitCubeWall, m_grid.GridToWorld(x, z), Quaternion.identity);
                     wall.transform.localScale = new Vector3(m_tileSize, m_wallHeight, m_tileSize);
                     wall.transform.position += new Vector3(0, m_wallHeight * 0.5f, 0);
+
+                    // If cube is outer wall cube, set to translucent
+                    if (x == 0 || x == NumTilesX - 1 ||
+                        z == 0 || z == NumTilesZ - 1)
+                    {
+                        wall.GetComponent<Renderer>().material = translucentMaterial;
+                    }
+                    else
+                    {
+                        wall.GetComponent<Renderer>().material = opaqueMaterial;
+                    }
                 }
             }
         }
