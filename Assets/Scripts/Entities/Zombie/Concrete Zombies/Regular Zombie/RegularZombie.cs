@@ -43,10 +43,9 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     public float AttackRange { get { return attackRange; } }
     public float AttackSpeed { get { return attackSpeed; } }
 
-    public static event Action<float> OnPlayerDamage;
-
-    // Broadcast this entity's death
+    // Events
     public static event Action OnDeath;
+    public static event Action<float> OnPlayerDamage;
 
     private void Start()
     {
@@ -58,7 +57,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
-        m_navMeshAgent.stoppingDistance = (attackRange * 0.785f);
+        m_navMeshAgent.stoppingDistance = (attackRange * 0.85f);
 
         // Add states here
         stateMachine = new StateMachine();

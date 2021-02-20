@@ -52,11 +52,6 @@ public class PlayerInfo : MonoBehaviour, Entity
         machineGun.SetActive(false);
     }
 
-    private void OnEnable()
-    {
-        Pickup.OnPickupHP += GainHP;
-    }
-
     private void Update()
     {
         if (Input.GetKey(KeyCode.Alpha1))
@@ -111,11 +106,6 @@ public class PlayerInfo : MonoBehaviour, Entity
         //        transform.Translate(Vector3.back * 5f * Time.deltaTime);
         //    }
         //}
-    }
-
-    private void OnDisable()
-    {
-        Pickup.OnPickupHP -= GainHP;
     }
 
     public float GetMaxHP()

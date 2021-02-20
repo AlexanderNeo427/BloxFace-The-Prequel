@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
-    [Range(1f, 10f)]
-    private float moveSpeed = 5f;
+    [Range(5f, 20f)]
+    private float moveSpeed = 6.5f;
 
     private float m_originalMoveSpeed;
     private float m_moveSpeed;

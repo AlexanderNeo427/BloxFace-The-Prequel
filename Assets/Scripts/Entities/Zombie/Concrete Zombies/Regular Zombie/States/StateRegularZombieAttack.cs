@@ -11,6 +11,7 @@ public class StateRegularZombieAttack : State
     private float         m_chaseDistance;
     private float         m_timePerHit;
     private float         m_attackTimer;
+    private float         m_rotationSpeed;
 
     public StateRegularZombieAttack(RegularZombie zombieController,
                                     PlayerInfo    playerInfo)
@@ -18,19 +19,26 @@ public class StateRegularZombieAttack : State
         m_zombieController = zombieController;
         m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
         m_playerInfo       = playerInfo;
-        m_chaseDistance    = m_zombieController.AttackRange;
-        m_timePerHit       = m_zombieController.AttackSpeed;
-        m_attackTimer      = 0f;
     }
 
     public override void OnStateEnter()
     {
-        m_navMeshAgent.isStopped = false;
-        m_navMeshAgent.updatePosition = false;
+        m_chaseDistance = m_zombieController.AttackRange;
+        m_timePerHit = m_zombieController.AttackSpeed;
+        m_attackTimer = 0f;
+
+        m_rotationSpeed = m_navMeshAgent.angularSpeed;
+        m_navMeshAgent.isStopped = true;
     }
 
     public override void OnStateUpdate()
     {
+        // State transition
+        bool PlayerOutOfRange = DistFromPlayer() > m_chaseDistance;
+        if (PlayerOutOfRange)
+            m_zombieController.stateMachine.ChangeState("RegularZombieChase");
+
+        // Attack
         m_attackTimer -= Time.deltaTime;
         if (m_attackTimer <= 0f)
         {
@@ -38,11 +46,20 @@ public class StateRegularZombieAttack : State
             m_zombieController.Attack();
         }
 
-        bool PlayerOutOfRange = DistFromPlayer() > m_chaseDistance;
-        if (PlayerOutOfRange)
-            m_zombieController.stateMachine.ChangeState("RegularZombieChase");
+        // Rotate towards player
+        Vector3 targetDir = m_playerInfo.pos - m_zombieController.transform.position;
+        targetDir.y = 0;
+        targetDir.Normalize();
 
-        m_navMeshAgent.SetDestination( m_playerInfo.pos );
+        Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+        Quaternion currentRotation = m_zombieController.transform.rotation;
+        float rotationStep = m_rotationSpeed * Time.deltaTime;
+
+        Quaternion newRotation = Quaternion.RotateTowards(currentRotation,
+                                                          targetRotation,
+                                                          rotationStep);
+
+        m_zombieController.transform.rotation = newRotation;
     }
 
     public override void OnStateExit()
