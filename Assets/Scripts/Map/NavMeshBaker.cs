@@ -16,13 +16,18 @@ using UnityEngine.AI;
 [RequireComponent (typeof(NavMeshSurface))]
 public class NavMeshBaker : MonoBehaviour
 {
+    private NavMeshSurface navMeshSurface;
+
     private void Start()
     {
         Terrain terrain = GetComponent<Terrain>();
-        NavMeshSurface navMeshSurface = terrain.GetComponent<NavMeshSurface>();
-
+        navMeshSurface = terrain.GetComponent<NavMeshSurface>();
         navMeshSurface.BuildNavMesh();
+    }
 
-        Destroy( this );
+    public void BakeNavigationMesh()
+    {
+        if (navMeshSurface != null)
+            navMeshSurface.BuildNavMesh();
     }
 }

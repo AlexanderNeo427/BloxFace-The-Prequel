@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ *  No longer being used, delete this
+ */
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -42,3 +46,4 @@ public class StateTeammateIdle : State
         return "TeammateIdle";
     }
 }
+*/

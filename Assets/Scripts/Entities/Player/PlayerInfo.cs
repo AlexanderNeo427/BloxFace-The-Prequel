@@ -45,67 +45,6 @@ public class PlayerInfo : MonoBehaviour, Entity
         m_health = playerHealth;
 
         m_playerMove = this.gameObject.GetComponent<PlayerMove>();
-
-        pistol.SetActive(true);
-        shotgun.SetActive(false);
-        sniper.SetActive(false);
-        machineGun.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.Alpha1))
-        {
-            pistol.SetActive(true);
-            shotgun.SetActive(false);
-            sniper.SetActive(false);
-            machineGun.SetActive(false);
-        }
-        else if (Input.GetKey(KeyCode.Alpha2))
-        {
-            pistol.SetActive(false);
-            shotgun.SetActive(true);
-            sniper.SetActive(false);
-            machineGun.SetActive(false);
-        }
-        else if (Input.GetKey(KeyCode.Alpha3))
-        {
-            pistol.SetActive(false);
-            shotgun.SetActive(false);
-            sniper.SetActive(true);
-            machineGun.SetActive(false);
-        }
-        else if (Input.GetKey(KeyCode.Alpha4))
-        {
-            pistol.SetActive(false);
-            shotgun.SetActive(false);
-            sniper.SetActive(false);
-            machineGun.SetActive(true);
-        }
-        if (Input.GetKey(KeyCode.R))
-        {
-            ammo = 100;
-        }
-        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo > 0)
-        {
-            shotgunDist -= Time.deltaTime;
-            if (shotgunDist > 0)
-            {
-                transform.Translate(Vector3.back * 25f * Time.deltaTime);
-            }
-        }
-        else
-        {
-            shotgunDist = 0.25f;
-        }
-        //if (machineGun.activeSelf && Input.GetMouseButton(0))
-        //{
-        //    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || 
-        //        Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        //    {
-        //        transform.Translate(Vector3.back * 5f * Time.deltaTime);
-        //    }
-        //}
     }
 
     public float GetMaxHP()
