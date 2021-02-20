@@ -24,40 +24,46 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(5f, 50f)]
     private float explosionDamage;
 
-    [SerializeField] [Range(4f, 25f)]
+    [SerializeField] [Range(5f, 20f)]
     private float blastRadius;
 
     public StateMachine  stateMachine { get; private set; }
     private NavMeshAgent m_navMeshAgent;
     private PlayerInfo   m_playerInfo;
     private float        m_health;
-   
-   /*
-    * Spawns explosion at zombies' position with 
-    * specified position, blast radius, and damage
-    * 
-    * @param Vector3 - Spawn position 
-    * @param float   - Blast radius 
-    * @param float   - Damage 
-    */
+
+    public float HP          { get { return m_health; } }
+    public float MoveSpeed   { get { return moveSpeed; } }
+
+    /*
+     * Spawns explosion at zombies' position with 
+     * specified position, blast radius, and damage
+     * 
+     * @param Vector3 - Spawn position 
+     * @param float   - Blast radius 
+     * @param float   - Damage 
+     */
     public static event Action<Vector3, float, float> OnSuicideZombieExplode;
+
+    // Broadcast this entity's death
+    public static event Action OnDeath;
 
     private void Start()
     {
+        m_health = health;
+
         m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         if (m_playerInfo == null)
             Debug.LogError("SuicideBomberZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1f, 3f);
+        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateSuicideZombieChase(this, m_navMeshAgent, m_playerInfo));
+        stateMachine.AddState(new StateSuicideZombieChase(this, m_playerInfo));
         stateMachine.ChangeState("SuicideZombieChase");
-
-        m_health = health;
     }
 
     private void Update()
@@ -67,9 +73,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
     public void Attack()
     {
-        m_health = 0f;
         OnSuicideZombieExplode?.Invoke( transform.position, blastRadius, explosionDamage );
-        m_navMeshAgent.isStopped = true;
         Destroy( this.gameObject );
     }
 
@@ -78,7 +82,10 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
         m_health -= dmg;
 
         if (m_health <= 0f)
-            Destroy( this.gameObject, 1f );
+        {
+            OnDeath?.Invoke();
+            Destroy( this.gameObject );
+        }
     }
 
     public float GetMaxHP()

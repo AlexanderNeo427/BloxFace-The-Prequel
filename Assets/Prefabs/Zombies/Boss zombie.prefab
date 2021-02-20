@@ -402,7 +402,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4255071144247773421}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.7
+  m_Radius: 1.22
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -414,7 +414,7 @@ NavMeshAgent:
   m_Height: 2.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &679106507073661573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,10 +429,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7522851017076094765, guid: 4954a5aca5eb8014d8d26c28832e1531, type: 3}
   health: 150
-  moveSpeed: 4.01
-  attackDamage: 25.3
-  attackRange: 10
-  attackSpeed: 0.75
+  moveSpeed: 3.6
+  attackDamage: 14.2
+  attackRange: 16.8
+  attackSpeed: 0.93
 --- !u!1 &4255071144542051083
 GameObject:
   m_ObjectHideFlags: 0
