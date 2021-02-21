@@ -9,7 +9,7 @@ using UnityEngine;
  *  gameObject this script is attached to
  * 
  *  The teammateController can then grab a reference to this gameObject 
- *  and use the weapons through the exposed methods
+ *  and use the weapons through the exposed methods:
  *  
  *  - SwitchPrevWeapon()
  *  - SwitchNextWeapon()
@@ -21,9 +21,9 @@ public class WeaponController : MonoBehaviour
 {
     [Header ("Insert all weapons here")]
     [SerializeField] [Tooltip ("The first gun will be the default gun")]
-    private List<GameObject> weaponList;
+    private List<ScriptableObject> weaponList;
 
-    public class WeaponData
+/*    public class WeaponData
     {
         public GameObject weapon;
         public int        ammo;
@@ -76,7 +76,7 @@ public class WeaponController : MonoBehaviour
     {
         yield return new WaitForSeconds( reloadTime );
         m_reloadActive = false;
-        m_listWeaponData[m_currWeaponIndex].ammo = m_listWeaponData[m_currWeaponIndex].maxAmmo;
+        
 
         yield return null;
     }
@@ -85,21 +85,7 @@ public class WeaponController : MonoBehaviour
     {
         if (!m_reloadActive)
         {
-            PlayerShoot pistol = GetCurrentWeapon().GetComponent<PlayerShoot>();
-            if (pistol != null)
-                pistol.Shoot();
 
-            MGScript machineGun = GetCurrentWeapon().GetComponent<MGScript>();
-            if (machineGun != null)
-                machineGun.Shoot();
-
-            ShotgunScript shotgun = GetCurrentWeapon().GetComponent<ShotgunScript>();
-            if (shotgun != null)
-                shotgun.Shoot();
-
-            SniperScript sniper = GetCurrentWeapon().GetComponent<SniperScript>();
-            if (sniper != null)
-                sniper.Shoot();
         }
     }
 
@@ -141,5 +127,5 @@ public class WeaponController : MonoBehaviour
     public GameObject GetCurrentWeapon()
     {
         return m_listWeaponData[m_currWeaponIndex].weapon;
-    }
+    }*/
 }
