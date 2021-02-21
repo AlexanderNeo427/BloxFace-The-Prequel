@@ -18,7 +18,7 @@ public class TeammateController : MonoBehaviour, Entity
     [Header ("References")]
     [SerializeField] private GameObject weaponController;
 
-    public StateMachine      stateMachine { get; private set; }
+    public StateMachine      m_stateMachine { get; private set; }
     private NavMeshAgent     m_navMeshAgent;
     private PlayerInfo       m_playerInfo;
     public WeaponController  m_weaponController { get; private set; }
@@ -36,11 +36,11 @@ public class TeammateController : MonoBehaviour, Entity
         m_navMeshAgent = GetComponent<NavMeshAgent>();
         m_navMeshAgent.speed = moveSpeed;
 
-        stateMachine = new StateMachine();
-        stateMachine.AddState(new StateTeammatePatrol(this, m_playerInfo));
-        stateMachine.AddState(new StateTeammateFollowPlayer(this, m_playerInfo));
-        stateMachine.AddState(new StateTeammateShoot(this));
-        stateMachine.ChangeState("TeammatePatrol");
+        m_stateMachine = new StateMachine();
+        m_stateMachine.AddState(new StateTeammatePatrol(this, m_playerInfo));
+        m_stateMachine.AddState(new StateTeammateFollowPlayer(this, m_playerInfo));
+        m_stateMachine.AddState(new StateTeammateShoot(this));
+        m_stateMachine.ChangeState("TeammatePatrol");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,7 +54,7 @@ public class TeammateController : MonoBehaviour, Entity
 
     private void Update()
     {
-        stateMachine.Update();
+        m_stateMachine.Update();
     }
 
     public void TakeDamage(float dmg)

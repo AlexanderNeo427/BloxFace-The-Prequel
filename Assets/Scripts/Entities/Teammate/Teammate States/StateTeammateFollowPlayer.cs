@@ -35,7 +35,7 @@ public class StateTeammateFollowPlayer : State
         float distFromPlayer = (myPos - playerPos).magnitude;
         if (distFromPlayer <= m_navMeshAgent.stoppingDistance)
         {
-            m_controller.stateMachine.ChangeState("TeammatePatrol");
+            m_controller.m_stateMachine.ChangeState("TeammatePatrol");
         }
 
         // Set destination only after every set interval

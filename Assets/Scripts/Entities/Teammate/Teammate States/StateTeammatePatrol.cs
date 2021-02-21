@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class StateTeammatePatrol : State
 {
     // At what distance does the teammate start chasing the player
-    private float              PLAYER_FOLLOW_THRESHOLD = 10f;
+    private float              PLAYER_FOLLOW_THRESHOLD = 12.5f;
 
     private TeammateController m_controller;
     private NavMeshAgent       m_navMeshAgent;
@@ -32,7 +32,7 @@ public class StateTeammatePatrol : State
     public override void OnStateUpdate()
     {
         // Patrol behavior
-        if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance + 1f)
+        if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance + 0.5f)
         {
             Vector3 nextWaypoint = m_waypointManager.GetRandomWaypoint();
             m_navMeshAgent.SetDestination( nextWaypoint );
@@ -40,7 +40,7 @@ public class StateTeammatePatrol : State
 
         // State transition(s)
         if (DistFromPlayer() > PLAYER_FOLLOW_THRESHOLD)
-            m_controller.stateMachine.ChangeState("TeammateFollowPlayer");
+            m_controller.m_stateMachine.ChangeState("TeammateFollowPlayer");
     }
 
     public override void OnStateExit()
