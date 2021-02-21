@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- *  Interface for all guns 
+ *  Interface for concrete gun types to implement
  */
 public interface IShootable
 {
-    int  GetAmmo();
     int  GetMaxAmmo();
     void Reload();
     void Shoot();

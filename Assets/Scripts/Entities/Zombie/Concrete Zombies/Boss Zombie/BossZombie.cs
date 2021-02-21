@@ -46,7 +46,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     public float AttackSpeed { get { return attackSpeed; } }
 
     // Broadcast this entity's death
-    public static event Action OnDeath;
+    public static event Action<Vector3> OnDeath;
 
     private void Start()
     {
@@ -84,7 +84,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health <= 0f)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke( transform.position );
             Destroy( this.gameObject );
         }
     }
@@ -97,5 +97,13 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     public float GetCurrentHP()
     {
         return m_health;
+    }
+
+    public GameObject GetGameObject()
+    {
+        if (this.gameObject != null && !this.gameObject.Equals(null))
+            return this.gameObject;
+
+        return null;
     }
 }

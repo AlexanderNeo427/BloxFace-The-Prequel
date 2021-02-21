@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ *  All concrete gun types should have 
+ *  an instance of Gun
+ */
 [CreateAssetMenu (fileName = "New gun", menuName = "Gun")]
 public class Gun : ScriptableObject
 {
@@ -12,8 +15,8 @@ public class Gun : ScriptableObject
     [SerializeField] 
     private int maxAmmo;
 
-    [SerializeField] [Tooltip ("Rounds fired per second")]
-    private int fireRate;
+    [SerializeField] [Tooltip ("Time between shots")]
+    private float fireRate;
 
     [SerializeField] 
     private int bulletsPerShot;
@@ -27,19 +30,19 @@ public class Gun : ScriptableObject
     [SerializeField] [Tooltip ("How far the bullet spray will deviate (in degrees)")]
     private float spread;
 
-    [SerializeField] [Tooltip ("How good the gun is (Higher -> better)")]
+    [SerializeField] [Tooltip ("How good the gun is (Higher -> Better)")]
     private int rating;
 
     [SerializeField]
-    private GameObject gunModel;
+    private GameObject gunPrefab;
 
-    public string Name => name;
-    public int MaxAmmo => maxAmmo;
-    public int FireRate => fireRate;
-    public int BulletsPerShot => bulletsPerShot;
-    public float Range => range;
-    public float ReloadTIme => reloadTime;
-    public float Spread => spread;
-    public int Rating => rating;
-    public GameObject GunModel => gunModel;
+    public string     Name           => name;
+    public int        MaxAmmo        => maxAmmo;
+    public float      FireRate       => fireRate;
+    public int        BulletsPerShot => bulletsPerShot;
+    public float      Range          => range;
+    public float      ReloadTime     => reloadTime;
+    public float      Spread         => spread;
+    public int        Rating         => rating;
+    public GameObject GunPrefab      => gunPrefab;
 }

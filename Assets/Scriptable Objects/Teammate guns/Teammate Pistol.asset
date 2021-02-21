@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd93fc8d4d527824a9e4743b3eedb411, type: 3}
   m_Name: Teammate Pistol
   m_EditorClassIdentifier: 
-  name: Teammate Pistol
-  maxAmmo: 30
-  fireRate: 32
-  bulletsPerShot: 0
-  range: 0
+  name: Pistol
+  maxAmmo: 55
+  fireRate: 1.9
+  bulletsPerShot: 1
+  range: 16.63
   reloadTime: 3
-  spread: 2
+  spread: 4.31
   rating: 1
-  gunModel: {fileID: 0}
+  gunPrefab: {fileID: 5698877150334836922, guid: 40d03319c784e3741a2b4f1cb05c0809, type: 3}

@@ -415,7 +415,7 @@ NavMeshAgent:
   m_Height: 2.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &679106507073661573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,8 +431,8 @@ MonoBehaviour:
   fireball: {fileID: 7522851017076094765, guid: 4954a5aca5eb8014d8d26c28832e1531, type: 3}
   health: 150
   moveSpeed: 3.6
-  attackDamage: 14.2
-  attackRange: 16.8
+  attackDamage: 13.5
+  attackRange: 13.3
   attackSpeed: 0.93
 --- !u!1 &4255071144542051083
 GameObject:
