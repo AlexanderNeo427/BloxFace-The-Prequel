@@ -11,13 +11,13 @@ public class MGBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-2, 2);
+        float yRotation = Random.Range(-3, 3);
 
         Quaternion bulletRotatio = Quaternion.Euler(0, yRotation, 0);
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 50f;
+        dmg = 125f;
     }
 
     void Update()
@@ -36,11 +36,9 @@ public class MGBulletScript : MonoBehaviour
         if (other.gameObject.name == "Unit Cube Wall(Clone)")
         {
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            //Destroy(other.gameObject);
             RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
             if (regularZombie != null)
             {
@@ -58,6 +56,7 @@ public class MGBulletScript : MonoBehaviour
             {
                 bossZombie.TakeDamage(dmg);
             }
+            Destroy(this.gameObject);
         }
     }
 }

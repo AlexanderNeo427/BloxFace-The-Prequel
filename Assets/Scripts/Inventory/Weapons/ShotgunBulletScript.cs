@@ -11,14 +11,14 @@ public class ShotgunBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-20, 20);
+        float yRotation = Random.Range(-22, 22);
         float xRotation = Random.Range(-5, 5);
 
         Quaternion bulletRotatio = Quaternion.Euler(xRotation, yRotation, 0);
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 100f;
+        dmg = 500f;
     }
 
     void Update()
@@ -37,11 +37,9 @@ public class ShotgunBulletScript : MonoBehaviour
         if (other.gameObject.name == "Unit Cube Wall(Clone)")
         {
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
-            //Destroy(other.gameObject);
             RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
             if (regularZombie != null)
             {
@@ -59,6 +57,7 @@ public class ShotgunBulletScript : MonoBehaviour
             {
                 bossZombie.TakeDamage(dmg);
             }
+            Destroy(this.gameObject);
         }
     }
 }

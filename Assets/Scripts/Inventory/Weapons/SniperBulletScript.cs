@@ -16,7 +16,7 @@ public class SniperBulletScript : MonoBehaviour
         dir = bulletRotation * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 200f;
+        dmg = 1000f;
     }
 
     void Update()
@@ -43,7 +43,6 @@ public class SniperBulletScript : MonoBehaviour
         else if (other.gameObject.CompareTag("Enemy"))
         {
             limit++;
-            //Destroy(other.gameObject);
             RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
             if (regularZombie != null)
             {

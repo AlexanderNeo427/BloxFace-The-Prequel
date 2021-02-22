@@ -10,10 +10,10 @@ public class GrenadeThrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && PlayerInfo.grenadeAmount > 0)
+        if (Input.GetKeyDown(KeyCode.G) && WeaponInfo.grenadeAmount > 0)
         {
             ThrowGrenade();
-            PlayerInfo.grenadeAmount--;
+            WeaponInfo.grenadeAmount--;
         }
     }
     void ThrowGrenade()
