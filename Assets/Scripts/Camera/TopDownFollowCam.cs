@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  *  Script to have a top-down camera that follows an object
- *  Attach to the main camera
+ *  Attach to a gameObject that parents the camera
  */
 public class TopDownFollowCam : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class TopDownFollowCam : MonoBehaviour
     [SerializeField] [Tooltip ("The object that the camera will follow")]
     private Transform playerTransform;
 
-    [Header("Customisations")]
+    [Header("Customisations (set before running game)")]
 
     [SerializeField] [Range (0.1f, 89.9f)] 
     [Tooltip ("0 -> Side view, 90 -> Topdown view")]
@@ -25,22 +25,18 @@ public class TopDownFollowCam : MonoBehaviour
     [SerializeField] [Range(1f, 50f)]
     private float fieldOfView = 12f;
 
-    private Camera m_camera;
-
     private void Start()
     {
-        m_camera = GetComponent<Camera>();
+        Camera mainCamera = Camera.main;
+        mainCamera.fieldOfView = fieldOfView;
+
+        Vector3 dir = Quaternion.Euler(cameraAngle - 90f, 0f, 0f) * Vector3.up;
+        mainCamera.transform.position = playerTransform.position + (dir * distanceFromPlayer);
+        mainCamera.transform.LookAt(playerTransform);
     }
 
     private void LateUpdate()
     {
-        // TODO : Once the settings are finalised,
-        //        should probably stop setting FOV every frame
-
-        m_camera.fieldOfView = fieldOfView;
-        Vector3 dir = Quaternion.Euler(cameraAngle - 90f, 0f, 0f) * Vector3.up;
-
-        transform.position = playerTransform.position + (dir * distanceFromPlayer);
-        transform.LookAt( playerTransform );
+        transform.position = playerTransform.position;
     }
 }

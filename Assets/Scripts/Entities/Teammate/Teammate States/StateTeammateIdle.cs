@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ *  No longer being used
+ *  
+ *  If you see this during the merge, _delete dis_
+ */
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -42,3 +48,4 @@ public class StateTeammateIdle : State
         return "TeammateIdle";
     }
 }
+*/

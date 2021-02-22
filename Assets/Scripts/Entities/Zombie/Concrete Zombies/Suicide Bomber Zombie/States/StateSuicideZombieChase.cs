@@ -5,26 +5,36 @@ using UnityEngine.AI;
 
 public class StateSuicideZombieChase : State
 {
+    private const float         SET_DEST_BUFFER = 0.8f;
+
     private SuicideBomberZombie m_zombieController;
     private NavMeshAgent        m_navMeshAgent;
     private PlayerInfo          m_playerInfo;
+    private float               m_setDestBuffer;
+    private float               m_setSpeedBuffer;
 
     public StateSuicideZombieChase(SuicideBomberZombie zombieController,
-                                   NavMeshAgent        navMeshAgent,
                                    PlayerInfo          playerInfo)
     {
         m_zombieController = zombieController;
-        m_navMeshAgent     = navMeshAgent;
+        m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
         m_playerInfo       = playerInfo;
     }
 
     public override void OnStateEnter()
     {
-        m_navMeshAgent.isStopped = false;
+        m_navMeshAgent.ResetPath();
+        m_navMeshAgent.isStopped      = false;
+        m_navMeshAgent.updatePosition = true;
+        m_navMeshAgent.updateRotation = true;
+
+        m_setSpeedBuffer = 0f;
+        m_setDestBuffer  = SET_DEST_BUFFER;
     }
 
     public override void OnStateUpdate()
     {
+        // Kerblam
         bool playerInBlastRadius = DistFromPlayer() <= m_navMeshAgent.stoppingDistance;
         if (playerInBlastRadius)
         {
@@ -32,12 +42,26 @@ public class StateSuicideZombieChase : State
             return;
         }
 
-        m_navMeshAgent.SetDestination( m_playerInfo.pos );
+        // Set destination buffer
+        m_setDestBuffer -= Time.deltaTime;
+        if (m_setDestBuffer <= 0f)
+        {
+            m_setDestBuffer = SET_DEST_BUFFER;
+            m_navMeshAgent.SetDestination( m_playerInfo.pos );
+        }
+
+        // Set random speed every few seconds
+        m_setSpeedBuffer -= Time.deltaTime;
+        if (m_setSpeedBuffer <= 0f)
+        {
+            m_setSpeedBuffer = UnityEngine.Random.Range(2f, 6f);
+            float newSpeed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-3f, 3f);
+            m_navMeshAgent.speed = Mathf.Max(newSpeed, m_navMeshAgent.speed);
+        }
     }
 
     public override void OnStateExit()
     {
-        m_navMeshAgent.isStopped = true;
     }
 
     public override string GetStateID()

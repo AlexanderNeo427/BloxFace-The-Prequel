@@ -24,13 +24,20 @@ public class GridManager : Singleton<GridManager>
     private float WallHeight = 0.8f;
 
     [Header("References")]
+    [SerializeField] private Terrain         terrain;
+    [SerializeField] private WaypointManager waypointManager;
+
     [SerializeField] private GameObject unitCubeWall;
+    [SerializeField] private Material   opaqueMaterial;
+    [SerializeField] private Material   translucentMaterial;
 
     public Grid   m_grid { get; private set; }
     private int   m_numTilesX;
     private int   m_numTilesZ;
     private float m_tileSize;
     private float m_wallHeight;
+
+    private List<GameObject> m_wallList;
 
     private void Awake()
     {
@@ -39,12 +46,17 @@ public class GridManager : Singleton<GridManager>
         m_tileSize   = TileSize;
         m_wallHeight = WallHeight;
 
+        m_wallList = new List<GameObject>();
+
         m_grid = new Grid(m_numTilesX, m_numTilesZ, m_tileSize);
         MazeGenerator.NaiveGenerate( this );
     }
 
     public void ReloadGrid()
     {
+        foreach (GameObject wall in m_wallList)
+            Destroy( wall );
+
         for (int x = 0; x < NumTilesX; ++x)
         {
             for (int z = 0; z < NumTilesZ; ++z)
@@ -54,9 +66,29 @@ public class GridManager : Singleton<GridManager>
                     GameObject wall = Instantiate(unitCubeWall, m_grid.GridToWorld(x, z), Quaternion.identity);
                     wall.transform.localScale = new Vector3(m_tileSize, m_wallHeight, m_tileSize);
                     wall.transform.position += new Vector3(0, m_wallHeight * 0.5f, 0);
+
+                    // If cube is outer wall cube, set to translucent
+                    // Allow enemies to path through it 
+                    if (x == 0 || x == NumTilesX - 1 ||
+                        z == 0 || z == NumTilesZ - 1)
+                    {
+                        wall.GetComponent<Renderer>().material = translucentMaterial;
+                        NavMeshObstacle navMeshObstacle = wall.GetComponent<NavMeshObstacle>();
+                        Destroy( navMeshObstacle );
+                    }
+                    else
+                    {
+                        wall.GetComponent<Renderer>().material = opaqueMaterial;
+                    }
+
+                    m_wallList.Add( wall );
                 }
             }
         }
+
+        // Bake navmesh + waypoints
+        terrain.GetComponent<NavMeshSurface>().BuildNavMesh();
+        waypointManager.BakeWayPoints();
     }
 
 /*   

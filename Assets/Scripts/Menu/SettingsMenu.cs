@@ -10,7 +10,7 @@ public class SettingsMenu : MonoBehaviour
 
     Resolution[] resolutions;
 
-    public Button button;
+    public Slider volumeSlider;
 
     void Start()
     {
@@ -39,6 +39,11 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
+    public void Update()
+    {
+        SetVolume(volumeSlider.value);
+    }
+
     public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
@@ -49,8 +54,10 @@ public class SettingsMenu : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(qualityIndex);
     }
-    public void SetVolume (float volume)
+
+    public void SetVolume(float volume)
     {
+        AudioListener.volume = volume;
         Debug.Log(volume);
     }
 }
