@@ -4,65 +4,125 @@ using UnityEngine;
 
 public class WaveSystem : MonoBehaviour
 {
-    // Events
-    // TODO when everyone compile
-    public delegate void SpawnAction();
-    public static event SpawnAction OnSpawn;
+    // Wave State
+    enum WaveState
+    {
+        Spawning,
+        Updating,
+        Waiting
+    };
 
+    private WaveState State = WaveState.Waiting;
+
+    // Bonus Score event
+    public delegate void BonusEvent();
+    public static event BonusEvent BonusScore;
+
+    // Enemy List
     [SerializeField] private List<GameObject> enemies;
-    // public GameObject enemy;
+
+    // Spawn Position
     public static int xPos;
     public static int zPos;
-    public static int enemyCount;
-
-    // Where the enemy will want to spawn
     private int oldSpawn;
     private int chosenSpawn = 0;
 
+    // Wave Count
     public int waveCount = 0;
+    
+    // Enemy Counts
+    private int enemySpawnedMax = 0;
+    public static int enemySpawned;
+    public int enemyAlive;
 
-    // Max Enemy Count. Will increase after a few rounds
-    private int enemyCountMax = 0;
-    // Rate of enemies spawning in. Will decrease after a few rounds
-    private float spawnInterval = 1f;
+    // Spawn Rate
+    private float spawnInterval = 0.05f;
 
-    private void OnEnable()
-    {
-        waveCount += 1;
+    // Timer
+    public float TimeCount = 5f;
 
-        if (spawnInterval > 0.1f)
-            spawnInterval -= 0.05f;
-
-        if (enemyCountMax > 70)
-            enemyCountMax = 70;
-        else
-            enemyCountMax = GetNthFibonacci_Ite(waveCount + 1);
-
-        Debug.Log("Max Enemies: " + enemyCountMax);
-        Debug.Log("SpawnInterval: " + spawnInterval);
-
-        enemyCount = 0;
-
-        StartCoroutine(SpawnEnemy());
-
-        Debug.Log("Enemies Remaining: " + GameObject.FindGameObjectsWithTag("Enemy").Length);
-    }
-
-    private void OnDisable()
-    {
-    }
+    // Bonus Threshold (extra points for clearing enemies fast)
+    private bool ThresholdAchieved = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyCount == enemyCountMax)
-            gameObject.SetActive(false);
+        enemyAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        TimeCount -= Time.deltaTime;
+
+        // State
+        // Spawning of enemies
+        if (State == WaveState.Spawning)
+        {
+            if (enemySpawnedMax >= 55)
+                enemySpawnedMax = 70;
+            else
+                enemySpawnedMax = GetNthFibonacci_Ite(waveCount + 1);
+
+            enemySpawned = 0;
+
+            StartCoroutine(SpawnEnemy());
+
+            State = WaveState.Updating;
+        }
+
+        // Delay while waiting for all enemies to spawn in
+        else if (State == WaveState.Updating)
+        {
+            // Wait for all enemies to spawn in
+            if (enemySpawned == enemySpawnedMax)
+            {
+                State = WaveState.Waiting;
+            }
+        }
+
+        // Check whether its time to spawn or not
+        else if (State == WaveState.Waiting)
+        {
+            // If player kills all the enemy within the time threshold
+            if (TimeCount >= 15f)
+            {
+                if (enemyAlive == 0)
+                {
+                    ThresholdAchieved = true;
+                    BonusScore?.Invoke();
+                    TimeCount = 5f;
+                }
+            }
+
+            // If player kills all the enemy before 5 seconds
+            if (TimeCount > 5f && TimeCount < 15f)
+            {
+                if (enemyAlive == 0)
+                {
+                    ThresholdAchieved = false;
+                    TimeCount = 5f;
+                }
+            }
+
+            // Once timer runs out, change state, add wave counter accordingly
+            if (TimeCount <= 0f)
+            {
+                if (ThresholdAchieved)
+                {
+                    waveCount += 2;
+                }
+                else
+                {
+                    waveCount += 1;
+                }
+
+                TimeCount = 30f;
+                State = WaveState.Spawning;
+            }
+        }
     }
 
     // Fibonacci Sequence to spawn enemies
     public static int GetNthFibonacci_Ite(int n)
     {
-        int number = n - 1; //Need to decrement by 1 since we are starting from 0  
+        // Need to decrement by 1 to follow the actual start of fibonacci sequence 
+        int number = n - 1; 
         int[] Fib = new int[number + 1];
         Fib[0] = 0;
         Fib[1] = 1;
@@ -73,10 +133,11 @@ public class WaveSystem : MonoBehaviour
         return Fib[number];
     }
 
+    // Spawn Enemies
     IEnumerator SpawnEnemy()
     {
         // Spawn enemies while count less than max
-        while (enemyCount < enemyCountMax)
+        while (enemySpawned < enemySpawnedMax)
         {
             // Spawn in diff places
             while (chosenSpawn == oldSpawn)
@@ -113,7 +174,7 @@ public class WaveSystem : MonoBehaviour
             int randIdx = Random.Range( 0, enemies.Count );
             Instantiate(enemies[randIdx], new Vector3(xPos, 0.92f, zPos), Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
-            enemyCount += 1;
+            enemySpawned += 1;
         }
     }
 }

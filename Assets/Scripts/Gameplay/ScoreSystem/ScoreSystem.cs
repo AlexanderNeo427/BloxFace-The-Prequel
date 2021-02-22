@@ -5,7 +5,7 @@ public class ScoreSystem : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultiplierText;
 
-    private int ScoreValue = 0;
+    public int ScoreValue = 0;
     private int ScoreMultiplier = 1;
 
     private float timer = 3.0f;
@@ -30,6 +30,7 @@ public class ScoreSystem : MonoBehaviour
         if (Input.GetKeyDown("space"))
             AddScore();
 
+        // "Bobbing" effect on multiplier text
         if (MultiplierText.fontSize > 36f)
             MultiplierText.fontSize -= Time.deltaTime * 15;
 
@@ -37,6 +38,7 @@ public class ScoreSystem : MonoBehaviour
         MultiplierText.SetText(ScoreMultiplier.ToString() + "x");
     }
 
+    // Add score and Add to multiplier
     void AddScore()
     {
         MultiplierText.fontSize = 80f;
@@ -52,6 +54,10 @@ public class ScoreSystem : MonoBehaviour
         timer = 3.0f;
     }
 
+    // Add bonus score
+    // Triggers only if player clears a wave within threshold
+
+    // Decrease Multiplier if player is hit or take too long to continue the killing streak
     void DecreaseMultiplier()
     {
         AudioManager.instance.Play("ReverseMultiplier");
