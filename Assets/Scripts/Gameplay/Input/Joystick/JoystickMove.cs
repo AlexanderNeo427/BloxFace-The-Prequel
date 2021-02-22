@@ -51,7 +51,7 @@ public class JoystickMove : MonoBehaviour
 
 /*
  *   If this isn't on Android, then 
- *   just remove the joystick 
+ *   just remove the joystick on play
  */
 #if UNITY_STANDALONE_WIN
     private void Awake()

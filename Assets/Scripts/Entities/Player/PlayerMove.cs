@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(CharacterController))]
-public class PlayerMove : MonoBehaviour, Entity
+[RequireComponent(typeof(CharacterController))]
+public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] [Range(1f, 10f)]
-    private float moveSpeed = 10f;
+    [SerializeField]
+    [Range(5f, 20f)]
+    private float moveSpeed = 6.5f;
+
+    private float m_originalMoveSpeed;
+    private float m_moveSpeed;
 
     private float m_screenWidth;
     private float m_screenHeight;
@@ -27,21 +31,26 @@ public class PlayerMove : MonoBehaviour, Entity
 
     private PlayerInfo m_playerInfo;
 
-    public GameObject machineGun;
-
 #if UNITY_ANDROID
     [Header("References")]
-    [SerializeField] private GameObject joystickButton;
-    [SerializeField] private GameObject joystickBG;
+    [SerializeField] private RectTransform movementJoystickRect;
+    [SerializeField] private Transform movementJoystick; // Need this for movement calculation
 
-    // private float m_maxJoystickDeviation;
-
+    private float m_joystickTolerance;
     private Vector2 m_joystickOrigin;
+
+    // Normalized joystick movement delta
+    // The joystick code will be using this
+    // to decide where to render the joystick button
+    public Vector2 joystickDelta { get; private set; }
 #endif
 
     private void Awake()
     {
-        m_screenWidth  = Screen.width;
+        m_originalMoveSpeed = moveSpeed;
+        m_moveSpeed = moveSpeed;
+
+        m_screenWidth = Screen.width;
         m_screenHeight = Screen.height;
 
         m_up        = m_dirList[0] = new Vector3( 0f, 0f, 1f).normalized;
@@ -53,19 +62,23 @@ public class PlayerMove : MonoBehaviour, Entity
         m_downLeft  = m_dirList[6] = new Vector3(-1f, 0f,-1f).normalized;
         m_downRight = m_dirList[7] = new Vector3( 1f, 0f,-1f).normalized;
 
-#if UNITY_ANDROID
-
-        // m_maxJoystickDeviation = joystickBG.localScale.x * 0.5f;
-        m_joystickOrigin = Vector2.zero;
-#endif
         m_moveForce = Vector3.zero;
         m_controller = GetComponent<CharacterController>();
 
         m_playerInfo = GetComponent<PlayerInfo>();
+
+#if UNITY_ANDROID
+        m_joystickOrigin = movementJoystick.transform.position;
+        m_joystickTolerance = 0.333f * m_screenWidth;
+#endif
     }
 
     private void Update()
     {
+#if UNITY_EDITOR
+        Debug.DrawRay(transform.position, transform.forward * 3f, Color.green);
+#endif
+
 #if UNITY_STANDALONE_WIN
         float moveZ = Input.GetAxisRaw("Vertical");
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -101,69 +114,90 @@ public class PlayerMove : MonoBehaviour, Entity
             }
 
             transform.forward = m_moveForce.normalized;
-
-            m_controller.Move(m_moveForce.normalized * moveSpeed * Time.deltaTime);
-            
-            
+            m_controller.Move(m_moveForce.normalized * m_moveSpeed * Time.deltaTime);
         }
-#elif UNITY_ANDROID    
+        /*#elif UNITY_ANDROID && UNITY_EDITOR
+                if (Input.GetMouseButton( 1 ))
+                {
+                    Vector2 touchPos = Input.mousePosition;
+                    Vector2 dir = touchPos - m_joystickOrigin;
+
+                    float distFromJoystick = dir.magnitude;
+                    if (distFromJoystick >= m_joystickTolerance)
+                    {
+                        joystickDelta = Vector2.zero;
+                        return;
+                    }
+
+                    // Movement input
+                    dir = NormalizedCoords( dir );
+                    joystickDelta = new Vector2(dir.x, dir.y);
+
+                    // Actual movement code
+                    float minVal = 9999f;
+                    for (int i = 0; i < 8; ++i)
+                    {
+                        Vector3 tempDir = new Vector3(-dir.x, 0, -dir.y);
+
+                        float dot = Vector3.Dot(tempDir, m_dirList[i]);
+                        if (dot < minVal)
+                        {
+                            minVal = dot;
+                            m_moveForce = m_dirList[i];
+                        }
+                    }
+                    transform.forward = m_moveForce.normalized;
+                    m_controller.Move(m_moveForce.normalized * m_moveSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    joystickDelta = Vector2.zero;
+                }*/
+#elif UNITY_ANDROID
         if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch( 0 );
-            Vector2 touchPos = NormalizedCoords( touch.position );
+            Touch touch = Input.GetTouch(0);
+            Vector2 touchPos = touch.position;
+            Vector2 dir = touchPos - m_joystickOrigin;
+
+            float distFromJoystick = dir.magnitude;
+            if (distFromJoystick >= m_joystickTolerance)
+            {
+                joystickDelta = Vector2.zero;
+                return;
+            }
 
             // Movement input
-            if (touchPos.x < 0.5f)
+            dir = NormalizedCoords(dir);
+            joystickDelta = new Vector2(dir.x, dir.y);
+
+            // Actual movement code
+            float minVal = 9999f;
+            for (int i = 0; i < 8; ++i)
             {
-                switch ( touch.phase )
+                Vector3 tempDir = new Vector3(-dir.x, 0, -dir.y);
+
+                float dot = Vector3.Dot(tempDir, m_dirList[i]);
+                if (dot < minVal)
                 {
-                    case TouchPhase.Began:
-                        m_joystickOrigin = NormalizedCoords( touch.position );
-                        break;
-                    case TouchPhase.Moved:
-                        Vector2 pos = NormalizedCoords( touch.position );
-                        Vector3 dir = pos - m_joystickOrigin;
-                        m_moveForce = Vector2.zero;
-
-                        float minVal = 9999f;
-                        for (int i = 0; i < 8; ++i)
-                        {
-                            Vector3 tempDir = new Vector3(-dir.x, 0, -dir.y);
-
-                            float dot = Vector3.Dot( tempDir, m_dirList[i] );
-                            if (dot < minVal)
-                            {
-                                minVal = dot;
-                                m_moveForce = m_dirList[i];
-                            }
-                        }
-
-                        transform.forward = m_moveForce.normalized;
-                        m_controller.Move(m_moveForce.normalized * moveSpeed * Time.deltaTime);
-                        break;
+                    minVal = dot;
+                    m_moveForce = m_dirList[i];
                 }
             }
-            // Shooting/switching weapon input
-            else
-            {
-                if (touchPos.y <= 0.5f)
-                {
-                    // Shoot
-                }
-                else if (touchPos.y >= 0.5f)
-                {
-                    // Switch weapon   
-                }
-            }
+            transform.forward = m_moveForce.normalized;
+            m_controller.Move(m_moveForce.normalized * m_moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            joystickDelta = Vector2.zero;
         }
 #endif
-
-        Debug.DrawRay(transform.position, transform.forward * 3f, Color.green);
     }
 
     /*
      *  Helper function to normalize 
      *  the x and y pixel coords
+     *  (Relative to screen space)
      *  
      *  i.e. X and Y input will be normalized from 0 - 1,
      *       regardless of screen size/aspect ratio
@@ -176,13 +210,19 @@ public class PlayerMove : MonoBehaviour, Entity
         return new Vector2(normalizedX, normalizedY);
     }
 
-    public float GetMaxHP()
+    // Methods for Gabriel
+    public float GetMoveSpeed()
     {
-        return m_playerInfo.MaxHP;
+        return m_moveSpeed;
     }
 
-    public float GetCurrentHP()
+    public void ResetMoveSpeed()
     {
-        return m_playerInfo.HP;
+        m_moveSpeed = m_originalMoveSpeed;
+    }
+
+    public void SetMoveSpeed(float newMoveSpeed)
+    {
+        m_moveSpeed = newMoveSpeed;
     }
 }
