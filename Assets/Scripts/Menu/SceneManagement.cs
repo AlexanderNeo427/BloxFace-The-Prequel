@@ -50,6 +50,18 @@ public class SceneManagement : MonoBehaviour
 
     public void ToPrevScene()
     {
+        if(SceneManager.GetActiveScene().name == "Options")
+        {
+            if(SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                SceneManager.LoadScene("Main Menu");
+            }
+            else
+            {
+                SceneManager.LoadScene("Game");
+            }
+        }
+
         PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
     }
 
