@@ -12,12 +12,12 @@ public class AmmoCount : MonoBehaviour
     void Start()
     {
         txt = gameObject.GetComponent<TextMeshProUGUI>();
-        txt.text = " " + PlayerInfo.ammo;
+        txt.text = "" + WeaponInfo.ammo + " / " + WeaponInfo.MaxAmmo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        txt.text = " " + PlayerInfo.ammo;
+        txt.text = "" + WeaponInfo.ammo + " / " + WeaponInfo.MaxAmmo;
     }
 }

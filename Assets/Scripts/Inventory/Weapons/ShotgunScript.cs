@@ -19,10 +19,10 @@ public class ShotgunScript : MonoBehaviour
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && PlayerInfo.ammo > 0 && wT <= 0)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            PlayerInfo.ammo--;
+            WeaponInfo.ammo = WeaponInfo.ammo - 8;
             wT = waitTime;
         }
         wT -= 1 * Time.deltaTime;

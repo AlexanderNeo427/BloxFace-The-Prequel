@@ -18,6 +18,12 @@ public class WeaponGUIScript : MonoBehaviour
     public GameObject TsgI;
     public GameObject TspI;
     public GameObject TmgI;
+    public GameObject RI;
+
+    private float time;
+    private bool t;
+    private float waitTime = 0.05f;
+    private float wT = 0.05f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +37,10 @@ public class WeaponGUIScript : MonoBehaviour
         TspI.SetActive(false);
         TsgI.SetActive(false);
         TmgI.SetActive(false);
+        RI.SetActive(false);
+
+        time = 3f;
+        t = false;
     }
 
     // Update is called once per frame
@@ -83,6 +93,33 @@ public class WeaponGUIScript : MonoBehaviour
             TsgI.SetActive(false);
             TspI.SetActive(false);
             TmgI.SetActive(true);
+        }
+        if (Input.GetKey(KeyCode.R) && WeaponInfo.ammo < 100 && WeaponInfo.MaxAmmo > 0)
+        {
+            RI.SetActive(true);
+            WeaponInfo.reloadAffirm = true;
+        }
+        if (WeaponInfo.reloadAffirm)
+        {
+            if (wT <= 0)
+            {
+                WeaponInfo.ammo++;
+                WeaponInfo.MaxAmmo--;
+                wT = waitTime;
+            }
+            wT -= 1 * Time.deltaTime;
+
+            if (WeaponInfo.ammo >= 100)
+            {
+                WeaponInfo.ammo = 100;
+                RI.SetActive(false);
+                WeaponInfo.reloadAffirm = false;
+            }
+            else if (WeaponInfo.MaxAmmo <= 0)
+            {
+                RI.SetActive(false);
+                WeaponInfo.reloadAffirm = false;
+            }
         }
     }
 }

@@ -8,11 +8,29 @@ using UnityEngine;
  */
 public class Pickup : MonoBehaviour
 {
+    public Material m1;
+    public Material m2;
+    int chance;
+
     // param@ float - Amount of HP the player gains
     public static event Action<float> OnPickupHP;
 
     // param@ float - Amount of Ammo the player gains
-    public static event Action<float> OnPickupAmmo;
+    public static event Action OnPickupAmmo;
+
+    private void Start()
+    {
+        chance = UnityEngine.Random.Range(0, 2);
+        if (chance == 0)
+        {
+            gameObject.GetComponent<Renderer>().material = m1;
+        }
+        else
+        {
+            gameObject.GetComponent<Renderer>().material = m2;
+        }
+    }
+
 
     public void OnTriggerEnter(Collider other)
     {
@@ -21,15 +39,25 @@ public class Pickup : MonoBehaviour
 
         this.gameObject.SetActive( false );
 
-        float chance = UnityEngine.Random.Range( 0f, 100f );
-        if (chance <= 50f)
+        //float chance = UnityEngine.Random.Range( 0f, 100f );
+        //if (chance <= 50f)
+        //{
+        //    float hpGain = UnityEngine.Random.Range( 10f, 40f );
+        //    OnPickupHP?.Invoke( hpGain );
+        //}
+        //else if (chance >= 50f)
+        //{
+        //    OnPickupAmmo?.Invoke();
+        //}
+
+        if (chance == 0)
         {
-            float hpGain = UnityEngine.Random.Range( 10f, 40f );
+            float hpGain = UnityEngine.Random.Range(10f, 40f);
             OnPickupHP?.Invoke( hpGain );
         }
-        else if (chance >= 50f)
+        else
         {
-            // TODO : Work with Gabriel on this one
+            OnPickupAmmo?.Invoke();
         }
     }
 }

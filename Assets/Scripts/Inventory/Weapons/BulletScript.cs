@@ -7,6 +7,7 @@ public class BulletScript : MonoBehaviour
     public float speed; // speed of bullet
     public float maxDistance; // max dist before bullet is deleted
     private Vector3 dir;
+    private float dmg;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class BulletScript : MonoBehaviour
         dir = bulletRotation * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
+        dmg = 50f;
     }
 
     void Update()
@@ -31,10 +33,30 @@ public class BulletScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(this.gameObject);
-            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
+            if (regularZombie != null)
+            {
+                regularZombie.TakeDamage(dmg);
+            }
+
+            SuicideBomberZombie suicideBomberZombie = other.gameObject.GetComponent<SuicideBomberZombie>();
+            if (suicideBomberZombie != null)
+            {
+                suicideBomberZombie.TakeDamage(dmg);
+            }
+
+            BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();
+            if (bossZombie != null)
+            {
+                bossZombie.TakeDamage(dmg);
+            }
+            Destroy(this.gameObject);
         }
     }
 }
