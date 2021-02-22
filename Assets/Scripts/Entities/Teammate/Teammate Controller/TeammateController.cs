@@ -22,9 +22,12 @@ public class TeammateController : MonoBehaviour, Entity
     private NavMeshAgent     m_navMeshAgent;
     private PlayerInfo       m_playerInfo;
     public WeaponController  m_weaponController { get; private set; }
+    public Zombie            m_enemy { get; private set; }
     private float            m_health;
 
-    public static event Action OnDeath;
+    public float MoveSpeed => moveSpeed;
+
+    public static event Action<Vector3> OnDeath;
 
     private void Start()
     {
@@ -63,7 +66,7 @@ public class TeammateController : MonoBehaviour, Entity
 
         if (m_health <= 0f)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke( transform.position );
             Destroy( this.gameObject );
         }
     }
@@ -76,5 +79,19 @@ public class TeammateController : MonoBehaviour, Entity
     public float GetCurrentHP()
     {
         return m_health;
+    }
+
+    public void SetEnemy(Zombie zombie)
+    {
+        m_enemy = zombie;
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Gizmos.DrawLine( transform.position, transform.position + transform.forward * 18.5f);
     }
 }

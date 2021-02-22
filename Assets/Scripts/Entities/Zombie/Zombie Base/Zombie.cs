@@ -10,4 +10,6 @@ public interface Zombie
 {
     void TakeDamage(float dmg);
     void Attack();
+
+    GameObject GetGameObject();
 }

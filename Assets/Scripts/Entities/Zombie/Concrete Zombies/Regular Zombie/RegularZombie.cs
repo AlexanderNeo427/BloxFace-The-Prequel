@@ -44,7 +44,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     public float AttackSpeed { get { return attackSpeed; } }
 
     // Events
-    public static event Action OnDeath;
+    public static event Action<Vector3> OnDeath;
     public static event Action<float> OnPlayerDamage;
 
     private void Start()
@@ -82,7 +82,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health <= 0f)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke( transform.position );
             Destroy( this.gameObject );
         }
     }
@@ -95,5 +95,13 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     public float GetCurrentHP()
     {
         return m_health;
+    }
+
+    public GameObject GetGameObject()
+    {
+        if (this.gameObject != null && !this.gameObject.Equals(null))
+            return this.gameObject;
+
+        return null;
     }
 }

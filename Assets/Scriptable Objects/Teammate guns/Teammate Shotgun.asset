@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd93fc8d4d527824a9e4743b3eedb411, type: 3}
   m_Name: Teammate Shotgun
   m_EditorClassIdentifier: 
-  name: 
+  name: Shotgun
   maxAmmo: 0
   fireRate: 0
+  bulletsPerShot: 0
+  range: 0
   reloadTime: 0
   spread: 0
-  gunModel: {fileID: 0}
+  rating: 0
+  gunPrefab: {fileID: 6452458322641596184, guid: 1689ef3b05e5a7c44a4a112c4c8db3d4, type: 3}

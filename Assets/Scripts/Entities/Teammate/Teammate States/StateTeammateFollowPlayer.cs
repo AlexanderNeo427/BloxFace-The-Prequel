@@ -23,6 +23,7 @@ public class StateTeammateFollowPlayer : State
     {
         m_navMeshAgent.isStopped = false;
         m_navMeshAgent.autoBraking = true;
+        m_navMeshAgent.speed = m_controller.MoveSpeed;
         m_setDestBuffer = 0f;
     }
 

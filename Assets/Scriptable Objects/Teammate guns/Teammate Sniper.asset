@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd93fc8d4d527824a9e4743b3eedb411, type: 3}
   m_Name: Teammate Sniper
   m_EditorClassIdentifier: 
-  name: 
+  name: Sniper
   maxAmmo: 0
   fireRate: 0
+  bulletsPerShot: 0
+  range: 0
   reloadTime: 0
   spread: 0
-  gunModel: {fileID: 0}
+  rating: 0
+  gunPrefab: {fileID: 7809866805260753960, guid: 08043fe0d0d7083429643e0ef9cfa9dd, type: 3}

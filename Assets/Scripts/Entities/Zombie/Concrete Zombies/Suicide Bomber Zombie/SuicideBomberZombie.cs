@@ -46,7 +46,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     public static event Action<Vector3, float, float> OnSuicideZombieExplode;
 
     // Broadcast this entity's death
-    public static event Action OnDeath;
+    public static event Action<Vector3> OnDeath;
 
     private void Start()
     {
@@ -83,7 +83,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health <= 0f)
         {
-            OnDeath?.Invoke();
+            OnDeath?.Invoke( transform.position );
             Destroy( this.gameObject );
         }
     }
@@ -96,6 +96,14 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     public float GetCurrentHP()
     {
         return m_health;
+    }
+
+    public GameObject GetGameObject()
+    {
+        if (this.gameObject != null && !this.gameObject.Equals(null))
+            return this.gameObject;
+
+        return null;
     }
 }
 
