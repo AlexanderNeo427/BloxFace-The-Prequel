@@ -56,10 +56,9 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
         {
             float randAngle = Random.Range(-gun.Spread * 0.5f, gun.Spread * 0.5f);
             Quaternion randRotate = Quaternion.Euler(0f, randAngle, 0f);
-
-            GameObject bullet = Instantiate( bulletPrefab, bulletSpawnPoint.position, transform.root.rotation );
-            bullet.transform.rotation = randRotate * bullet.transform.rotation;
-            bullet.transform.localScale = new Vector3(10f, 10f, 10f);
+            Quaternion rootRotate = transform.root.rotation;
+            Quaternion bulletRotation = randRotate * rootRotate;
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletRotation);
         }
     }
 

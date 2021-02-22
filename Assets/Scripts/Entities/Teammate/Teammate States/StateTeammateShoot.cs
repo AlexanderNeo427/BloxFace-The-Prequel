@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class StateTeammateShoot : State
 {
-    private const float        SET_DEST_BUFFER = 0.75f;
+    private const float        SET_DEST_BUFFER = 0.8f;
 
     private TeammateController m_controller;
     private NavMeshAgent       m_navMeshAgent;
@@ -33,7 +33,9 @@ public class StateTeammateShoot : State
             m_enemy = m_controller.m_enemy;
 
         // Slower moveSpeed while shooting
-        m_navMeshAgent.speed = m_controller.MoveSpeed * 0.25f;
+        m_navMeshAgent.isStopped = false;
+        m_navMeshAgent.autoBraking = true;
+        m_navMeshAgent.speed = m_controller.MoveSpeed * 0.333333f;
 
         m_setDestBuffer = SET_DEST_BUFFER;
     }
@@ -69,11 +71,17 @@ public class StateTeammateShoot : State
         m_weaponController.UseWeapon();
 
         // Set destination
-        m_navMeshAgent.SetDestination( enemyPos );
+        m_setDestBuffer -= Time.deltaTime;
+        if (m_setDestBuffer <= 0f)
+        {
+            m_setDestBuffer = SET_DEST_BUFFER;
+            m_navMeshAgent.SetDestination( enemyPos );
+        }
     }
 
     public override void OnStateExit()
     {
+        m_enemy = null;
     }
 
     public override string GetStateID()

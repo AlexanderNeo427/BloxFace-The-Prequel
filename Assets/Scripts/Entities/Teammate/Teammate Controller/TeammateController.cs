@@ -92,6 +92,9 @@ public class TeammateController : MonoBehaviour, Entity
         if (!Application.isPlaying)
             return;
 
-        Gizmos.DrawLine( transform.position, transform.position + transform.forward * 18.5f);
+        Vector3 pos = transform.position;
+        pos.y = 0f;
+        // Gizmos.DrawLine( transform.position, transform.position + transform.forward * 16f);
+        Gizmos.DrawWireSphere(pos, 16f);
     }
 }

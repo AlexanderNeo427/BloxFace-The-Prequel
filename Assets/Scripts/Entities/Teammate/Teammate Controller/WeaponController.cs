@@ -26,7 +26,10 @@ public class WeaponController : MonoBehaviour, Item
 
     private void Start()
     {
-        m_currGunIndex = 0;
+        foreach (GameObject gun in gunPrefabs)
+            gun.SetActive( false );
+
+        m_currGunIndex = 3;
         m_currGun = gunPrefabs[m_currGunIndex].GetComponent<IShootable>();
         gunPrefabs[m_currGunIndex].GetComponent<IUnlockable>().UnlockWeapon();
         gunPrefabs[m_currGunIndex].SetActive( true );

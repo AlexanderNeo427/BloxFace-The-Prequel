@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class StateTeammatePatrol : State
 {
     // At what distance does the teammate start chasing the player
-    private const float        PLAYER_FOLLOW_THRESHOLD = 12.5f;
-    private const float        SPHERECAST_BUFFER = 0.185f;
+    private const float        PLAYER_FOLLOW_THRESHOLD = 22.5f;
+    private const float        SPHERECAST_BUFFER = 0.25f;
 
     private TeammateController m_controller;
     private NavMeshAgent       m_navMeshAgent;
@@ -32,6 +32,7 @@ public class StateTeammatePatrol : State
         m_navMeshAgent.autoBraking = true;
         m_navMeshAgent.speed = m_controller.MoveSpeed;
         m_navMeshAgent.SetDestination( m_waypointManager.GetRandomWaypoint() );
+
         m_spherecastBuffer = SPHERECAST_BUFFER;
     }
 
@@ -43,23 +44,20 @@ public class StateTeammatePatrol : State
         {
             m_spherecastBuffer = SPHERECAST_BUFFER;
 
+            // It goes for the first enemy within it's detection range
             Vector3 pos = m_controller.transform.position;
-            Collider[] colliders = Physics.OverlapSphere(pos, 18.5f);
+            pos.y = 0f;
+            float detectionRange = 12f;
 
+            Collider[] colliders = Physics.OverlapSphere(pos, detectionRange);
             foreach (Collider collider in colliders)
             {
-                float FOV = 135f;
-                float theta = Vector3.Angle(pos, collider.transform.position);
-
-                if (theta <= FOV * 0.5f)
+                Zombie zombie = collider.gameObject.GetComponent<Zombie>();
+                if (zombie is Zombie)
                 {
-                    Zombie zombie = collider.gameObject.GetComponent<Zombie>();
-                    if (zombie is Zombie)
-                    {
-                        m_controller.SetEnemy(zombie);
-                        m_controller.m_stateMachine.ChangeState("TeammateShoot");
-                        break;
-                    }
+                    m_controller.SetEnemy( zombie );
+                    m_controller.m_stateMachine.ChangeState("TeammateShoot");
+                    break;
                 }
             }
         }

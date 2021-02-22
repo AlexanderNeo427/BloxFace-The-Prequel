@@ -17,7 +17,7 @@ public class MGBulletScript : MonoBehaviour
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 125f;
+        dmg = 1f;
     }
 
     void Update()

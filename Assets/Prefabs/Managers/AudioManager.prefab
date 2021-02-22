@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &177424672718829610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 177424672718829608}
+  - component: {fileID: 177424672718829611}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &177424672718829608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177424672718829610}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 436.66055, y: 239.73732, z: -24.321133}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &177424672718829611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177424672718829610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156b320c5a227db4c87b0b911ec9a4ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Theme
+    clip: {fileID: 8300000, guid: 48f13fd8f7dd5584788502b103920ff4, type: 3}
+    volume: 0.1
+    volumeVariance: 0.2
+    pitch: 1.16
+    pitchVariance: 0.07
+    loop: 1
+    source: {fileID: 0}
+  - name: MainMenuTheme
+    clip: {fileID: 8300000, guid: 901bd23d0ecfaf24da1e203a4972d147, type: 3}
+    volume: 0.1
+    volumeVariance: 0.2
+    pitch: 1.16
+    pitchVariance: 0.07
+    loop: 1
+    source: {fileID: 0}
+  - name: Multiplier
+    clip: {fileID: 8300000, guid: 97b4c86e76b62af4bb63aeb4550dab2e, type: 3}
+    volume: 0.1
+    volumeVariance: 0.2
+    pitch: 1.16
+    pitchVariance: 0.07
+    loop: 0
+    source: {fileID: 0}
+  - name: ReverseMultiplier
+    clip: {fileID: 8300000, guid: 97b4c86e76b62af4bb63aeb4550dab2e, type: 3}
+    volume: 0.1
+    volumeVariance: 0.2
+    pitch: 0.5
+    pitchVariance: 0.14
+    loop: 0
+    source: {fileID: 0}
+  AudioSrc: {fileID: 0}

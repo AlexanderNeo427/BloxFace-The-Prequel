@@ -430,9 +430,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 7522851017076094765, guid: 4954a5aca5eb8014d8d26c28832e1531, type: 3}
   health: 150
-  moveSpeed: 3.6
-  attackDamage: 13.5
-  attackRange: 13.3
+  moveSpeed: 2.3
+  attackDamage: 9.3
+  attackRange: 14.4
   attackSpeed: 0.93
 --- !u!1 &4255071144542051083
 GameObject:

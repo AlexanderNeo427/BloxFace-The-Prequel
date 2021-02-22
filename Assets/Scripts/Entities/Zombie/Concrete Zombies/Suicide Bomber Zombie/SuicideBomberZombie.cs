@@ -45,8 +45,17 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
      */
     public static event Action<Vector3, float, float> OnSuicideZombieExplode;
 
-    // Broadcast this entity's death
+    // Broadcast the Entity's position at time of death
     public static event Action<Vector3> OnDeath;
+
+    /*
+     * Broadcasts the info about the zombie
+     * when he gets damaged
+     * 
+     * @param Vector3 - Spawn position 
+     * @param float   - Damage 
+     */
+    public static event Action<Vector3, float> OnDamage;
 
     private void Start()
     {
@@ -57,8 +66,12 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("SuicideBomberZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
+
+        // Nav mesh agent speed
+        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
+        speed = Mathf.Max(0.75f, speed);
+        m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();

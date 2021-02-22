@@ -13,7 +13,6 @@ public class PlayerEvents : MonoBehaviour
 {
     public static event Action OnPlayerDeath;
 
-    private GameObject m_player;
     private PlayerInfo m_playerInfo;
 
     private void OnEnable()
@@ -23,8 +22,8 @@ public class PlayerEvents : MonoBehaviour
 
     private void Start()
     {
-        m_player = GameObject.Find("Player");
-        m_playerInfo = m_player.GetComponent<PlayerInfo>();
+        GameObject player = transform.root.gameObject;
+        m_playerInfo = player.GetComponent<PlayerInfo>();
     }
 
     private void Update()
@@ -38,7 +37,12 @@ public class PlayerEvents : MonoBehaviour
 
     }
 
-    void CheckDeath()
+    public void DispatchDamagedEvent()
+    {
+        // 
+    }
+
+    private void CheckDeath()
     {
         if (m_playerInfo.HP <= 0.0f)
             OnPlayerDeath?.Invoke();   

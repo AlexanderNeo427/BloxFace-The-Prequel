@@ -70,6 +70,6 @@ public class PlayerInfo : MonoBehaviour, Entity
     public void GainHP(float hp)
     {
         m_health += hp;
-        m_health = Mathf.Max( m_health, m_maxHP );
+        m_health = Mathf.Min(m_health, MaxHP );
     }
 }

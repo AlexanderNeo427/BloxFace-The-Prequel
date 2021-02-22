@@ -5503,9 +5503,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 104
-  moveSpeed: 2.8
-  explosionDamage: 13.3
-  blastRadius: 9.7
+  moveSpeed: 2.5
+  explosionDamage: 9.1
+  blastRadius: 8
 --- !u!65 &642194725
 BoxCollider:
   m_ObjectHideFlags: 0

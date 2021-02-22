@@ -45,7 +45,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     // Events
     public static event Action<Vector3> OnDeath;
-    public static event Action<float> OnPlayerDamage;
+    public static event Action<float> OnAttackPlayer;
 
     private void Start()
     {
@@ -56,8 +56,12 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("RegularZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = (attackRange * 0.85f);
+
+        // Nav mesh agent speed
+        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
+        speed = Mathf.Max(0.75f, speed);
+        m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
@@ -73,7 +77,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     public void Attack()
     {
-        OnPlayerDamage?.Invoke( dmgPerHit );
+        OnAttackPlayer?.Invoke( dmgPerHit );
     }
 
     public void TakeDamage(float dmg)

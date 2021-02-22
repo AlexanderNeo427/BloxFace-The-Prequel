@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 99
-  moveSpeed: 3.37
+  moveSpeed: 3.9
   dmgPerHit: 13.5
   attackRange: 4.04
   attackSpeed: 0.72

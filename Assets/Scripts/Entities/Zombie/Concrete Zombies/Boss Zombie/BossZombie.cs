@@ -55,8 +55,12 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
+
+        // Nav mesh agent speed
+        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
+        speed = Mathf.Max(0.75f, speed);
+        m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
