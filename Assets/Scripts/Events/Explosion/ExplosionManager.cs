@@ -14,16 +14,9 @@ public class ExplosionManager : Singleton<ExplosionManager>
     // Pooling for better performance
     private List<GameObject> m_explosionPrefabs;
 
-    /*
-     * Broadcasts the explosion parameters
-     * e.g. So objects that can be damaged by the 
-     *      explosion will be notified when one happens
-     * 
-     * @param Vector3 - Spawn position 
-     * @param float   - Blast radius 
-     * @param float   - Damage 
-     */
-    // public static event Action<Vector3, float, float> OnExplosion;
+
+    // Broadcast the explosion event, in case anyone cares
+    public static event Action OnExplosion;
 
     private void Awake()
     {
@@ -59,6 +52,9 @@ public class ExplosionManager : Singleton<ExplosionManager>
         // Handle explosion damage
         Collider[] colliders = Physics.OverlapSphere(pos, blastRadius);
         this.HandleExplosion(damage, colliders);
+
+        // Dispatch OnExplosion event
+        OnExplosion?.Invoke();
     }
 
     private void HandleExplosion(float damage, Collider[] colliders)

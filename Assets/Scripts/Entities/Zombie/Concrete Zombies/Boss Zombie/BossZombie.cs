@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,7 +27,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(5f, 50f)]
     private float attackDamage;
 
-    [SerializeField] [Range(7f, 10f)]
+    [SerializeField] [Range(12f, 30f)]
     private float attackRange;
 
     [SerializeField] [Range(0.1f, 1.5f)] 
@@ -38,6 +39,15 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     private PlayerInfo   m_playerInfo;
     private float        m_health;
 
+    public float HP          { get { return m_health; } }
+    public float MoveSpeed   { get { return moveSpeed; } }
+    public float Damage      { get { return attackDamage; } }
+    public float AttackRange { get { return attackRange; } }
+    public float AttackSpeed { get { return attackSpeed; } }
+
+    // Broadcast this entity's death
+    public static event Action<Vector3> OnDeath;
+
     private void Start()
     {
         m_playerInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -45,13 +55,13 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1f, 3f);
+        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateBossZombieChase(this, m_navMeshAgent, m_playerInfo));
-        stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo, attackRange, attackSpeed));
+        stateMachine.AddState(new StateBossZombieChase(this, m_playerInfo));
+        stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo));
 
         m_health = health;
     }
@@ -61,17 +71,10 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
         stateMachine.Update();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // TODO : work with Gabriel on this
-        /* if (other.gameObject.CompareTag("Bullet"))
-             this.TakeDamage(  );*/
-    }
-
     public void Attack()
     {
-        Vector3 pos = transform.position + transform.forward * 0.84f;
-        pos += new Vector3(0f, 1.75f, 0f);
+        Vector3 pos = transform.position + transform.forward * 0.8f;
+        pos += new Vector3(0f, 1.5f, 0f);
         Instantiate(fireball, pos, transform.rotation);
     }
 
@@ -81,8 +84,8 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health <= 0f)
         {
-            m_navMeshAgent.isStopped = true;
-            Destroy( this.gameObject, 1f );
+            OnDeath?.Invoke( transform.position );
+            Destroy( this.gameObject );
         }
     }
 
@@ -94,5 +97,13 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     public float GetCurrentHP()
     {
         return m_health;
+    }
+
+    public GameObject GetGameObject()
+    {
+        if (this.gameObject != null && !this.gameObject.Equals(null))
+            return this.gameObject;
+
+        return null;
     }
 }
