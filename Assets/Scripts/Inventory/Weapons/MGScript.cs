@@ -8,11 +8,13 @@ public class MGScript : MonoBehaviour
     public float waitTime;
     private float wT;
     public GameObject bullet;
+    private PlayerMove m_playerMove;
 
     // Start is called before the first frame update
     void Start()
     {
         wT = waitTime;
+        m_playerMove = GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
