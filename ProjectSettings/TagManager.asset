@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - WaveSystem
+  - Wall
+  - Teammate
+  - Canvas
   layers:
   - Default
   - TransparentFX

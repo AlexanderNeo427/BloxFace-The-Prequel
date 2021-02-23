@@ -14,16 +14,22 @@ public class WeaponPickup : MonoBehaviour
             {
                 WeaponInfo.SGAccess = true;
                 Destroy(this.gameObject);
+                PickUpMovement.pickUp = 3;
+                PickUpSpawn.show = true;
             }
             else if (weaponNum == 2)
             {
                 WeaponInfo.SPAccess = true;
                 Destroy(this.gameObject);
+                PickUpMovement.pickUp = 4;
+                PickUpSpawn.show = true;
             }
             else if (weaponNum == 3)
             {
                 WeaponInfo.MGAccess = true;
                 Destroy(this.gameObject);
+                PickUpMovement.pickUp = 5;
+                PickUpSpawn.show = true;
             }
         }
     }
