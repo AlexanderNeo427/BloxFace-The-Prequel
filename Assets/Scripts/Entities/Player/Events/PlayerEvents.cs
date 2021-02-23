@@ -11,7 +11,7 @@ using UnityEngine;
  */
 public class PlayerEvents : MonoBehaviour
 {
-    public static event Action OnPlayerDeath;
+    // public static event Action OnPlayerDeath;
 
     private PlayerInfo m_playerInfo;
 
@@ -28,7 +28,7 @@ public class PlayerEvents : MonoBehaviour
 
     private void Update()
     {
-        CheckDeath();
+        // CheckDeath();
     }
 
     private void OnDisable()
@@ -39,12 +39,12 @@ public class PlayerEvents : MonoBehaviour
 
     public void DispatchDamagedEvent()
     {
-        // 
+
     }
 
     private void CheckDeath()
     {
-        if (m_playerInfo.HP <= 0.0f)
-            OnPlayerDeath?.Invoke();   
+        /*if (m_playerInfo.HP <= 0.0f)
+            OnPlayerDeath?.Invoke();   */
     }
 }

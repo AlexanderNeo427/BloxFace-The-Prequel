@@ -19,6 +19,10 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
+    [SerializeField] [Range(5f, 20f)]
+    [Tooltip("Distance at which they can detect the player")]
+    private float detectionRange = 10f;
+
     [Header("Attack")]
 
     [SerializeField] [Range(5f, 50f)]
@@ -32,8 +36,9 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     private PlayerInfo   m_playerInfo;
     private float        m_health;
 
-    public float HP          { get { return m_health; } }
-    public float MoveSpeed   { get { return moveSpeed; } }
+    public float HP             { get { return m_health; } }
+    public float MoveSpeed      { get { return moveSpeed; } }
+    public float DetectionRange { get { return detectionRange; } }
 
     /*
      * Spawns explosion at zombies' position with 
@@ -55,7 +60,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
      * @param Vector3 - Spawn position 
      * @param float   - Damage 
      */
-    public static event Action<Vector3, float> OnDamage;
+    public static event Action<Vector3, float> OnDamaged;
 
     private void Start()
     {
@@ -75,6 +80,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
         // Add states here
         stateMachine = new StateMachine();
+        stateMachine.AddState(new StateSuicideZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateSuicideZombieChase(this, m_playerInfo));
         stateMachine.ChangeState("SuicideZombieChase");
     }
@@ -93,6 +99,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     public void TakeDamage(float dmg)
     {
         m_health -= dmg;
+        OnDamaged?.Invoke( transform.position, dmg );
 
         if (m_health <= 0f)
         {

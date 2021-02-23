@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class StateTeammatePatrol : State
 {
     // At what distance does the teammate start chasing the player
-    private const float        PLAYER_FOLLOW_THRESHOLD = 22.5f;
+    private const float        PLAYER_FOLLOW_THRESHOLD = 25f;
+
+    // How often to perform enemy check (cause doing it every frame is probably bad)
     private const float        SPHERECAST_BUFFER = 0.25f;
 
     private TeammateController m_controller;
@@ -47,7 +49,7 @@ public class StateTeammatePatrol : State
             // It goes for the first enemy within it's detection range
             Vector3 pos = m_controller.transform.position;
             pos.y = 0f;
-            float detectionRange = 12f;
+            float detectionRange = 10f;
 
             Collider[] colliders = Physics.OverlapSphere(pos, detectionRange);
             foreach (Collider collider in colliders)
@@ -88,6 +90,7 @@ public class StateTeammatePatrol : State
     {
         Vector3 myPos = m_controller.transform.position;
         Vector3 playerPos = m_playerInfo.pos;
+        myPos.y = playerPos.y = 0f;
 
         return Vector3.Distance( myPos, playerPos );
     }

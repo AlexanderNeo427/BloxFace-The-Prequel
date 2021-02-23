@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 99
   moveSpeed: 3.9
+  detectionRange: 12.3
   dmgPerHit: 13.5
   attackRange: 4.04
   attackSpeed: 0.72
@@ -579,7 +580,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 3
 --- !u!65 &639261694
 BoxCollider:
   m_ObjectHideFlags: 0

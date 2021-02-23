@@ -19,6 +19,10 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
+    [SerializeField] [Range(5f, 20f)] 
+    [Tooltip ("Distance at which they can detect the player")]
+    private float detectionRange = 10f;
+
     [Header ("Attack")]
 
     [SerializeField] [Range(5f, 20f)] 
@@ -37,15 +41,27 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     private float        m_health;
 
     // Getterss
-    public float HP          { get { return m_health; } }
-    public float MoveSpeed   { get { return moveSpeed; } }
-    public float Damage      { get { return dmgPerHit; } }
-    public float AttackRange { get { return attackRange; } }
-    public float AttackSpeed { get { return attackSpeed; } }
+    public float HP             { get { return m_health; } }
+    public float MoveSpeed      { get { return moveSpeed; } }
+    public float Damage         { get { return dmgPerHit; } }
+    public float AttackRange    { get { return attackRange; } }
+    public float AttackSpeed    { get { return attackSpeed; } }
+    public float DetectionRange { get { return detectionRange; } }
 
     // Events
-    public static event Action<Vector3> OnDeath;
     public static event Action<float> OnAttackPlayer;
+
+    // Broadcast the Entity's position at time of death
+    public static event Action<Vector3> OnDeath;
+
+    /*
+     * Broadcasts the info about the zombie
+     * when he gets damaged
+     * 
+     * @param Vector3 - Position 
+     * @param float   - Damage 
+     */
+    public static event Action<Vector3, float> OnDamaged;
 
     private void Start()
     {
@@ -65,6 +81,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         // Add states here
         stateMachine = new StateMachine();
+        stateMachine.AddState(new StateRegularZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo));
         stateMachine.ChangeState("RegularZombieChase");
@@ -83,6 +100,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     public void TakeDamage(float dmg)
     {
         m_health -= dmg;
+        OnDamaged?.Invoke( transform.position, dmg );
 
         if (m_health <= 0f)
         {

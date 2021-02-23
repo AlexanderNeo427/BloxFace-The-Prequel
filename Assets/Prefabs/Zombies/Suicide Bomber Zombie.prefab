@@ -5489,7 +5489,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 3
 --- !u!114 &432559944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5504,6 +5504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 104
   moveSpeed: 2.5
+  detectionRange: 10.8
   explosionDamage: 9.1
   blastRadius: 8
 --- !u!65 &642194725
