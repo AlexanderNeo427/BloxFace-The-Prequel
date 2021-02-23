@@ -10,8 +10,8 @@ public class Grid
     private int     m_noGridZ;
     private float   m_gridSize;
 
-    private Vector3 m_botLeft;
-    private Vector3 m_topRight;
+    public Vector3 m_botLeft { get; private set; }
+    public Vector3 m_topRight { get; private set; }
     private float   m_lengthX;
     private float   m_lengthZ;
 

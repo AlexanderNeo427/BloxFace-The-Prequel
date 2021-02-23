@@ -12,6 +12,8 @@ public class WaveSystem : MonoBehaviour
         Waiting
     };
 
+    public GridManager myGrid;
+
     private WaveState State = WaveState.Waiting;
 
     // Bonus Score event
@@ -22,8 +24,8 @@ public class WaveSystem : MonoBehaviour
     [SerializeField] private List<GameObject> enemies;
 
     // Spawn Position
-    public static int xPos;
-    public static int zPos;
+    public static float xPos;
+    public static float zPos;
     private int oldSpawn;
     private int chosenSpawn = 0;
 
@@ -149,25 +151,25 @@ public class WaveSystem : MonoBehaviour
             // Left
             if (chosenSpawn == 1)
             {
-                xPos = -22;
+                xPos = myGrid.m_grid.m_botLeft.x - 20;
                 zPos = Random.Range(-13, 12);
             }
             // Right
             else if (chosenSpawn == 2)
             {
-                xPos = 22;
+                xPos = myGrid.m_grid.m_topRight.x + 20;
                 zPos = Random.Range(-13, 12);
             }
             // Up
             else if (chosenSpawn == 3)
             {
-                zPos = -24;
+                zPos = myGrid.m_grid.m_topRight.z + 20;
                 xPos = Random.Range(-13, 12);
             }
             // Down
             else
             {
-                zPos = 24;
+                zPos = myGrid.m_grid.m_botLeft.z - 20; 
                 xPos = Random.Range(-13, 12);
             }
 
