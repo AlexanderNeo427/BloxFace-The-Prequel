@@ -10,6 +10,24 @@ public class ScoreSystem : MonoBehaviour
 
     private float timer = 3.0f;
 
+    private void OnEnable()
+    {
+        RegularZombie.OnDeath += AddScore;
+        SuicideBomberZombie.OnDeath += AddScore;
+        BossZombie.OnDeath += AddScore;
+
+        // Runner zombie TODO
+    }
+
+    private void OnDisable()
+    {
+        RegularZombie.OnDeath -= AddScore;
+        SuicideBomberZombie.OnDeath -= AddScore;
+        BossZombie.OnDeath -= AddScore;
+
+        // Runner zombie TODO
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -21,14 +39,14 @@ public class ScoreSystem : MonoBehaviour
 
             if (ScoreMultiplier != 1)
             {
-                MultiplierText.fontSize = 80f;
+                MultiplierText.fontSize = 60f;
                 DecreaseMultiplier();
             }
         }
 
         // Test for score
         if (Input.GetKeyDown("space"))
-            AddScore();
+            AddScore(Vector3.zero);
 
         // "Bobbing" effect on multiplier text
         if (MultiplierText.fontSize > 36f)
@@ -39,9 +57,9 @@ public class ScoreSystem : MonoBehaviour
     }
 
     // Add score and Add to multiplier
-    void AddScore()
+    void AddScore(Vector3 dummyVariable)
     {
-        MultiplierText.fontSize = 80f;
+        MultiplierText.fontSize = 60f;
 
         AudioManager.instance.Play("Multiplier");
         ScoreValue += 20 * ScoreMultiplier;

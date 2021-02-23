@@ -24,6 +24,8 @@ public class WeaponInfo : MonoBehaviour
     public static float reloadTime = 1.5f;
     public static bool reloadAffirm = false;
 
+    private PlayerMove m_playerMove;
+
     private void OnEnable()
     {
         Pickup.OnPickupAmmo += IncreaseMaxAmmo;
@@ -45,6 +47,8 @@ public class WeaponInfo : MonoBehaviour
         shotgun.SetActive(false);
         sniper.SetActive(false);
         machineGun.SetActive(false);
+
+        m_playerMove = GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class WeaponInfo : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Alpha1))
         {
+            m_playerMove.ResetMoveSpeed();
             pistol.SetActive(true);
             shotgun.SetActive(false);
             sniper.SetActive(false);
@@ -59,6 +64,7 @@ public class WeaponInfo : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Alpha2))
         {
+            m_playerMove.ResetMoveSpeed();
             if (SGAccess)
             {
                 pistol.SetActive(false);
@@ -74,6 +80,7 @@ public class WeaponInfo : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.Alpha3))
         {
+            m_playerMove.ResetMoveSpeed();
             shotgun.SetActive(false);
             if (SPAccess)
             {
@@ -95,11 +102,13 @@ public class WeaponInfo : MonoBehaviour
             {
                 pistol.SetActive(false);
                 machineGun.SetActive(true);
+                m_playerMove.SetMoveSpeed(3.25f);
             }
             else
             {
                 pistol.SetActive(true);
                 machineGun.SetActive(false);
+                m_playerMove.ResetMoveSpeed();
             }
         }
         if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo > 0)

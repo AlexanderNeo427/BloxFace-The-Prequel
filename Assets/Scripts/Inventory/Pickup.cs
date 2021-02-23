@@ -54,10 +54,14 @@ public class Pickup : MonoBehaviour
         {
             float hpGain = UnityEngine.Random.Range(10f, 40f);
             OnPickupHP?.Invoke( hpGain );
+            PickUpMovement.pickUp = 2;
+            PickUpSpawn.show = true;
         }
         else
         {
             OnPickupAmmo?.Invoke();
+            PickUpMovement.pickUp = 1;
+            PickUpSpawn.show = true;
         }
     }
 }
