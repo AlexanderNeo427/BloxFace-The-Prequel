@@ -36,6 +36,9 @@ public class PlayerInfo : MonoBehaviour, Entity
     // And bring us back to the main menu
     public static event Action OnDeath;
 
+    // param - How much damage the player took
+    public static event Action<float> OnPlayerDamaged;
+
     private void Awake()
     {
         // Set player starting position
@@ -60,16 +63,18 @@ public class PlayerInfo : MonoBehaviour, Entity
     public void TakeDamage(float dmg)
     {
         m_health -= dmg;
+        OnPlayerDamaged?.Invoke( dmg );
 
         if (m_health <= 0f)
         {
             OnDeath?.Invoke();
+            return;
         }
     }
 
     public void GainHP(float hp)
     {
         m_health += hp;
-        m_health = Mathf.Max( m_health, m_maxHP );
+        m_health = Mathf.Min( m_health, MaxHP );
     }
 }

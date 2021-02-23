@@ -51,13 +51,13 @@ public class StateSuicideZombieChase : State
         }
 
         // Set random speed every few seconds
-        m_setSpeedBuffer -= Time.deltaTime;
+/*        m_setSpeedBuffer -= Time.deltaTime;
         if (m_setSpeedBuffer <= 0f)
         {
             m_setSpeedBuffer = UnityEngine.Random.Range(2f, 6f);
             float newSpeed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-3f, 3f);
             m_navMeshAgent.speed = Mathf.Max(newSpeed, m_navMeshAgent.speed);
-        }
+        }*/
     }
 
     public override void OnStateExit()

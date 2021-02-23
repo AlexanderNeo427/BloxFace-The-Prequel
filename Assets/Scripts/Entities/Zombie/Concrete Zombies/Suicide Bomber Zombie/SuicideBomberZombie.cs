@@ -19,6 +19,10 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
+    [SerializeField] [Range(5f, 20f)]
+    [Tooltip("Distance at which they can detect the player")]
+    private float detectionRange = 10f;
+
     [Header("Attack")]
 
     [SerializeField] [Range(5f, 50f)]
@@ -32,8 +36,9 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     private PlayerInfo   m_playerInfo;
     private float        m_health;
 
-    public float HP          { get { return m_health; } }
-    public float MoveSpeed   { get { return moveSpeed; } }
+    public float HP             { get { return m_health; } }
+    public float MoveSpeed      { get { return moveSpeed; } }
+    public float DetectionRange { get { return detectionRange; } }
 
     /*
      * Spawns explosion at zombies' position with 
@@ -45,8 +50,17 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
      */
     public static event Action<Vector3, float, float> OnSuicideZombieExplode;
 
-    // Broadcast this entity's death
+    // Broadcast the Entity's position at time of death
     public static event Action<Vector3> OnDeath;
+
+    /*
+     * Broadcasts the info about the zombie
+     * when he gets damaged
+     * 
+     * @param Vector3 - Spawn position 
+     * @param float   - Damage 
+     */
+    public static event Action<Vector3, float> OnDamaged;
 
     private void Start()
     {
@@ -57,11 +71,16 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("SuicideBomberZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.speed = moveSpeed += UnityEngine.Random.Range(-1.5f, 2f);
         m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
+
+        // Nav mesh agent speed
+        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
+        speed = Mathf.Max(0.75f, speed);
+        m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
+        stateMachine.AddState(new StateSuicideZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateSuicideZombieChase(this, m_playerInfo));
         stateMachine.ChangeState("SuicideZombieChase");
     }
@@ -80,6 +99,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     public void TakeDamage(float dmg)
     {
         m_health -= dmg;
+        OnDamaged?.Invoke( transform.position, dmg );
 
         if (m_health <= 0f)
         {

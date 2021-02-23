@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 99
-  moveSpeed: 2.99
+  moveSpeed: 3.3
   weaponController: {fileID: 3535693097402037111}
 --- !u!195 &1142962787421133843
 NavMeshAgent:
@@ -466,19 +466,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 1142962787421133846}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.97
+  m_Radius: 1.17
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2.94
+  m_StoppingDistance: 4.81
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.24
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!65 &439942240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -951,7 +951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5698877150334836922, guid: 40d03319c784e3741a2b4f1cb05c0809, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40d03319c784e3741a2b4f1cb05c0809, type: 3}
@@ -977,13 +977,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8034060461259687413}
     m_Modifications:
+    - target: {fileID: 6885804173142027238, guid: 677730875229da942b1b523eaf6d52e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.511
+      objectReference: {fileID: 0}
     - target: {fileID: 7242983455190944418, guid: 677730875229da942b1b523eaf6d52e6, type: 3}
       propertyPath: m_Name
       value: Machine Gun
       objectReference: {fileID: 0}
     - target: {fileID: 7242983455190944418, guid: 677730875229da942b1b523eaf6d52e6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8812490419721441755, guid: 677730875229da942b1b523eaf6d52e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1059,7 +1063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7809866805260753960, guid: 08043fe0d0d7083429643e0ef9cfa9dd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8335583093161941625, guid: 08043fe0d0d7083429643e0ef9cfa9dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1179,7 +1183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6452458322641596184, guid: 1689ef3b05e5a7c44a4a112c4c8db3d4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1689ef3b05e5a7c44a4a112c4c8db3d4, type: 3}
