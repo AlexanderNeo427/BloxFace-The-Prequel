@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Teammate Shotgun
   m_EditorClassIdentifier: 
   name: Shotgun
-  maxAmmo: 0
-  fireRate: 0
-  bulletsPerShot: 0
-  range: 0
-  reloadTime: 0
-  spread: 0
-  rating: 0
+  maxAmmo: 19
+  fireRate: 1.12
+  bulletsPerShot: 6
+  range: 13.26
+  reloadTime: 0.98
+  spread: 2.07
+  rating: 2
   gunPrefab: {fileID: 6452458322641596184, guid: 1689ef3b05e5a7c44a4a112c4c8db3d4, type: 3}

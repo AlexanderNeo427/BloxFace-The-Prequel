@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StateBossZombiePatrol : State
+public class StateRunnerZombiePatrol : State
 {
     private const float     SET_DEST_BUFFER = 0.75f;
 
-    private BossZombie      m_zombieController;
+    private RunnerZombie    m_zombieController;
     private NavMeshAgent    m_navMeshAgent;
     private WaypointManager m_waypointManager;
     private PlayerInfo      m_playerInfo;
     private Vector3         m_currWaypoint;
     private float           m_setDestBuffer;
 
-    public StateBossZombiePatrol(BossZombie zombieController,
-                                 PlayerInfo playerInfo)
+    public StateRunnerZombiePatrol(RunnerZombie zombieController,
+                                   PlayerInfo playerInfo)
     {
         m_zombieController = zombieController;
         m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
@@ -44,7 +44,7 @@ public class StateBossZombiePatrol : State
         if (DistFromPlayer() <= m_zombieController.DetectionRange)
         {
             m_navMeshAgent.SetDestination( m_playerInfo.pos );
-            m_zombieController.stateMachine.ChangeState("BossZombieChase");
+            m_zombieController.stateMachine.ChangeState("RunnerZombieChase");
         }
 
         // Behavior
@@ -69,7 +69,7 @@ public class StateBossZombiePatrol : State
 
     public override string GetStateID()
     {
-        return "BossZombiePatrol";
+        return "RunnerZombiePatrol";
     }
 
     // Helper
