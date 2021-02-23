@@ -96,8 +96,7 @@ public class WeaponGUIScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.R) && WeaponInfo.ammo < 100 && WeaponInfo.MaxAmmo > 0)
         {
-            RI.SetActive(true);
-            WeaponInfo.reloadAffirm = true;
+            Reload();
         }
         if (WeaponInfo.reloadAffirm)
         {
@@ -108,7 +107,7 @@ public class WeaponGUIScript : MonoBehaviour
                 wT = waitTime;
             }
             wT -= 1 * Time.deltaTime;
-
+            RI.SetActive(true);
             if (WeaponInfo.ammo >= 100)
             {
                 WeaponInfo.ammo = 100;
@@ -121,5 +120,10 @@ public class WeaponGUIScript : MonoBehaviour
                 WeaponInfo.reloadAffirm = false;
             }
         }
+    }
+
+    public static void Reload()
+    {
+        WeaponInfo.reloadAffirm = true;
     }
 }
