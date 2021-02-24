@@ -17,7 +17,7 @@ public class MGBulletScript : MonoBehaviour
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 1f;
+        dmg = 10f;
     }
 
     void Update()
@@ -49,6 +49,12 @@ public class MGBulletScript : MonoBehaviour
             if (suicideBomberZombie != null)
             {
                 suicideBomberZombie.TakeDamage(dmg);
+            }
+
+            RunnerZombie runnerZombie = other.gameObject.GetComponent<RunnerZombie>();
+            if (runnerZombie != null)
+            {
+                runnerZombie.TakeDamage(dmg);
             }
 
             BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();
