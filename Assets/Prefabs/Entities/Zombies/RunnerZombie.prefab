@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 7055337151414484943}
   m_Layer: 0
   m_Name: RunnerZombie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -755,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 150
   moveSpeed: 15
+  detectionRange: 10
   dmgPerHit: 5
   attackRange: 4
   attackSpeed: 1.5

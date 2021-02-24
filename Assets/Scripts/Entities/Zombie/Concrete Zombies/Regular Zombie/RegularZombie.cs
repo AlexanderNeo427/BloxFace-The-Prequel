@@ -48,10 +48,12 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
     public float AttackSpeed    { get { return attackSpeed; } }
     public float DetectionRange { get { return detectionRange; } }
 
-    // Events
+    // ----- Events ------
+
+    // param - Damage done to player
     public static event Action<float> OnAttackPlayer;
 
-    // Broadcast the Entity's position at time of death
+    // param - Position at time of death
     public static event Action<Vector3> OnDeath;
 
     /*
@@ -75,8 +77,8 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
         m_navMeshAgent.stoppingDistance = (attackRange * 0.85f);
 
         // Nav mesh agent speed
-        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
-        speed = Mathf.Max(0.75f, speed);
+        float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
+        speed = Mathf.Max(1.25f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
@@ -84,7 +86,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
         stateMachine.AddState(new StateRegularZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo));
-        stateMachine.ChangeState("RegularZombieChase");
+        stateMachine.ChangeState("RegularZombiePatrol");
     }
 
     private void Update()
@@ -121,7 +123,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     public GameObject GetGameObject()
     {
-        if (this.gameObject != null && !this.gameObject.Equals(null))
+        if (this != null)
             return this.gameObject;
 
         return null;

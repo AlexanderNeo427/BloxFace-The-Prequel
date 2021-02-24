@@ -58,6 +58,12 @@ public class HealthBarRenderer : Singleton<HealthBarRenderer>
         }
     }
 
+    private void Update()
+    {
+        if (m_rootGO == null)
+            Destroy( this );
+    }
+
     private void LateUpdate()
     {
         transform.position = m_rootGO.transform.position + new Vector3(0f, yOffset, 0f);

@@ -72,8 +72,8 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
         m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
 
         // Nav mesh agent speed
-        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
-        speed = Mathf.Max(0.75f, speed);
+        float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
+        speed = Mathf.Max(1.25f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
@@ -81,7 +81,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
         stateMachine.AddState(new StateBossZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateBossZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo));
-        stateMachine.ChangeState("BossZombieChase");
+        stateMachine.ChangeState("BossZombiePatrol");
 
         m_health = health;
     }
@@ -122,7 +122,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
 
     public GameObject GetGameObject()
     {
-        if (this.gameObject != null && !this.gameObject.Equals(null))
+        if (this != null)
             return this.gameObject;
 
         return null;
