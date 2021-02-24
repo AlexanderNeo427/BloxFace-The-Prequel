@@ -510,6 +510,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 4101356355461238472}
+  WaveCanvasUI: {fileID: 0}
+  InventoryUI: {fileID: 0}
+  BloodScreenUI: {fileID: 0}
 --- !u!1 &4101356355461238472
 GameObject:
   m_ObjectHideFlags: 0
