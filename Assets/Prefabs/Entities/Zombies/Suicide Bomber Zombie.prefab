@@ -5502,8 +5502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7cb69dfce17f24780638c0b204c0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 104
-  moveSpeed: 2.5
+  health: 150
+  moveSpeed: 4
   detectionRange: 10.8
   explosionDamage: 9.1
   blastRadius: 8

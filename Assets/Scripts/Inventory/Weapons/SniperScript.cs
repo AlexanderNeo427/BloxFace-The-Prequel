@@ -22,6 +22,7 @@ public class SniperScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
+            GetComponent<AudioSource>().Play();
             WeaponInfo.ammo = WeaponInfo.ammo - 4;
             wT = waitTime;
         }

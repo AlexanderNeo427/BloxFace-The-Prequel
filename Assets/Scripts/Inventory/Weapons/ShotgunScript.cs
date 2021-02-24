@@ -22,6 +22,7 @@ public class ShotgunScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
+            GetComponent<AudioSource>().Play();
             WeaponInfo.ammo = WeaponInfo.ammo - 8;
             wT = waitTime;
         }
@@ -31,7 +32,7 @@ public class ShotgunScript : MonoBehaviour
     // Shooting function - G
     public void Shoot()
     {
-        for (int i = 0; i < 20; ++i)
+        for (int i = 0; i < 50; ++i)
         {
             Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
         }
