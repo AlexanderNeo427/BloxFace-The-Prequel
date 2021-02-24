@@ -39,9 +39,6 @@ public class WaypointManager : Singleton<WaypointManager>
 
     public Vector3 GetRandomWaypoint()
     {
-        if (m_wayPoints.Count <= 1)
-            return m_wayPoints[0];
-
         return m_wayPoints[Random.Range(0, m_wayPoints.Count - 1)];
     }
 
@@ -51,8 +48,6 @@ public class WaypointManager : Singleton<WaypointManager>
             return;
 
         foreach (Vector3 waypoint in m_wayPoints)
-        {
-            Gizmos.DrawSphere(waypoint, 0.5f);
-        }
+            Gizmos.DrawSphere(waypoint, 0.12f);
     }*/
 }

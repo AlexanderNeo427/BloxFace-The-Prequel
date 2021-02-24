@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviour, Entity
 
     private PlayerMove m_playerMove;
 
+/*    ---- DEPRECATED ----
     public GameObject pistol;
     public GameObject shotgun;
     public GameObject sniper;
@@ -23,6 +24,7 @@ public class PlayerInfo : MonoBehaviour, Entity
     public static int ammo = 100;
     private float shotgunDist = 0.25f;
     public static int grenadeAmount = 3;
+*/
 
     // Getters
     public float   MaxHP { get { return m_maxHP; } }
