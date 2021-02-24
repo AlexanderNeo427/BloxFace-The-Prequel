@@ -128,4 +128,27 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         return null;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Vector3 pos = transform.position;
+        pos += new Vector3(0f, 3.8f, 0);
+
+        if (stateMachine.GetCurrentState() == "RegularZombiePatrol")
+        {
+            Gizmos.color = Color.green;
+        }
+        else if (stateMachine.GetCurrentState() == "RegularZombieChase")
+        {
+            Gizmos.color = Color.yellow;
+        }
+        else if (stateMachine.GetCurrentState() == "RegularZombieAttack")
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawSphere(pos, 0.4f);
+    }
 }

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Machine Gun
   maxAmmo: 100
-  fireRate: 0.05
+  fireRate: 0.16
   bulletsPerShot: 12
   range: 23.71
   reloadTime: 1.1
-  spread: 15.07
+  spread: 15.61
   rating: 4
   gunPrefab: {fileID: 7242983455190944418, guid: 677730875229da942b1b523eaf6d52e6, type: 3}

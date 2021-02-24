@@ -10,14 +10,28 @@ public class BloodyScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        PlayerInfo.OnPlayerDamaged += BloodScreenEffect;
     }
 
-    private IEnumerator FadeOut()
+    private void OnDisalbe()
+    {
+        PlayerInfo.OnPlayerDamaged -= BloodScreenEffect;
+    }
+
+    private void BloodScreenEffect(float damageTaken)
+    {
+        StartCoroutine( this.FadeOut(damageTaken) );
+    }
+
+    private IEnumerator FadeOut(float damageTaken)
     {
         Image bloodscreenImage = GetComponent<Image>();
 
+        float maxDMG = 100f;
         Color curretCOL = GetComponent<Image>().color;
-        curretCOL.a = 1.0f;
+        curretCOL.a = Mathf.Min(damageTaken / maxDMG, 0.8f);
+        float originalAlpha = curretCOL.a;
+
         GetComponent<Image>().color = curretCOL;
 
         float targetAlpha = 0f;
@@ -28,12 +42,13 @@ public class BloodyScreen : MonoBehaviour
 
             Color currColor = bloodscreenImage.color;
             float ratio = timeElapsed / fadeOutTime;
-            if (ratio > 0.85f)
+            if (ratio > 0.95f)
             {
-                currColor.a = 1.0f;
+                currColor.a = targetAlpha;
+                bloodscreenImage.color = currColor;
                 break;
             }
-            currColor.a = Mathf.Lerp(1.0f, targetAlpha, ratio);
+            currColor.a = Mathf.Lerp(0.6f, targetAlpha, ratio);
             bloodscreenImage.color = currColor;
 
             yield return null;
