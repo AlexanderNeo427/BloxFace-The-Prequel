@@ -21,8 +21,8 @@ public class WeaponController : MonoBehaviour, Item
     [SerializeField] [Tooltip ("The first gun will be the default gun")]
     private List<GameObject> gunPrefabs;
 
-    private IShootable m_currGun;
-    private int        m_currGunIndex;
+    private IShootable  m_currGun;
+    private int         m_currGunIndex;
 
     private void Start()
     {

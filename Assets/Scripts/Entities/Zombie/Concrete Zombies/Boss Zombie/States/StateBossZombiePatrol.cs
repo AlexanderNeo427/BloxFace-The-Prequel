@@ -5,6 +5,13 @@ using UnityEngine.AI;
 
 public class StateBossZombiePatrol : State
 {
+    // How often to check whether the player is within line of sight
+    private const float     SPHERECAST_BUFFER = 0.3f;
+
+    // How many rays to cast to check player in line-of-sight
+    private const int       NUM_RAYS = 21;
+
+    // How often to recalculate the NavMesh path
     private const float     SET_DEST_BUFFER = 0.75f;
 
     private BossZombie      m_zombieController;
@@ -13,6 +20,7 @@ public class StateBossZombiePatrol : State
     private PlayerInfo      m_playerInfo;
     private Vector3         m_currWaypoint;
     private float           m_setDestBuffer;
+    private float           m_spherecastBuffer;
 
     public StateBossZombiePatrol(BossZombie zombieController,
                                  PlayerInfo playerInfo)
@@ -36,15 +44,41 @@ public class StateBossZombiePatrol : State
         m_navMeshAgent.speed = speed;
 
         m_setDestBuffer = SET_DEST_BUFFER;
+        m_spherecastBuffer = SPHERECAST_BUFFER;
     }
 
     public override void OnStateUpdate()
     {
         // State transition(s)
-        if (DistFromPlayer() <= m_zombieController.DetectionRange)
+        // Check if player can be seen
+        m_spherecastBuffer -= Time.deltaTime;
+        if (m_spherecastBuffer <= 0f)
         {
-            m_navMeshAgent.SetDestination( m_playerInfo.pos );
-            m_zombieController.stateMachine.ChangeState("BossZombieChase");
+            m_spherecastBuffer = SPHERECAST_BUFFER;
+
+            float FOV = 225f;
+            float dTheta = FOV / NUM_RAYS;
+            Vector3 pos = m_zombieController.transform.position;
+            Vector3 dir = m_zombieController.transform.forward;
+            dir = Quaternion.Euler(0f, -FOV * 0.5f, 0) * dir;
+            pos.y = 1f;
+            RaycastHit hitInfo;
+
+            for (int i = 0; i < NUM_RAYS; ++i)
+            {
+                Debug.DrawRay(pos, dir * m_zombieController.DetectionRange, Color.green, SPHERECAST_BUFFER, true);
+
+                bool foundHit = Physics.Raycast(pos, dir, out hitInfo, m_zombieController.DetectionRange);
+                dir = Quaternion.Euler(0f, dTheta, 0f) * dir;
+                if (!foundHit) continue;
+
+                GameObject other = hitInfo.collider.gameObject;
+                if (other.CompareTag("Player"))
+                {
+                    m_zombieController.stateMachine.ChangeState("BossZombieAttack");
+                    return;
+                }
+            }
         }
 
         // Behavior
