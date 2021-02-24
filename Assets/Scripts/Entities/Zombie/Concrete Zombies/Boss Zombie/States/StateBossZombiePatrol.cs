@@ -5,10 +5,14 @@ using UnityEngine.AI;
 
 public class StateBossZombiePatrol : State
 {
+    private const float     SET_DEST_BUFFER = 0.75f;
+
     private BossZombie      m_zombieController;
     private NavMeshAgent    m_navMeshAgent;
     private WaypointManager m_waypointManager;
     private PlayerInfo      m_playerInfo;
+    private Vector3         m_currWaypoint;
+    private float           m_setDestBuffer;
 
     public StateBossZombiePatrol(BossZombie zombieController,
                                  PlayerInfo playerInfo)
@@ -22,11 +26,16 @@ public class StateBossZombiePatrol : State
     public override void OnStateEnter()
     {
         Vector3 initialWaypoint = m_waypointManager.GetRandomWaypoint();
-
+        m_currWaypoint = initialWaypoint;
         m_navMeshAgent.isStopped = false;
         m_navMeshAgent.autoBraking = true;
-        m_navMeshAgent.speed = m_zombieController.MoveSpeed;
         m_navMeshAgent.SetDestination( initialWaypoint );
+
+        float speed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-5, 5f);
+        speed = Mathf.Max(1.25f, speed);
+        m_navMeshAgent.speed = speed;
+
+        m_setDestBuffer = SET_DEST_BUFFER;
     }
 
     public override void OnStateUpdate()
@@ -39,10 +48,18 @@ public class StateBossZombiePatrol : State
         }
 
         // Behavior
+        m_setDestBuffer -= Time.deltaTime;
+        if (m_setDestBuffer < 0f)
+        {
+            m_setDestBuffer = SET_DEST_BUFFER;
+            m_navMeshAgent.SetDestination( m_currWaypoint );
+        }
+
         if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance)
         {
             Vector3 nextWaypoint = m_waypointManager.GetRandomWaypoint();
             m_navMeshAgent.SetDestination( nextWaypoint );
+            m_currWaypoint = nextWaypoint;
         }
     }
 

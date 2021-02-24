@@ -11,14 +11,14 @@ public class ShotgunBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-22, 22);
+        float yRotation = Random.Range(-50, 50);
         float xRotation = Random.Range(-5, 5);
 
         Quaternion bulletRotatio = Quaternion.Euler(xRotation, yRotation, 0);
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 500f;
+        dmg = 20f;
     }
 
     void Update()
@@ -50,6 +50,12 @@ public class ShotgunBulletScript : MonoBehaviour
             if (suicideBomberZombie != null)
             {
                 suicideBomberZombie.TakeDamage(dmg);
+            }
+
+            RunnerZombie runnerZombie = other.gameObject.GetComponent<RunnerZombie>();
+            if (runnerZombie != null)
+            {
+                runnerZombie.TakeDamage(dmg);
             }
 
             BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();

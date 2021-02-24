@@ -55,6 +55,12 @@ public class SniperBulletScript : MonoBehaviour
                 suicideBomberZombie.TakeDamage(dmg);
             }
 
+            RunnerZombie runnerZombie = other.gameObject.GetComponent<RunnerZombie>();
+            if (runnerZombie != null)
+            {
+                runnerZombie.TakeDamage(dmg);
+            }
+
             BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();
             if (bossZombie != null)
             {

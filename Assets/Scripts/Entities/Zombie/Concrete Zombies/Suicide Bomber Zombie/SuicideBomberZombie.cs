@@ -74,15 +74,15 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
         m_navMeshAgent.stoppingDistance = blastRadius * 0.75f;
 
         // Nav mesh agent speed
-        float speed = moveSpeed + UnityEngine.Random.Range(-6, 6f);
-        speed = Mathf.Max(0.75f, speed);
+        float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
+        speed = Mathf.Max(1.25f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
         stateMachine.AddState(new StateSuicideZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateSuicideZombieChase(this, m_playerInfo));
-        stateMachine.ChangeState("SuicideZombieChase");
+        stateMachine.ChangeState("SuicideZombiePatrol");
     }
 
     private void Update()
@@ -120,7 +120,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
     public GameObject GetGameObject()
     {
-        if (this.gameObject != null && !this.gameObject.Equals(null))
+        if (this != null)
             return this.gameObject;
 
         return null;

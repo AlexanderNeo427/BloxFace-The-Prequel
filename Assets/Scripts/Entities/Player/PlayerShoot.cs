@@ -26,7 +26,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 /*&& !PlayerInfo.reloadAffirm*/)
         {
             Shoot();
-            //PlayerInfo.ammo = PlayerInfo.ammo - 2;
+            GetComponent<AudioSource>().Play();
             wT = waitTime;
         }
 

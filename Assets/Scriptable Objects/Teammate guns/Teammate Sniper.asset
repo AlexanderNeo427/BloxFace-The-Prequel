@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Teammate Sniper
   m_EditorClassIdentifier: 
   name: Sniper
-  maxAmmo: 0
-  fireRate: 0
-  bulletsPerShot: 0
-  range: 0
-  reloadTime: 0
-  spread: 0
-  rating: 0
+  maxAmmo: 204
+  fireRate: 2.2
+  bulletsPerShot: 1
+  range: 71.42
+  reloadTime: 1.28
+  spread: -0
+  rating: 3
   gunPrefab: {fileID: 7809866805260753960, guid: 08043fe0d0d7083429643e0ef9cfa9dd, type: 3}
