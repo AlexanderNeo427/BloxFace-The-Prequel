@@ -59,7 +59,7 @@ public class WeaponInfo : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha1))
         {
             m_playerMove.ResetMoveSpeed();
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().Play();
             pistol.SetActive(true);
             shotgun.SetActive(false);
             sniper.SetActive(false);
@@ -70,7 +70,7 @@ public class WeaponInfo : MonoBehaviour
             m_playerMove.ResetMoveSpeed();
             if (SGAccess)
             {
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 shotgun.SetActive(true);
             }
@@ -88,7 +88,7 @@ public class WeaponInfo : MonoBehaviour
             shotgun.SetActive(false);
             if (SPAccess)
             {
-                GetComponent<AudioSource>().Play();
+               // GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 sniper.SetActive(true);
             }
@@ -105,7 +105,7 @@ public class WeaponInfo : MonoBehaviour
             sniper.SetActive(false);
             if (MGAccess)
             {
-                GetComponent<AudioSource>().Play();
+               // GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 machineGun.SetActive(true);
                 m_playerMove.SetMoveSpeed(3.25f);

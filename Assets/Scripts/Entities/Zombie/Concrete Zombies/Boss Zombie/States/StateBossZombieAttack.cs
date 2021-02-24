@@ -34,24 +34,18 @@ public class StateBossZombieAttack : State
         m_navMeshAgent.isStopped = true;
 
         // Nav mesh agent speed
-        m_navMeshAgent.speed *= 0.3f;
-
+        // m_navMeshAgent.speed *= 0.3f;
         m_raycastBuffer = RAYCAST_BUFFER;
     }
 
     public override void OnStateUpdate()
     {
-        // State transition
-        bool playerOutOfRange = DistFromPlayer() > m_attackRange;
-        if (playerOutOfRange)
-            m_zombieController.stateMachine.ChangeState("BossZombieChase");
-
         // Attack
-        m_attackTimer += Time.deltaTime;
-        if (m_attackTimer >= m_attackSpeed)
+        m_attackTimer -= Time.deltaTime;
+        if (m_attackTimer <= 0f)
         {
             m_zombieController.Attack();
-            m_attackTimer = 0f;
+            m_attackTimer = m_attackSpeed;
         }
 
         // Rotate towards player
@@ -76,12 +70,19 @@ public class StateBossZombieAttack : State
             m_raycastBuffer = RAYCAST_BUFFER;
 
             Vector3 pos = m_zombieController.transform.position;
-            Vector3 dir = (pos - m_playerInfo.pos).normalized;
-            float dist = m_zombieController.DetectionRange;
+            pos.y = 1f;
+
+            Vector3 playerPos = m_playerInfo.pos;
+            playerPos.y = 1f;
+
+            Vector3 dir = (playerPos - pos).normalized;
+            float maxDist = m_zombieController.DetectionRange;
+
+            Ray ray = new Ray(pos, dir);
             RaycastHit hitInfo;
 
-            Debug.DrawRay(pos, dir * dist, Color.red, RAYCAST_BUFFER);
-            bool hitFound = Physics.Raycast(pos, dir, out hitInfo, dist);
+            Debug.DrawRay(pos, dir * maxDist, Color.red, RAYCAST_BUFFER, true);
+            bool hitFound = Physics.Raycast(ray, out hitInfo, maxDist);
             if (hitFound)
             {
                 GameObject other = hitInfo.collider.gameObject;
@@ -91,12 +92,9 @@ public class StateBossZombieAttack : State
                 // either chasing, or going back to patrol
                 if (!canSeePlayer)
                 {
-                    float rand = Random.Range(0f, 100f);
-
-                    if (rand <= 50f)
-                        m_zombieController.stateMachine.ChangeState("BossZombieChase");
-                    else
-                        m_zombieController.stateMachine.ChangeState("BossZombiePatrol");
+                    m_navMeshAgent.SetDestination( other.transform.position );
+                    m_zombieController.stateMachine.ChangeState("BossZombieChase");
+                    return;
                 }
             }
         }

@@ -20,12 +20,15 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
     private float m_shootBuffer;
     private bool  m_isUnlocked;
 
+    private AudioSource m_audioSource;
+
     private void Start()
     {
         m_ammo         = gun.MaxAmmo;
         m_reloadActive = false;
         m_shootBuffer  = 0;
         m_isUnlocked   = false;
+        m_audioSource  = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,6 +55,7 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
             // m_reloadActive = true;
         }
 
+        this.PlayWeaponSound();
         for (int i = 0; i < numSpawnBullets; ++i)
         {
             float randAngle = Random.Range(-gun.Spread * 0.5f, gun.Spread * 0.5f);
@@ -60,6 +64,11 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
             Quaternion bulletRotation = randRotate * rootRotate;
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletRotation);
         }
+    }
+
+    public void PlayWeaponSound()
+    {
+        m_audioSource.Play();
     }
 
     public bool HasAmmo()

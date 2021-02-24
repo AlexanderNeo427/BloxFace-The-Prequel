@@ -125,5 +125,24 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
         return null;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+            return;
+
+        Vector3 pos = transform.position;
+        pos += new Vector3(0f, 3.8f, 0);
+
+        if (stateMachine.GetCurrentState() == "SuicideZombiePatrol")
+        {
+            Gizmos.color = Color.green;
+        }
+        else if (stateMachine.GetCurrentState() == "SuicideZombieChase")
+        {
+            Gizmos.color = Color.yellow;
+        }
+        Gizmos.DrawSphere(pos, 0.4f);
+    }
 }
 
