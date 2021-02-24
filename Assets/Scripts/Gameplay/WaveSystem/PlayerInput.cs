@@ -20,7 +20,25 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown("space"))
         {
             foreach (GameObject go in GOs)
-                Destroy(go);
+            {
+                if (go.GetComponent<RegularZombie>())
+                {
+                    go.GetComponent<RegularZombie>().TakeDamage(500);
+                }
+                else if (go.GetComponent<RunnerZombie>())
+                {
+                    go.GetComponent<RunnerZombie>().TakeDamage(500);
+                }
+                else if (go.GetComponent<SuicideBomberZombie>())
+                {
+
+                    go.GetComponent<SuicideBomberZombie>().TakeDamage(500);
+                }
+                else if (go.GetComponent<BossZombie>())
+                {
+                    go.GetComponent<BossZombie>().TakeDamage(500);
+                }
+            }
         }
             
     }

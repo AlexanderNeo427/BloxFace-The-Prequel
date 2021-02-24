@@ -23,6 +23,8 @@ public class WeaponInfo : MonoBehaviour
     public static int grenadeAmount = 3;
     public static float reloadTime = 1.5f;
     public static bool reloadAffirm = false;
+    public static float wT = 0f;
+    private bool In = false;
 
     private PlayerMove m_playerMove;
 
@@ -57,6 +59,7 @@ public class WeaponInfo : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha1))
         {
             m_playerMove.ResetMoveSpeed();
+            GetComponent<AudioSource>().Play();
             pistol.SetActive(true);
             shotgun.SetActive(false);
             sniper.SetActive(false);
@@ -67,6 +70,7 @@ public class WeaponInfo : MonoBehaviour
             m_playerMove.ResetMoveSpeed();
             if (SGAccess)
             {
+                GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 shotgun.SetActive(true);
             }
@@ -84,6 +88,7 @@ public class WeaponInfo : MonoBehaviour
             shotgun.SetActive(false);
             if (SPAccess)
             {
+                GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 sniper.SetActive(true);
             }
@@ -100,6 +105,7 @@ public class WeaponInfo : MonoBehaviour
             sniper.SetActive(false);
             if (MGAccess)
             {
+                GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 machineGun.SetActive(true);
                 m_playerMove.SetMoveSpeed(3.25f);
@@ -111,17 +117,33 @@ public class WeaponInfo : MonoBehaviour
                 m_playerMove.ResetMoveSpeed();
             }
         }
-        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo > 0)
+        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             shotgunDist -= Time.deltaTime;
             if (shotgunDist > 0)
             {
                 transform.Translate(Vector3.back * 12.5f * Time.deltaTime);
+                if (In)
+                {
+                    transform.Translate(Vector3.forward * 12.5f * Time.deltaTime);
+                }
             }
         }
         else
         {
             shotgunDist = 0.062f;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Unit Cube Wall(Clone)")
+        {
+            In = true;
+        }
+        else
+        {
+            In = false;
         }
     }
 }

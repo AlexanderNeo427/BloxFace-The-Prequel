@@ -42,9 +42,23 @@ public class WaveSystem : MonoBehaviour
 
     // Timer
     public float TimeCount = 5f;
+    private float ResetTimer = 30f;
 
     // Bonus Threshold (extra points for clearing enemies fast)
     private bool ThresholdAchieved = false;
+
+    // Different Guns that spawn per phase
+    [SerializeField] private GameObject Shotgun;
+    [SerializeField] private GameObject Sniper;
+    [SerializeField] private GameObject MiniGun;
+
+    // Milestones phases
+    // Refers to the different waves that can spawn different enemies and stuff. 
+    // refers to wave 1 - 2, wave 3 - 5, wave 6 - 9, wave 10 - infinity
+    private bool Phase1 = true;
+    private bool Phase2 = false;
+    private bool Phase3 = false;
+    private bool Phase4 = false;
 
     // Update is called once per frame
     void Update()
@@ -56,7 +70,7 @@ public class WaveSystem : MonoBehaviour
         // Spawning of enemies
         if (State == WaveState.Spawning)
         {
-            if (enemySpawnedMax >= 55)
+            if (enemySpawnedMax >= 50)
                 enemySpawnedMax = 70;
             else
                 enemySpawnedMax = GetNthFibonacci_Ite(waveCount + 1);
@@ -114,7 +128,7 @@ public class WaveSystem : MonoBehaviour
                     waveCount += 1;
                 }
 
-                TimeCount = 30f;
+                TimeCount = ResetTimer;
                 State = WaveState.Spawning;
             }
         }
@@ -132,7 +146,9 @@ public class WaveSystem : MonoBehaviour
         {
             Fib[i] = Fib[i - 2] + Fib[i - 1];
         }
-        return Fib[number];
+
+        // Add arbitrary value of 5 just so that it doesnt start at 1
+        return Fib[number] + 5;
     }
 
     // Spawn Enemies
@@ -173,10 +189,55 @@ public class WaveSystem : MonoBehaviour
                 xPos = Random.Range(-13, 12);
             }
 
-            int randIdx = Random.Range( 0, enemies.Count );
+            int randIdx = DetermineEnemy();
             Instantiate(enemies[randIdx], new Vector3(xPos, 0.92f, zPos), Quaternion.identity);
             yield return new WaitForSeconds(spawnInterval);
             enemySpawned += 1;
+        }
+    }
+
+    // Determine what enemies can spawn depending on which round it is
+    private int DetermineEnemy()
+    {
+        if (waveCount < 3)
+        {
+            return 0;
+        }
+        else if (waveCount < 6)
+        {
+            if (Phase2 == false)
+            {
+                Instantiate(Shotgun, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                ResetTimer = 60f;
+                spawnInterval = 0.15f;
+                Phase2 = true;
+            }
+
+            return Random.Range(0, enemies.Count - 2);
+        }
+        else if (waveCount < 10)
+        {
+            if (Phase3 == false)
+            {
+                Instantiate(Sniper, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                ResetTimer = 120f;
+                spawnInterval = 0.30f;
+                Phase3 = true;
+            }
+
+            return Random.Range(0, enemies.Count - 1);
+        }
+        else
+        {
+            if (Phase4 == false)
+            {
+                Instantiate(MiniGun, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                ResetTimer = 240f;
+                spawnInterval = 0.45f;
+                Phase4 = true;
+            }
+
+            return Random.Range(0, enemies.Count);
         }
     }
 }

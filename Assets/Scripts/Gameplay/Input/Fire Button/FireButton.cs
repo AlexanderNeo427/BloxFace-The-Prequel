@@ -23,6 +23,9 @@ public class FireButton : MonoBehaviour
 
     private float wT;
 
+    private Vector2 startingPoint;
+    private int leftTouch = 99;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +47,7 @@ public class FireButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && wT <= 0)
+        if (Input.GetButtonDown("Firing") && wT <= 0)
         {
             m_playerShoot.Shoot();
             //PlayerInfo.ammo = PlayerInfo.ammo - 2;
@@ -52,7 +55,31 @@ public class FireButton : MonoBehaviour
         }
 
         wT -= 1 * Time.deltaTime;
+
+        //    int i = 0;
+        //    while (i < Input.touchCount)
+        //    {
+        //        Touch t = Input.GetTouch(i);
+        //        Vector2 touchPos = getTouchPosition(t.position); // * -1 for perspective cameras
+        //        if (t.phase == TouchPhase.Began)
+        //        {
+        //            if (t.position.x > Screen.width / 2)
+        //            {
+        //                m_playerShoot.Shoot();
+        //            }
+        //            else
+        //            {
+        //                leftTouch = t.fingerId;
+        //                startingPoint = touchPos;
+        //            }
+        //        }
+        //    }
     }
+
+    //Vector2 getTouchPosition(Vector2 touchPosition)
+    //{
+    //    return GetComponent<Camera>().ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, transform.position.z));
+    //}
 #endif
 
 /*

@@ -18,7 +18,7 @@ public class ShotgunBulletScript : MonoBehaviour
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 20f;
+        dmg = 50f;
     }
 
     void Update()
