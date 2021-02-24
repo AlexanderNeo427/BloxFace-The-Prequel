@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class StateBossZombieAttack : State      
 {
+    private const float  RAYCAST_BUFFER = 0.25f;
+
     private BossZombie   m_zombieController;
     private NavMeshAgent m_navMeshAgent;
     private PlayerInfo   m_playerInfo;
@@ -12,6 +14,7 @@ public class StateBossZombieAttack : State
     private float        m_attackSpeed;
     private float        m_attackTimer;
     private float        m_rotationSpeed;
+    private float        m_raycastBuffer;
 
     public StateBossZombieAttack(BossZombie zombieController,
                                  PlayerInfo playerInfo)
@@ -29,6 +32,11 @@ public class StateBossZombieAttack : State
 
         m_rotationSpeed = m_navMeshAgent.angularSpeed;
         m_navMeshAgent.isStopped = true;
+
+        // Nav mesh agent speed
+        m_navMeshAgent.speed *= 0.3f;
+
+        m_raycastBuffer = RAYCAST_BUFFER;
     }
 
     public override void OnStateUpdate()
@@ -60,6 +68,38 @@ public class StateBossZombieAttack : State
                                                           rotationStep);
 
         m_zombieController.transform.rotation = newRotation;
+
+        // Check if line-of-sight to player being blocked
+        m_raycastBuffer -= Time.deltaTime;
+        if (m_raycastBuffer <= 0f)
+        {
+            m_raycastBuffer = RAYCAST_BUFFER;
+
+            Vector3 pos = m_zombieController.transform.position;
+            Vector3 dir = (pos - m_playerInfo.pos).normalized;
+            float dist = m_zombieController.DetectionRange;
+            RaycastHit hitInfo;
+
+            Debug.DrawRay(pos, dir * dist, Color.red, RAYCAST_BUFFER);
+            bool hitFound = Physics.Raycast(pos, dir, out hitInfo, dist);
+            if (hitFound)
+            {
+                GameObject other = hitInfo.collider.gameObject;
+                bool canSeePlayer = other.CompareTag("Player");
+
+                // If player not spotted, have 50/50 chance of
+                // either chasing, or going back to patrol
+                if (!canSeePlayer)
+                {
+                    float rand = Random.Range(0f, 100f);
+
+                    if (rand <= 50f)
+                        m_zombieController.stateMachine.ChangeState("BossZombieChase");
+                    else
+                        m_zombieController.stateMachine.ChangeState("BossZombiePatrol");
+                }
+            }
+        }
     }
 
     public override void OnStateExit()

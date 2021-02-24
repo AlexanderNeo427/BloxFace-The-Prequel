@@ -17,7 +17,7 @@ using UnityEngine;
  */
 public class WeaponController : MonoBehaviour, Item
 {
-    [Header ("Insert all weapons here")]
+    [Header ("Insert all weapons here (from worst to best)")]
     [SerializeField] [Tooltip ("The first gun will be the default gun")]
     private List<GameObject> gunPrefabs;
 
@@ -27,9 +27,12 @@ public class WeaponController : MonoBehaviour, Item
     private void Start()
     {
         foreach (GameObject gun in gunPrefabs)
+        {
             gun.SetActive( false );
+            gun.GetComponent<IUnlockable>().UnlockWeapon();
+        }
 
-        m_currGunIndex = 3;
+        m_currGunIndex = 0;
         m_currGun = gunPrefabs[m_currGunIndex].GetComponent<IShootable>();
         gunPrefabs[m_currGunIndex].GetComponent<IUnlockable>().UnlockWeapon();
         gunPrefabs[m_currGunIndex].SetActive( true );
@@ -43,6 +46,18 @@ public class WeaponController : MonoBehaviour, Item
     public bool HasAmmo()
     {
         return gunPrefabs[m_currGunIndex].GetComponent<GunController>().HasAmmo();
+    }
+
+    public void UpgradeWeapon()
+    {
+        int nextIdx = m_currGunIndex + 1;
+        if (nextIdx < gunPrefabs.Count)
+        {
+            m_currGun = gunPrefabs[nextIdx].GetComponent<IShootable>();
+            gunPrefabs[m_currGunIndex].SetActive( false );
+            gunPrefabs[nextIdx].SetActive( true );
+            m_currGunIndex = nextIdx;
+        }
     }
 
     public bool SwitchNextWeapon()
