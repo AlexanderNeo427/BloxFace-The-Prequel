@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Teammate
   - Canvas
+  - Bullet
   layers:
   - Default
   - TransparentFX

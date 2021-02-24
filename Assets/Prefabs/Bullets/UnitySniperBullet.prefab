@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 658829029558897946}
   - component: {fileID: 6965362413347675218}
   m_Layer: 0
-  m_Name: UnityBulletFive 1
-  m_TagString: Untagged
+  m_Name: UnitySniperBullet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

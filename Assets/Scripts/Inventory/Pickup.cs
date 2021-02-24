@@ -31,7 +31,6 @@ public class Pickup : MonoBehaviour
         }
     }
 
-
     public void OnTriggerEnter(Collider other)
     {
         bool isPlayer = other.gameObject.CompareTag("Player");
@@ -49,18 +48,19 @@ public class Pickup : MonoBehaviour
         //{
         //    OnPickupAmmo?.Invoke();
         //}
-
         if (chance == 0)
         {
+            AudioManager.instance.Play("PickUpSound");
+            PickUpMovement.pickUp = 2;
             float hpGain = UnityEngine.Random.Range(10f, 40f);
             OnPickupHP?.Invoke( hpGain );
-            PickUpMovement.pickUp = 2;
             PickUpSpawn.show = true;
         }
         else
         {
-            OnPickupAmmo?.Invoke();
+            AudioManager.instance.Play("PickUpSound");
             PickUpMovement.pickUp = 1;
+            OnPickupAmmo?.Invoke();
             PickUpSpawn.show = true;
         }
     }

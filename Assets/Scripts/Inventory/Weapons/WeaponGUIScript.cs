@@ -25,6 +25,8 @@ public class WeaponGUIScript : MonoBehaviour
     private float waitTime = 0.05f;
     private float wT = 0.05f;
 
+    AudioSource m_AudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,8 @@ public class WeaponGUIScript : MonoBehaviour
 
         time = 3f;
         t = false;
+
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -96,7 +100,13 @@ public class WeaponGUIScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.R) && WeaponInfo.ammo < 100 && WeaponInfo.MaxAmmo > 0)
         {
+            m_AudioSource.loop = true;
+            m_AudioSource.Play();
             Reload();
+        }
+        if (WeaponInfo.ammo <= 0)
+        {
+            WeaponInfo.ammo = 0;
         }
         if (WeaponInfo.reloadAffirm)
         {
@@ -104,6 +114,7 @@ public class WeaponGUIScript : MonoBehaviour
             {
                 WeaponInfo.ammo++;
                 WeaponInfo.MaxAmmo--;
+                //GetComponent<AudioSource>().Play();
                 wT = waitTime;
             }
             wT -= 1 * Time.deltaTime;
@@ -113,11 +124,13 @@ public class WeaponGUIScript : MonoBehaviour
                 WeaponInfo.ammo = 100;
                 RI.SetActive(false);
                 WeaponInfo.reloadAffirm = false;
+                m_AudioSource.Stop();
             }
             else if (WeaponInfo.MaxAmmo <= 0)
             {
                 RI.SetActive(false);
                 WeaponInfo.reloadAffirm = false;
+                m_AudioSource.Stop();
             }
         }
     }
