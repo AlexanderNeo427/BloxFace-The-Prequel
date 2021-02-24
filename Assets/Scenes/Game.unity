@@ -282,6 +282,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4336461066643939500, guid: 03d033a391cc7f24bb997e22c8b828c2, type: 3}
   m_PrefabInstance: {fileID: 4336461066728384771}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &216108667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7549540711826417103, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+  m_PrefabInstance: {fileID: 1604206144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &220010858 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4666613795290412939, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
@@ -658,6 +663,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4101356355391949484, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
+      propertyPath: WaveCanvasUI
+      value: 
+      objectReference: {fileID: 756478105}
+    - target: {fileID: 4101356355391949484, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
+      propertyPath: InventoryUI
+      value: 
+      objectReference: {fileID: 1335135624}
+    - target: {fileID: 4101356355391949484, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
+      propertyPath: BloodScreenUI
+      value: 
+      objectReference: {fileID: 216108667}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
 --- !u!224 &376284528 stripped
@@ -672,17 +689,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 343111733}
     m_Modifications:
-    - target: {fileID: 7543942571200547375, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7543942572223573478, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
       propertyPath: m_Name
       value: GameOver Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7543942572223573478, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7543942572223573482, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
       propertyPath: m_LocalPosition.x
@@ -768,6 +777,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7543942572223573483, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
+      propertyPath: WaveCanvasUI
+      value: 
+      objectReference: {fileID: 756478105}
+    - target: {fileID: 7543942572223573483, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
+      propertyPath: PauseButtonUI
+      value: 
+      objectReference: {fileID: 1301486623}
+    - target: {fileID: 7543942572223573483, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
+      propertyPath: InventoryUI
+      value: 
+      objectReference: {fileID: 1335135624}
+    - target: {fileID: 7543942572223573483, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
+      propertyPath: BloodScreenUI
+      value: 
+      objectReference: {fileID: 216108667}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44b5bf92a0ed4734689a13fc974ce654, type: 3}
 --- !u!224 &396376457 stripped
@@ -852,6 +877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a633bbb72920d094da3cdd97ae3c0f57, type: 3}
+--- !u!1 &756478105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4666613796783331265, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
+  m_PrefabInstance: {fileID: 1257653813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &785023378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1179,6 +1209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4666613796783331265, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4666613796783331266, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1270,6 +1304,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4666613796783331266, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
   m_PrefabInstance: {fileID: 1257653813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1301486623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4101356356464906525, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
+  m_PrefabInstance: {fileID: 376284527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1335135624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1469737321133186083, guid: 66857c232da86364680dce687dc9492f, type: 3}
+  m_PrefabInstance: {fileID: 1414344544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1368462588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2520523977723932044, guid: 6cbb8b4d53df3434791d4a28b772c161, type: 3}
@@ -1287,10 +1331,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1753932916}
     - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: MGGO
-      value: 
-      objectReference: {fileID: 1735979603}
-    - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: shotgunGO
       value: 
       objectReference: {fileID: 521862525}
@@ -1298,6 +1338,10 @@ PrefabInstance:
       propertyPath: sniperGO
       value: 
       objectReference: {fileID: 1167441317}
+    - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: MGGO
+      value: 
+      objectReference: {fileID: 1735979603}
     - target: {fileID: 1693759129254920725, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1514,8 +1558,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodScreenUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7549540711826417103, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549540712911996754, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549540712911996754, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549540712911996754, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549540712911996754, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fd5b4c17da6e6488f04de4131ae5e8, type: 3}
+--- !u!224 &1661678150 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1693759128474597311, guid: 66857c232da86364680dce687dc9492f, type: 3}
+  m_PrefabInstance: {fileID: 1414344544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1677454901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1810,6 +1879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  movementJoystickRect: {fileID: 1661678150}
+  movementJoystick: {fileID: 1661678150}
 --- !u!114 &2110501624
 MonoBehaviour:
   m_ObjectHideFlags: 0

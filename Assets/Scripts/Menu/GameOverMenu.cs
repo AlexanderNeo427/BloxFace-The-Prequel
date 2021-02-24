@@ -7,24 +7,38 @@ public class GameOverMenu : MonoBehaviour
 {
     bool gameEnded = false;
 
-    public float restartDelay = 1f;
+    //public float restartDelay = 1f;
 
     public GameObject GameOverMenuUI;
+    public GameObject WaveCanvasUI;
+    public GameObject PauseButtonUI;
+    public GameObject InventoryUI;
+    public GameObject BloodScreenUI;
+
+    private void OnEnable()
+    {
+        PlayerInfo.OnDeath += EndGame;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInfo.OnDeath -= EndGame;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if(gameEnded)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    if(gameEnded)
+        //    {
+        //        Resume();
+        //    }
+        //    else
+        //    {
+        //        Pause();
+        //    }
+        //}
     }
 
     public void EndGame()
@@ -32,9 +46,14 @@ public class GameOverMenu : MonoBehaviour
         if (gameEnded == false)
         {
             GameOverMenuUI.SetActive(true);
+            WaveCanvasUI.SetActive(false);
+            PauseButtonUI.SetActive(false);
+            InventoryUI.SetActive(false);
+            BloodScreenUI.SetActive(false);
+            Time.timeScale = 0f;
             gameEnded = true;
             Debug.Log("GAME OVER");
-            Invoke("Restart", restartDelay);
+            //Invoke("Restart", restartDelay);
         }
     }
 
