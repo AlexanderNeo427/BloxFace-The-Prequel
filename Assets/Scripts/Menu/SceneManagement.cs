@@ -8,7 +8,9 @@ public class SceneManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+//#if UNITY_ANDROID
+//        Screen.SetResolution(1080, 2400, true);
+//#endif
     }
 
     // Update is called once per frame
