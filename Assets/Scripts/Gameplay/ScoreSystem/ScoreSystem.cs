@@ -12,20 +12,18 @@ public class ScoreSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        RegularZombie.OnDeath += AddScore;
-        SuicideBomberZombie.OnDeath += AddScore;
-        BossZombie.OnDeath += AddScore;
-
-        // Runner zombie TODO
+        RegularZombie.OnDeath += AddScoreRegular;
+        SuicideBomberZombie.OnDeath += AddScoreSuicide;
+        BossZombie.OnDeath += AddScoreBoss;
+        RunnerZombie.OnDeath += AddScoreRunner;
     }
 
     private void OnDisable()
     {
-        RegularZombie.OnDeath -= AddScore;
-        SuicideBomberZombie.OnDeath -= AddScore;
-        BossZombie.OnDeath -= AddScore;
-
-        // Runner zombie TODO
+        RegularZombie.OnDeath -= AddScoreRegular;
+        SuicideBomberZombie.OnDeath -= AddScoreSuicide;
+        BossZombie.OnDeath -= AddScoreBoss;
+        RunnerZombie.OnDeath -= AddScoreRunner;
     }
 
     // Update is called once per frame
@@ -35,7 +33,7 @@ public class ScoreSystem : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0.0f)
         {
-            timer = 3.0f;
+            timer = 6.0f;
 
             if (ScoreMultiplier != 1)
             {
@@ -44,37 +42,71 @@ public class ScoreSystem : MonoBehaviour
             }
         }
 
-        // Test for score
-        if (Input.GetKeyDown("space"))
-            AddScore(Vector3.zero);
-
         // "Bobbing" effect on multiplier text
         if (MultiplierText.fontSize > 36f)
-            MultiplierText.fontSize -= Time.deltaTime * 15;
+            MultiplierText.fontSize -= Time.deltaTime * 8;
 
         ScoreText.SetText(ScoreValue.ToString("00000000000000"));
         MultiplierText.SetText(ScoreMultiplier.ToString() + "x");
     }
 
     // Add score and Add to multiplier
-    void AddScore(Vector3 dummyVariable)
+    void AddScoreRegular(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
 
         AudioManager.instance.Play("Multiplier");
-        ScoreValue += 20 * ScoreMultiplier;
+        ScoreValue += 50 * ScoreMultiplier;
 
         // Increase multi
         if (ScoreMultiplier <= 128)
             ScoreMultiplier *= 2;
 
         // Reset timer
-        timer = 3.0f;
+        timer = 6.0f;
     }
+    void AddScoreRunner(Vector3 dummyVariable)
+    {
+        MultiplierText.fontSize = 60f;
 
-    // Add bonus score
-    // Triggers only if player clears a wave within threshold
+        AudioManager.instance.Play("Multiplier");
+        ScoreValue += 100 * ScoreMultiplier;
 
+        // Increase multi
+        if (ScoreMultiplier <= 128)
+            ScoreMultiplier *= 2;
+
+        // Reset timer
+        timer = 6.0f;
+    }
+    void AddScoreSuicide(Vector3 dummyVariable)
+    {
+        MultiplierText.fontSize = 60f;
+
+        AudioManager.instance.Play("Multiplier");
+        ScoreValue += 150 * ScoreMultiplier;
+
+        // Increase multi
+        if (ScoreMultiplier <= 128)
+            ScoreMultiplier *= 2;
+
+        // Reset timer
+        timer = 6.0f;
+    }
+    void AddScoreBoss(Vector3 dummyVariable)
+    {
+        MultiplierText.fontSize = 60f;
+
+        AudioManager.instance.Play("Multiplier");
+        ScoreValue += 400 * ScoreMultiplier;
+
+        // Increase multi
+        if (ScoreMultiplier <= 128)
+            ScoreMultiplier *= 2;
+
+        // Reset timer
+        timer = 6.0f;
+    }
     // Decrease Multiplier if player is hit or take too long to continue the killing streak
     void DecreaseMultiplier()
     {
