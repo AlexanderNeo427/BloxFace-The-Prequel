@@ -6,27 +6,26 @@ public class ShotgunScript : MonoBehaviour
 {
     public GameObject bulletSpawnPoint;
     public float waitTime;
-    private float wT;
     public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
-        wT = waitTime;
+        WeaponInfo.wT = waitTime;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             GetComponent<AudioSource>().Play();
             WeaponInfo.ammo = WeaponInfo.ammo - 8;
-            wT = waitTime;
+            WeaponInfo.wT = waitTime;
         }
-        wT -= 1 * Time.deltaTime;
+        WeaponInfo.wT -= 1 * Time.deltaTime;
     }
 
     // Shooting function - G

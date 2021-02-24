@@ -19,6 +19,7 @@ public class PickUpSpawn : MonoBehaviour
     {
         if (show)
         {
+            //GetComponent<AudioSource>().Play();
             Spawn();
             showNum++;
             show = false;
@@ -29,7 +30,7 @@ public class PickUpSpawn : MonoBehaviour
     {
         Vector3 pos = gameObject.transform.position;
         //pos.y = gameObject.transform.position.y - 200;
-        GameObject pu = Instantiate(pickUp, new Vector3(0, -200, 0), Quaternion.identity) as GameObject;
+        GameObject pu = Instantiate(pickUp, new Vector3(0, -600, 0), Quaternion.identity) as GameObject;
         pu.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
     }
 

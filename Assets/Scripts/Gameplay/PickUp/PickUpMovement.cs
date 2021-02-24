@@ -50,7 +50,7 @@ public class PickUpMovement : MonoBehaviour
         {
             MaxTime = 1f;
         }
-        LeanTween.moveLocalY(gameObject, -100f, MaxTime);
+        LeanTween.moveLocalY(gameObject, -300f, MaxTime);
         if (del <= 0)
         {
             Destroy(gameObject);
