@@ -35,7 +35,7 @@ public class StateSuicideZombieChase : State
     public override void OnStateUpdate()
     {
         // Kerblam
-        bool playerInBlastRadius = DistFromPlayer() <= m_navMeshAgent.stoppingDistance;
+        bool playerInBlastRadius = DistFromPlayer() <= m_navMeshAgent.stoppingDistance + 0.3f;
         if (playerInBlastRadius)
         {
             m_zombieController.Attack();

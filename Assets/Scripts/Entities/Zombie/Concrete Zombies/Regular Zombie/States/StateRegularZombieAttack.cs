@@ -28,7 +28,7 @@ public class StateRegularZombieAttack : State
         m_attackTimer = 0f;
 
         m_rotationSpeed = m_navMeshAgent.angularSpeed;
-        m_navMeshAgent.isStopped = false;
+        m_navMeshAgent.isStopped = true;
         m_navMeshAgent.autoBraking = true;
     }
 

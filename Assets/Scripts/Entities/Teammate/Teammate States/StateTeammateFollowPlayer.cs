@@ -42,11 +42,11 @@ public class StateTeammateFollowPlayer : State
     public override void OnStateUpdate()
     {
         // State transition(s)
-        if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance + 1f)
+       /* if (m_navMeshAgent.remainingDistance <= m_navMeshAgent.stoppingDistance + 1f)
         {
             m_controller.m_stateMachine.ChangeState("TeammatePatrol");
             return;
-        }
+        }*/
 
         // Check for enemies
         m_raycastBuffer -= Time.deltaTime;
@@ -75,6 +75,12 @@ public class StateTeammateFollowPlayer : State
                 if (!foundHit) continue;
 
                 GameObject other = hitInfo.collider.gameObject;
+
+                if (other.CompareTag("Player"))
+                {
+                    m_controller.m_stateMachine.ChangeState("TeammatePatrol");
+                }
+
                 Zombie zombieComponent = other.GetComponent<Zombie>();
                 if (zombieComponent is Zombie && zombieComponent != closestZombie)
                 {

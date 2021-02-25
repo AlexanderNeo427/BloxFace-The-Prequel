@@ -35,7 +35,7 @@ public class StateRunnerZombieChase : State
     public override void OnStateUpdate()
     {
         // State transition(s)
-        bool PlayerWithinRange = (DistFromPlayer() <= m_navMeshAgent.stoppingDistance);
+        bool PlayerWithinRange = (DistFromPlayer() <= m_navMeshAgent.stoppingDistance + 0.1f);
         if (PlayerWithinRange)
             m_zombieController.stateMachine.ChangeState("RunnerZombieAttack");
 
@@ -48,13 +48,13 @@ public class StateRunnerZombieChase : State
         }
 
         // Set random speed every few seconds
-        m_setSpeedBuffer -= Time.deltaTime;
+/*        m_setSpeedBuffer -= Time.deltaTime;
         if (m_setSpeedBuffer <= 0f)
         {
             m_setSpeedBuffer = UnityEngine.Random.Range(2f, 6f);
             float newSpeed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-3f, 3f);
             m_navMeshAgent.speed = Mathf.Max(newSpeed, m_navMeshAgent.speed);
-        }
+        }*/
     }
 
     public override void OnStateExit()

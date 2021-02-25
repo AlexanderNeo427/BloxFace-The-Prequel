@@ -7,18 +7,18 @@ public class StateRunnerZombieAttack : State
 {
     private RunnerZombie m_zombieController;
     private NavMeshAgent m_navMeshAgent;
-    private PlayerInfo m_playerInfo;
-    private float m_chaseDistance;
-    private float m_timePerHit;
-    private float m_attackTimer;
-    private float m_rotationSpeed;
+    private PlayerInfo   m_playerInfo;
+    private float        m_chaseDistance;
+    private float        m_timePerHit;
+    private float        m_attackTimer;
+    private float        m_rotationSpeed;
 
     public StateRunnerZombieAttack(RunnerZombie zombieController,
-                                    PlayerInfo playerInfo)
+                                  PlayerInfo playerInfo)
     {
         m_zombieController = zombieController;
-        m_navMeshAgent = zombieController.GetComponent<NavMeshAgent>();
-        m_playerInfo = playerInfo;
+        m_navMeshAgent     = zombieController.GetComponent<NavMeshAgent>();
+        m_playerInfo       = playerInfo;
     }
 
     public override void OnStateEnter()

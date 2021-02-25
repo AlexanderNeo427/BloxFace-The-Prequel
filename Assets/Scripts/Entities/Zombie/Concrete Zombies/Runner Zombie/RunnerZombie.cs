@@ -19,10 +19,6 @@ public class RunnerZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 15f)]
     private float moveSpeed;
 
-    [SerializeField] [Range(5f, 20f)]
-    [Tooltip("Distance at which they can detect the player")]
-    private float detectionRange = 10f;
-
     [Header("Attack")]
 
     [SerializeField] [Range(3f, 20f)]
@@ -46,7 +42,6 @@ public class RunnerZombie : MonoBehaviour, Zombie, Entity
     public float Damage         { get { return dmgPerHit; } }
     public float AttackRange    { get { return attackRange; } }
     public float AttackSpeed    { get { return attackSpeed; } }
-    public float DetectionRange { get { return detectionRange; } }
 
     // ----- Events ------
 
@@ -74,7 +69,7 @@ public class RunnerZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("RunnerZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.stoppingDistance = (attackRange * 0.85f);
+        m_navMeshAgent.stoppingDistance = (attackRange * 0.88f);
 
         // Nav mesh agent speed
         float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
@@ -83,10 +78,10 @@ public class RunnerZombie : MonoBehaviour, Zombie, Entity
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateRunnerZombiePatrol(this, m_playerInfo));
+        // stateMachine.AddState(new StateRunnerZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateRunnerZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateRunnerZombieAttack(this, m_playerInfo));
-        stateMachine.ChangeState("RunnerZombiePatrol");
+        stateMachine.ChangeState("RunnerZombieChase");
     }
 
     private void Update()

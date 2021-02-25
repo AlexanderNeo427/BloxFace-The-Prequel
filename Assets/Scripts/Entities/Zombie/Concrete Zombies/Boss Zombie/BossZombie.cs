@@ -69,7 +69,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.stoppingDistance = this.attackRange * 0.1f;
+        m_navMeshAgent.stoppingDistance = this.attackRange * 0.25f;
 
         // Nav mesh agent speed
         float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);

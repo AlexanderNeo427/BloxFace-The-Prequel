@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class StateBossZombieAttack : State      
 {
-    private const float  RAYCAST_BUFFER = 0.25f;
+    private const float  RAYCAST_BUFFER = 0.2f;
 
     private BossZombie   m_zombieController;
     private NavMeshAgent m_navMeshAgent;
@@ -79,7 +79,7 @@ public class StateBossZombieAttack : State
             RaycastHit hitInfo;
 
             Debug.DrawRay(pos, dir * m_zombieController.AttackRange, Color.red, RAYCAST_BUFFER, true);
-            bool hitFound = Physics.SphereCast(pos, 0.8f, dir, out hitInfo, m_zombieController.AttackRange);
+            bool hitFound = Physics.SphereCast(pos, 0.485f, dir, out hitInfo, m_zombieController.AttackRange);
 
             if (hitFound)
             {

@@ -727,7 +727,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 2
 --- !u!65 &7869657635386989552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -754,10 +754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  moveSpeed: 10
-  detectionRange: 10
+  moveSpeed: 11.6
   dmgPerHit: 5
-  attackRange: 3.81
+  attackRange: 3.86
   attackSpeed: 1.5
 --- !u!1001 &7660242322995645696
 PrefabInstance:

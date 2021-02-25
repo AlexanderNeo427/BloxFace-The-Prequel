@@ -44,6 +44,16 @@ public class TeammateController : MonoBehaviour, Entity
 
     public static event Action<Vector3> OnDeath;
 
+    private void OnEnable()
+    {
+        PlayerInfo.OnPlayerDamaged += FollowPlayerState;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInfo.OnPlayerDamaged -= FollowPlayerState;
+    }
+
     private void Awake()
     {
         m_waveSystem = GameObject.Find("WaveManager").GetComponent<WaveSystem>();
@@ -131,6 +141,21 @@ public class TeammateController : MonoBehaviour, Entity
     public void SetEnemy(Zombie zombie)
     {
         m_enemy = zombie;
+    }
+
+    // If called, go into "follow player" state if in "patrol" state
+    public void FollowPlayerState(float dummyVar)
+    {
+        float chance = 80f;
+        float rand = UnityEngine.Random.Range(0f, 100f);
+
+        if (chance <= rand)
+        {
+            if (m_stateMachine.GetCurrentState() == "TeammatePatrol")
+            {
+                m_stateMachine.ChangeState("TeammateFollowPlayer");
+            }
+        }
     }
 
     private void OnDrawGizmos()

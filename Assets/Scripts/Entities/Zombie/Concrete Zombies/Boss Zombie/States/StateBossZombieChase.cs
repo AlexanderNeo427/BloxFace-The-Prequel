@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class StateBossZombieChase : State
 {
     // How often to check if player within line-of-sight
-    private const float  RAYCAST_BUFFER = 0.15f;
+    private const float  RAYCAST_BUFFER = 0.2f;
 
     // How many rays to cast within field of view
     private const int    NUM_RAYS = 22;
 
     // How often to recalculate the NavMesh path to target
-    private const float  SET_DEST_BUFFER = 0.6f;
+    private const float  SET_DEST_BUFFER = 0.75f;
 
     // How long will try chasing the player before giving up
     private const float  CHASE_TIME = 6f;
@@ -73,15 +73,13 @@ public class StateBossZombieChase : State
                 RaycastHit hitInfo;
 
                 Debug.DrawRay(pos, dir * m_zombieController.AttackRange, Color.yellow, RAYCAST_BUFFER, true);
-                bool foundHit = Physics.SphereCast(pos, 0.8f, dir, out hitInfo, m_zombieController.AttackRange);
+
+                bool foundHit = Physics.SphereCast(pos, 0.485f, dir, out hitInfo, m_zombieController.AttackRange);
                 if (foundHit)
                 {
                     GameObject other = hitInfo.collider.gameObject;
                     if (other.CompareTag("Player"))
-                    {
                         m_zombieController.stateMachine.ChangeState("BossZombieAttack");
-                        return;
-                    }
                 }
             }
         }

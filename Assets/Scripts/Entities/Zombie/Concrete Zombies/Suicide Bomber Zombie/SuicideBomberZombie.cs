@@ -19,10 +19,6 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
-    [SerializeField] [Range(5f, 20f)]
-    [Tooltip("Distance at which they can detect the player")]
-    private float detectionRange = 10f;
-
     [Header("Attack")]
 
     [SerializeField] [Range(3f, 30f)]
@@ -38,7 +34,6 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
     public float HP             { get { return m_health; } }
     public float MoveSpeed      { get { return moveSpeed; } }
-    public float DetectionRange { get { return detectionRange; } }
 
     /*
      * Spawns explosion at zombies' position with 
@@ -80,9 +75,9 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateSuicideZombiePatrol(this, m_playerInfo));
+        // stateMachine.AddState(new StateSuicideZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateSuicideZombieChase(this, m_playerInfo));
-        stateMachine.ChangeState("SuicideZombiePatrol");
+        stateMachine.ChangeState("SuicideZombieChase");
     }
 
     private void Update()
