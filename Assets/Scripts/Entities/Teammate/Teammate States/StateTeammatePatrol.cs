@@ -9,7 +9,7 @@ public class StateTeammatePatrol : State
     private const float        PLAYER_FOLLOW_THRESHOLD = 30.0f;
 
     // How often to perform enemy check (cause doing it every frame is probably bad)
-    private const float        RAYCAST_BUFFER = 0.3f;
+    private const float        RAYCAST_BUFFER = 0.25f;
 
     // How many rays (in a 360 around the teammate) to cast
     private const int          NUM_RAYS = 28;

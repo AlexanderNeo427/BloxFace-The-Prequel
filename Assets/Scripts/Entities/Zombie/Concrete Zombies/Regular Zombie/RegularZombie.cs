@@ -13,7 +13,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 {
     [Header("Stats")]
 
-    [SerializeField] [Range(50f, 150f)]
+    [SerializeField] [Range(50f, 300f)]
     private float health;
 
     [SerializeField] [Range(1f, 8f)]
@@ -25,7 +25,7 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     [Header ("Attack")]
 
-    [SerializeField] [Range(5f, 20f)] 
+    [SerializeField] [Range(3f, 20f)] 
     private float dmgPerHit;
 
     [SerializeField] [Range(2.5f, 5f)]

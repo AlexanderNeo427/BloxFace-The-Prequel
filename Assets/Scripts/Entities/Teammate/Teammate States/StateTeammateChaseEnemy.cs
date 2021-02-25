@@ -9,7 +9,7 @@ public class StateTeammateChaseEnemy : State
     private const float        SET_DEST_BUFFER = 0.4f;
 
     // How often to perform enemy check (cause doing it every frame is probably bad)
-    private const float        RAYCAST_BUFFER = 0.3f;
+    private const float        RAYCAST_BUFFER = 0.25f;
 
     // How many rays (around the teammate) to cast (to check for enemies)
     private const int          NUM_RAYS = 28;

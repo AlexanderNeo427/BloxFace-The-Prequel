@@ -16,13 +16,13 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
 
     [Header("Stats")]
 
-    [SerializeField] [Range(50f, 150f)]
+    [SerializeField] [Range(50f, 300f)]
     private float health;
 
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
-    [SerializeField] [Range(5f, 20f)]
+    [SerializeField] [Range(3f, 20f)]
     [Tooltip("Distance at which they can detect the player")]
     private float detectionRange = 10f;
 

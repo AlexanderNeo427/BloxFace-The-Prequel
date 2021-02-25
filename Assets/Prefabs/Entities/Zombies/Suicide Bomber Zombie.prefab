@@ -5503,7 +5503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
-  moveSpeed: 4
+  moveSpeed: 4.7
   detectionRange: 10.8
   explosionDamage: 9.1
   blastRadius: 8
