@@ -11,14 +11,14 @@ public class ShotgunBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-50, 50);
-        float xRotation = Random.Range(-5, 5);
+        float yRotation = Random.Range(-40, 40);
+        float xRotation = Random.Range(-4, 4);
 
         Quaternion bulletRotatio = Quaternion.Euler(xRotation, yRotation, 0);
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 50f;
+        dmg = 10f;
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class ShotgunBulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += 1 * Time.deltaTime;
 
-        if (maxDistance >= 0.15f)
+        if (maxDistance >= 0.1f)
         {
             Destroy(this.gameObject);
         }
@@ -43,25 +43,37 @@ public class ShotgunBulletScript : MonoBehaviour
             RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
             if (regularZombie != null)
             {
-                regularZombie.TakeDamage(dmg);
+                if (regularZombie.GetCurrentHP() > 0f)
+                {
+                    regularZombie.TakeDamage(dmg);
+                }
             }
 
             SuicideBomberZombie suicideBomberZombie = other.gameObject.GetComponent<SuicideBomberZombie>();
             if (suicideBomberZombie != null)
             {
-                suicideBomberZombie.TakeDamage(dmg);
+                if (suicideBomberZombie.GetCurrentHP() > 0f)
+                {
+                    suicideBomberZombie.TakeDamage(dmg);
+                }
             }
 
             RunnerZombie runnerZombie = other.gameObject.GetComponent<RunnerZombie>();
             if (runnerZombie != null)
             {
-                runnerZombie.TakeDamage(dmg);
+                if (runnerZombie.GetCurrentHP() > 0f)
+                {
+                    runnerZombie.TakeDamage(dmg);
+                }
             }
 
             BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();
             if (bossZombie != null)
             {
-                bossZombie.TakeDamage(dmg);
+                if (bossZombie.GetCurrentHP() > 0f)
+                {
+                    bossZombie.TakeDamage(dmg);
+                }
             }
             Destroy(this.gameObject);
         }

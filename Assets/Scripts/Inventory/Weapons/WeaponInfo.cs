@@ -18,7 +18,7 @@ public class WeaponInfo : MonoBehaviour
     public static bool MGAccess = false;
 
     public static int ammo = 100;
-    public static int MaxAmmo = 100;
+    public static int MaxAmmo = 10;
     private float shotgunDist = 0.062f;
     public static int grenadeAmount = 3;
     public static float reloadTime = 1.5f;
@@ -108,7 +108,7 @@ public class WeaponInfo : MonoBehaviour
                // GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 machineGun.SetActive(true);
-                m_playerMove.SetMoveSpeed(3.25f);
+                m_playerMove.SetMoveSpeed(5f);
             }
             else
             {
@@ -117,7 +117,7 @@ public class WeaponInfo : MonoBehaviour
                 m_playerMove.ResetMoveSpeed();
             }
         }
-        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo >= 8 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             shotgunDist -= Time.deltaTime;
             if (shotgunDist > 0)
@@ -137,7 +137,7 @@ public class WeaponInfo : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Unit Cube Wall(Clone)")
+        if (other.gameObject.CompareTag("Wall"))
         {
             In = true;
         }
