@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject InventoryUI;
     public GameObject BloodScreenUI;
 
+    public GameObject PauseButtonUI;
+
     // Update is called once per frame
     void Update()
     {
@@ -26,6 +28,18 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
+
+    //private void Awake()
+    //{
+    //    if (Application.isMobilePlatform)
+    //    {
+    //        PauseButtonUI.SetActive(true);
+    //    }
+    //    else if (!Application.isMobilePlatform)
+    //    {
+    //        PauseButtonUI.SetActive(false);
+    //    }
+    //}
 
     public void Resume()
     {
