@@ -381,6 +381,7 @@ MonoBehaviour:
   WaveCanvasUI: {fileID: 0}
   InventoryUI: {fileID: 0}
   BloodScreenUI: {fileID: 0}
+  PauseButtonUI: {fileID: 4101356356464906525}
 --- !u!1 &4101356355461238472
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +927,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84634d98a43508c47856b3e36ff2bca3, type: 3}
+--- !u!1 &4101356356464906525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2541221384082417162, guid: 84634d98a43508c47856b3e36ff2bca3, type: 3}
+  m_PrefabInstance: {fileID: 1994754348184925975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4101356356464906526 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2541221384082417161, guid: 84634d98a43508c47856b3e36ff2bca3, type: 3}

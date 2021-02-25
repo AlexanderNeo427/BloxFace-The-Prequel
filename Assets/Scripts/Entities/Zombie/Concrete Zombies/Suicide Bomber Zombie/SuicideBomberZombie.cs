@@ -13,7 +13,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 {
     [Header("Stats")]
 
-    [SerializeField] [Range(50f, 150f)]
+    [SerializeField] [Range(50f, 300f)]
     private float health;
 
     [SerializeField] [Range(1f, 8f)]
@@ -25,10 +25,10 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
     [Header("Attack")]
 
-    [SerializeField] [Range(5f, 50f)]
+    [SerializeField] [Range(3f, 30f)]
     private float explosionDamage;
 
-    [SerializeField] [Range(5f, 20f)]
+    [SerializeField] [Range(3f, 30f)]
     private float blastRadius;
 
     public StateMachine  stateMachine { get; private set; }

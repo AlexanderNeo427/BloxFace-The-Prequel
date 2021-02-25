@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Shotgun
   maxAmmo: 19
-  fireRate: 1.12
-  bulletsPerShot: 6
+  fireRate: 1.5
+  bulletsPerShot: 12
   range: 13.26
   reloadTime: 0.98
-  spread: 2.07
+  spread: 3.84
   rating: 2
   gunPrefab: {fileID: 6452458322641596184, guid: 1689ef3b05e5a7c44a4a112c4c8db3d4, type: 3}
