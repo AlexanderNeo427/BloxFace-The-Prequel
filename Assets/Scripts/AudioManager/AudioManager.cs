@@ -35,15 +35,18 @@ public class AudioManager : MonoBehaviour
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
 
-			//s.source.outputAudioMixerGroup = mixerGroup;
+			if (s.name == "Theme")
+            {
+				s.source.spatialBlend = 0.8f;
+			}
 		}
-
 	}
 
     private void Start()
 	{
 		Play("MainMenuTheme");
 	}
+
     public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);

@@ -16,7 +16,7 @@ public class SniperBulletScript : MonoBehaviour
         dir = bulletRotation * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 1000f;
+        dmg = 290f;
     }
 
     void Update()

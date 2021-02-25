@@ -60,6 +60,10 @@ public class WaveSystem : MonoBehaviour
     private bool Phase3 = false;
     private bool Phase4 = false;
 
+    // Counter to spawn new teammates in the map
+    [SerializeField] private GameObject Teammate;
+    private int TurnToSpawn = 3;
+
     // Update is called once per frame
     void Update()
     {
@@ -131,6 +135,12 @@ public class WaveSystem : MonoBehaviour
                 TimeCount = ResetTimer;
                 State = WaveState.Spawning;
             }
+        }
+
+        if (waveCount >= TurnToSpawn)
+        {
+            Instantiate(Teammate, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
+            TurnToSpawn += 3;
         }
     }
 
@@ -207,7 +217,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase2 == false)
             {
-                Instantiate(Shotgun, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                Instantiate(Shotgun, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
                 ResetTimer = 60f;
                 spawnInterval = 0.15f;
                 Phase2 = true;
@@ -219,7 +229,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase3 == false)
             {
-                Instantiate(Sniper, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                Instantiate(Sniper, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
                 ResetTimer = 120f;
                 spawnInterval = 0.30f;
                 Phase3 = true;
@@ -231,7 +241,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase4 == false)
             {
-                Instantiate(MiniGun, new Vector3(0, 1.2f, 0), Quaternion.identity);
+                Instantiate(MiniGun, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
                 ResetTimer = 240f;
                 spawnInterval = 0.45f;
                 Phase4 = true;

@@ -33,10 +33,10 @@ public class Pickup : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        bool isPlayer = other.gameObject.CompareTag("Player");
-        if (!isPlayer) return;
+        //bool isPlayer = other.gameObject.CompareTag("Player");
+        //if (!isPlayer) return;
 
-        this.gameObject.SetActive( false );
+        //this.gameObject.SetActive( false );
 
         //float chance = UnityEngine.Random.Range( 0f, 100f );
         //if (chance <= 50f)
@@ -48,20 +48,25 @@ public class Pickup : MonoBehaviour
         //{
         //    OnPickupAmmo?.Invoke();
         //}
-        if (chance == 0)
+        if (other.gameObject.name == "Player")
         {
-            AudioManager.instance.Play("PickUpSound");
-            PickUpMovement.pickUp = 2;
-            float hpGain = UnityEngine.Random.Range(10f, 40f);
-            OnPickupHP?.Invoke( hpGain );
-            PickUpSpawn.show = true;
-        }
-        else
-        {
-            AudioManager.instance.Play("PickUpSound");
-            PickUpMovement.pickUp = 1;
-            OnPickupAmmo?.Invoke();
-            PickUpSpawn.show = true;
+            if (chance == 0)
+            {
+                AudioManager.instance.Play("PickUpSound");
+                PickUpMovement.pickUp = 2;
+                float hpGain = UnityEngine.Random.Range(10f, 40f);
+                OnPickupHP?.Invoke(hpGain);
+                PickUpSpawn.show = true;
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                AudioManager.instance.Play("PickUpSound");
+                PickUpMovement.pickUp = 1;
+                OnPickupAmmo?.Invoke();
+                PickUpSpawn.show = true;
+                Destroy(this.gameObject);
+            }
         }
     }
 }

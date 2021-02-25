@@ -13,7 +13,7 @@ public class BloodyScreen : MonoBehaviour
         PlayerInfo.OnPlayerDamaged += BloodScreenEffect;
     }
 
-    private void OnDisalbe()
+    private void OnDisable()
     {
         PlayerInfo.OnPlayerDamaged -= BloodScreenEffect;
     }
