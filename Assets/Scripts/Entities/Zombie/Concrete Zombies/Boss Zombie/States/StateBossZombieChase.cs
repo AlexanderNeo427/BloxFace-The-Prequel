@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class StateBossZombieChase : State
 {
     // How often to check if player within line-of-sight
-    private const float  RAYCAST_BUFFER = 0.25f;
+    private const float  RAYCAST_BUFFER = 0.15f;
 
     // How many rays to cast within field of view
     private const int    NUM_RAYS = 22;
@@ -54,32 +54,34 @@ public class StateBossZombieChase : State
 
     public override void OnStateUpdate()
     {
+        // If within range of attack, check line of sight to the player
         m_raycastBuffer -= Time.deltaTime;
-        if (m_raycastBuffer <= 0f)
+
+        if (DistFromPlayer() <= m_zombieController.AttackRange)
         {
-            m_raycastBuffer = RAYCAST_BUFFER;
-
-            float FOV = 200f;
-            float dTheta = FOV / NUM_RAYS;
-            Vector3 pos = m_zombieController.transform.position;
-            Vector3 dir = m_zombieController.transform.forward;
-            dir = Quaternion.Euler(0f, -FOV * 0.5f, 0) * dir;
-            pos.y = 1f;
-            RaycastHit hitInfo;
-
-            for (int i = 0; i < NUM_RAYS; ++i)
+            if (m_raycastBuffer <= 0f)
             {
-                Debug.DrawRay(pos, dir * m_zombieController.DetectionRange, Color.yellow, RAYCAST_BUFFER, true);
+                m_raycastBuffer = RAYCAST_BUFFER;
 
-                bool foundHit = Physics.Raycast(pos, dir, out hitInfo, m_zombieController.DetectionRange);
-                dir = Quaternion.Euler(0f, dTheta, 0f) * dir;
-                if (!foundHit) continue;
+                Vector3 pos = m_zombieController.transform.position;
+                pos.y = 1f;
 
-                GameObject other = hitInfo.collider.gameObject;
-                if (other.CompareTag("Player"))
+                Vector3 playerPos = m_playerInfo.pos;
+                playerPos.y = 1f;
+
+                Vector3 dir = (playerPos - pos).normalized;
+                RaycastHit hitInfo;
+
+                Debug.DrawRay(pos, dir * m_zombieController.AttackRange, Color.yellow, RAYCAST_BUFFER, true);
+                bool foundHit = Physics.SphereCast(pos, 0.8f, dir, out hitInfo, m_zombieController.AttackRange);
+                if (foundHit)
                 {
-                    m_zombieController.stateMachine.ChangeState("BossZombieAttack");
-                    return;
+                    GameObject other = hitInfo.collider.gameObject;
+                    if (other.CompareTag("Player"))
+                    {
+                        m_zombieController.stateMachine.ChangeState("BossZombieAttack");
+                        return;
+                    }
                 }
             }
         }
@@ -94,12 +96,12 @@ public class StateBossZombieChase : State
 
         // If it's been too long since seeing the player,
         // give up and go back to patrol
-        m_chaseTime += Time.deltaTime;
+        /*m_chaseTime += Time.deltaTime;
         if (m_chaseTime > CHASE_TIME)
         {
             m_navMeshAgent.ResetPath();
             m_zombieController.stateMachine.ChangeState("BossZombiePatrol");
-        }
+        }*/
     }
 
     public override void OnStateExit()

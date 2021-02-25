@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Deprecated, remove this during the merge
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -115,4 +117,4 @@ public class StateBossZombiePatrol : State
 
         return Vector3.Distance(myPos, playerPos);
     }
-}
+}*/
