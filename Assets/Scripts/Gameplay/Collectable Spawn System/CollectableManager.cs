@@ -17,6 +17,7 @@ public class CollectableManager : Singleton<CollectableManager>
         RegularZombie.OnDeath += SpawnCollectable;
         SuicideBomberZombie.OnDeath += SpawnCollectable;
         RegularZombie.OnDeath += SpawnCollectable;
+        RunnerZombie.OnDeath += SpawnCollectable;
     }
 
     private void OnDisable()
@@ -25,6 +26,7 @@ public class CollectableManager : Singleton<CollectableManager>
         RegularZombie.OnDeath -= SpawnCollectable;
         SuicideBomberZombie.OnDeath -= SpawnCollectable;
         RegularZombie.OnDeath -= SpawnCollectable;
+        RunnerZombie.OnDeath -= SpawnCollectable;
     }
 
     private void SpawnCollectable(Vector3 pos)

@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class StateBossZombieChase : State
 {
     // How often to check if player within line-of-sight
-    private const float  RAYCAST_BUFFER = 0.333f;
+    private const float  RAYCAST_BUFFER = 0.25f;
 
     // How many rays to cast within field of view
-    private const int    NUM_RAYS = 18;
+    private const int    NUM_RAYS = 22;
 
     // How often to recalculate the NavMesh path to target
     private const float  SET_DEST_BUFFER = 0.6f;

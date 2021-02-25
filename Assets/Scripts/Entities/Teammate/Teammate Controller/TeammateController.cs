@@ -103,6 +103,8 @@ public class TeammateController : MonoBehaviour, Entity
                 }
             }
         }
+
+        m_weaponController.UseWeapon();
     }
 
     public void TakeDamage(float dmg)
