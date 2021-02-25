@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class StateBossZombiePatrol : State
 {
     // How often to check whether the player is within line of sight
-    private const float     SPHERECAST_BUFFER = 0.3f;
+    private const float     SPHERECAST_BUFFER = 0.25f;
 
     // How many rays to cast to check player in line-of-sight
-    private const int       NUM_RAYS = 21;
+    private const int       NUM_RAYS = 22;
 
     // How often to recalculate the NavMesh path
     private const float     SET_DEST_BUFFER = 0.75f;

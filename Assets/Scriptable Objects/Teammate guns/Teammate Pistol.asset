@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Teammate Pistol
   m_EditorClassIdentifier: 
   name: Pistol
-  maxAmmo: 55
-  fireRate: 0.83
+  maxAmmo: 100
+  fireRate: 0.61
   bulletsPerShot: 1
   range: 18.31
-  reloadTime: 2.4
-  spread: 2.63
+  reloadTime: 2.49
+  spread: 0.02
   rating: 1
   gunPrefab: {fileID: 5698877150334836922, guid: 40d03319c784e3741a2b4f1cb05c0809, type: 3}

@@ -25,6 +25,7 @@ public class StateRegularZombieChase : State
     {
         m_navMeshAgent.ResetPath();
         m_navMeshAgent.isStopped      = false;
+        m_navMeshAgent.autoBraking    = true;
         m_navMeshAgent.updatePosition = true;
         m_navMeshAgent.updateRotation = true;
 

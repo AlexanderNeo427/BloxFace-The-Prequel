@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Sniper
   maxAmmo: 204
-  fireRate: 2.2
+  fireRate: 1.55
   bulletsPerShot: 1
   range: 71.42
   reloadTime: 1.28
