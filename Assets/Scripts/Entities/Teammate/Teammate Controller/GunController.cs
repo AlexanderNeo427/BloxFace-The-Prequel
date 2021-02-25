@@ -55,7 +55,7 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
             // m_reloadActive = true;
         }
 
-        this.PlayWeaponSound();
+        // this.PlayWeaponSound();
         for (int i = 0; i < numSpawnBullets; ++i)
         {
             float randAngle = Random.Range(-gun.Spread * 0.5f, gun.Spread * 0.5f);

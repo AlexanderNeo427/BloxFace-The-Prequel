@@ -231,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.0004001, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &245530962
 MonoBehaviour:
@@ -335,7 +335,7 @@ Transform:
   - {fileID: 1414344545}
   - {fileID: 1257653814}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &356263937
 GameObject:
@@ -402,7 +402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &356263941
 MonoBehaviour:
@@ -1119,7 +1119,7 @@ Transform:
   - {fileID: 414300692}
   - {fileID: 1873573536}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1230504208 stripped
 Transform:
@@ -2403,6 +2403,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3561524395665449361, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: playerHealth
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 3561524395665449362, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2433,7 +2437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3561524395665449362, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3561524395665449362, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2476,6 +2480,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204803261}
     m_Modifications:
+    - target: {fileID: 4336461066643939501, guid: 03d033a391cc7f24bb997e22c8b828c2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336461066643939504, guid: 03d033a391cc7f24bb997e22c8b828c2, type: 3}
+      propertyPath: yOffset
+      value: 1.98
+      objectReference: {fileID: 0}
     - target: {fileID: 5278916283081191631, guid: 10da81fed5558404284755ba37fcc53d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2519,14 +2531,6 @@ PrefabInstance:
     - target: {fileID: 5278916283081191664, guid: 10da81fed5558404284755ba37fcc53d, type: 3}
       propertyPath: m_Name
       value: BloodSplatSpawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 4336461066643939501, guid: 03d033a391cc7f24bb997e22c8b828c2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4336461066643939504, guid: 03d033a391cc7f24bb997e22c8b828c2, type: 3}
-      propertyPath: yOffset
-      value: 1.98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10da81fed5558404284755ba37fcc53d, type: 3}
@@ -2678,11 +2682,11 @@ PrefabInstance:
     - target: {fileID: 8424690773290520254, guid: 360850388fd54bc488d7f1e3c873aeef, type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 5539086514332256979, guid: 877c2a49351f75b469ca2a35ae92d49b, type: 3}
+      objectReference: {fileID: 4255071144247773421, guid: 91338a58247953c4da3714330b65162e, type: 3}
     - target: {fileID: 8424690773290520254, guid: 360850388fd54bc488d7f1e3c873aeef, type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 4344478986440256182, guid: c1c90f6b8538b4641a6a450027adb474, type: 3}
+      objectReference: {fileID: 4255071144247773421, guid: 91338a58247953c4da3714330b65162e, type: 3}
     - target: {fileID: 8424690773290520254, guid: 360850388fd54bc488d7f1e3c873aeef, type: 3}
       propertyPath: TimeCount
       value: 0.25
@@ -2698,7 +2702,7 @@ PrefabInstance:
     - target: {fileID: 8424690773290520254, guid: 360850388fd54bc488d7f1e3c873aeef, type: 3}
       propertyPath: enemies.Array.data[3]
       value: 
-      objectReference: {fileID: 4344478986440256182, guid: c1c90f6b8538b4641a6a450027adb474, type: 3}
+      objectReference: {fileID: 4255071144247773421, guid: 91338a58247953c4da3714330b65162e, type: 3}
     - target: {fileID: 8424690773290520254, guid: 360850388fd54bc488d7f1e3c873aeef, type: 3}
       propertyPath: MiniGun
       value: 

@@ -553,8 +553,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81308c50e634d04c9c6d6087c3712c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  moveSpeed: 5.2
+  health: 75
+  moveSpeed: 5.3
   detectionRange: 12.3
   dmgPerHit: 13.5
   attackRange: 3.85
@@ -592,8 +592,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.96849966, y: 2.017706, z: 0.8133336}
-  m_Center: {x: 0.0038731098, y: 0.99701357, z: 0.049322814}
+  m_Size: {x: 1.44948, y: 2.216648, z: 0.8133336}
+  m_Center: {x: 0.0024547577, y: 1.0964847, z: 0.049322814}
 --- !u!1 &4344478986817562952
 GameObject:
   m_ObjectHideFlags: 0

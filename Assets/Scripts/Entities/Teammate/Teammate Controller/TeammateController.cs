@@ -19,7 +19,7 @@ public class TeammateController : MonoBehaviour, Entity
     private const int        WAVES_PER_UPGRADE = 3;
 
     [Header ("Customisations")]
-    [SerializeField] [Range(50f, 150f)] private float health;
+    [SerializeField] [Range(100f, 500f)] private float health;
     [SerializeField] [Range(1f, 8f)]    private float moveSpeed;
     [SerializeField] [Range(7f, 14f)]   private float detectionRange;
 
@@ -104,7 +104,7 @@ public class TeammateController : MonoBehaviour, Entity
             }
         }
 
-        m_weaponController.UseWeapon();
+        // m_weaponController.UseWeapon();
     }
 
     public void TakeDamage(float dmg)
