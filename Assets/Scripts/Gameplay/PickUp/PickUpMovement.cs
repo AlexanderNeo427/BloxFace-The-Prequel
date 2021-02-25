@@ -15,23 +15,23 @@ public class PickUpMovement : MonoBehaviour
         textMesh = gameObject.GetComponent<TextMeshProUGUI>();
         if (pickUp == 1)
         {
-            textMesh.text = "Ammo picked up! +10 ammo";
+            textMesh.text = "Ammo picked up!";
         }
         else if (pickUp == 2)
         {
-            textMesh.text = "Health picked up! +10 hp";
+            textMesh.text = "Health picked up!";
         }
         else if (pickUp == 3)
         {
-            textMesh.text = "You picked up a ShotGun!";
+            textMesh.text = "ShotGun Picked Up!";
         }
         else if (pickUp == 4)
         {
-            textMesh.text = "You picked up a SniperRifle!";
+            textMesh.text = "SniperRifle Picked Up!";
         }
         else if (pickUp == 5)
         {
-            textMesh.text = "You picked up a MiniGun!";
+            textMesh.text = "MiniGun Picked Up!";
         }
         else
         {
