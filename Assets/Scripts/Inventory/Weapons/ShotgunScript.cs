@@ -21,7 +21,6 @@ public class ShotgunScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            GetComponent<AudioSource>().Play();
             WeaponInfo.ammo = WeaponInfo.ammo - 8;
             WeaponInfo.wT = waitTime;
         }
@@ -34,6 +33,7 @@ public class ShotgunScript : MonoBehaviour
         for (int i = 0; i < 25; ++i)
         {
             Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+            AudioManager.instance.Play("Shotgun");
         }
     }
 }

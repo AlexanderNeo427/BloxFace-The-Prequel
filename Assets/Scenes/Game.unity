@@ -2158,7 +2158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.size
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[4].name
@@ -2186,15 +2186,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].name
-      value: PickUpSound
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].clip
       value: 
-      objectReference: {fileID: 8300000, guid: 6806c7e1220b5f840b9a06ddd1b3e45a, type: 3}
+      objectReference: {fileID: 8300000, guid: 3118736ae17972a48b2c0651df6ccbdd, type: 3}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].volume
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].volumeVariance
@@ -2202,11 +2202,115 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].pitch
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: sounds.Array.data[5].pitchVariance
-      value: 0.14
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.344
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[1].SpatialBlend3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[2].SpatialBlend3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[5].SpatialBlend3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].name
+      value: Minigun
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 33e230fe4541dd04f8e0f56e770d4af8, type: 3}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].volumeVariance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].pitchVariance
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[6].SpatialBlend3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].name
+      value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ae6b88ffa4bf294e8f463b7df38d04d, type: 3}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].volumeVariance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].pitchVariance
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[7].SpatialBlend3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: Sniper
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: c93380be9fedb6546923dc29549a5cf1, type: 3}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].volumeVariance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].pitchVariance
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611607961883478977, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
+      propertyPath: sounds.Array.data[8].SpatialBlend3D
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2611607961883478978, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2403,6 +2507,18 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3561524395152569049, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561524395337785509, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3561524395389822317, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3561524395665449362, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2459,6 +2575,10 @@ PrefabInstance:
       propertyPath: movementJoystick
       value: 
       objectReference: {fileID: 88830998}
+    - target: {fileID: 3561524395684675800, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4827508879766184890, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_RootOrder
       value: 2
