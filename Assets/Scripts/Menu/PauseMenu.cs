@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject InventoryUI;
     public GameObject BloodScreenUI;
 
+    public GameObject PauseButtonUI;
+
     // Update is called once per frame
     void Update()
     {
@@ -27,12 +29,25 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    //private void Awake()
+    //{
+    //    if (Application.isMobilePlatform)
+    //    {
+    //        PauseButtonUI.SetActive(true);
+    //    }
+    //    else if (!Application.isMobilePlatform)
+    //    {
+    //        PauseButtonUI.SetActive(false);
+    //    }
+    //}
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
         WaveCanvasUI.SetActive(true);
-        InventoryUI.SetActive(true);
+        //InventoryUI.SetActive(true);
         BloodScreenUI.SetActive(true);
+        //PauseButtonUI.SetActive(true);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -41,8 +56,9 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         WaveCanvasUI.SetActive(false);
-        InventoryUI.SetActive(false);
+        //InventoryUI.SetActive(false);
         BloodScreenUI.SetActive(false);
+        //PauseButtonUI.SetActive(false);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
