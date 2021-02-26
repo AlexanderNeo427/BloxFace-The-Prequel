@@ -12,8 +12,23 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider volumeSlider;
 
+    public bool SettingsIsActive = false;
+
+    public Button EnableSettingsButton;
+    public Button DisableSettingsButton;
+
+    public GameObject SettingsUI;
+    public GameObject PauseMenuUI;
+    public GameObject PauseButtonUI;
+    public GameObject InventoryUI;
+
     void Start()
     {
+        Button btn1 = EnableSettingsButton.GetComponent<Button>();
+        Button btn2 = DisableSettingsButton.GetComponent<Button>();
+        btn1.onClick.AddListener(TaskOnClick);
+        btn2.onClick.AddListener(TaskOnClick);
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -59,5 +74,37 @@ public class SettingsMenu : MonoBehaviour
     {
         AudioListener.volume = volume;
         Debug.Log(volume);
+    }
+
+    void TaskOnClick()
+    {
+        if (SettingsIsActive)
+        {
+            EnableSettings();
+        }
+        else
+        {
+            DisableSettings();
+        }
+    }
+
+    public void EnableSettings()
+    {
+        SettingsUI.SetActive(true);
+        PauseMenuUI.SetActive(false);
+        PauseButtonUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        //Time.timeScale = 1f;
+        SettingsIsActive = true;
+    }
+
+    public void DisableSettings()
+    {
+        SettingsUI.SetActive(false);
+        PauseMenuUI.SetActive(true);
+        PauseButtonUI.SetActive(false);
+        InventoryUI.SetActive(false);
+        //Time.timeScale = 0f;
+        SettingsIsActive = false;
     }
 }
