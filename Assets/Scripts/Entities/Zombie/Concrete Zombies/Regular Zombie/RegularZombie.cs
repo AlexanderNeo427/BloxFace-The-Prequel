@@ -78,15 +78,15 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
         // Nav mesh agent speed
         float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
-        speed = Mathf.Max(1.25f, speed);
+        speed = Mathf.Max(3f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateRegularZombiePatrol(this, m_playerInfo));
+        // stateMachine.AddState(new StateRegularZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateRegularZombieAttack(this, m_playerInfo));
-        stateMachine.ChangeState("RegularZombiePatrol");
+        stateMachine.ChangeState("RegularZombieChase");
     }
 
     private void Update()

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class StateBossZombieAttack : State      
 {
-    private const float  RAYCAST_BUFFER = 0.25f;
+    private const float  RAYCAST_BUFFER = 0.2f;
 
     private BossZombie   m_zombieController;
     private NavMeshAgent m_navMeshAgent;
@@ -76,23 +76,18 @@ public class StateBossZombieAttack : State
             playerPos.y = 1f;
 
             Vector3 dir = (playerPos - pos).normalized;
-            float maxDist = m_zombieController.DetectionRange;
-
-            Ray ray = new Ray(pos, dir);
             RaycastHit hitInfo;
 
-            Debug.DrawRay(pos, dir * maxDist, Color.red, RAYCAST_BUFFER, true);
-            bool hitFound = Physics.Raycast(ray, out hitInfo, maxDist);
+            Debug.DrawRay(pos, dir * m_zombieController.AttackRange, Color.red, RAYCAST_BUFFER, true);
+            bool hitFound = Physics.SphereCast(pos, 0.485f, dir, out hitInfo, m_zombieController.AttackRange);
+
             if (hitFound)
             {
                 GameObject other = hitInfo.collider.gameObject;
                 bool canSeePlayer = other.CompareTag("Player");
 
-                // If player not spotted, have 50/50 chance of
-                // either chasing, or going back to patrol
                 if (!canSeePlayer)
                 {
-                    m_navMeshAgent.SetDestination( other.transform.position );
                     m_zombieController.stateMachine.ChangeState("BossZombieChase");
                     return;
                 }

@@ -17,7 +17,7 @@ public class BulletScript : MonoBehaviour
         dir = bulletRotation * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 10f;
+        dmg = 20f;
     }
 
     void Update()

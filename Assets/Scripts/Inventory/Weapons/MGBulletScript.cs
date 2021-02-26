@@ -11,7 +11,7 @@ public class MGBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-4, 4);
+        float yRotation = Random.Range(-5.5f, 5.5f);
 
         Quaternion bulletRotatio = Quaternion.Euler(0, yRotation, 0);
         dir = bulletRotatio * transform.forward;

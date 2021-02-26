@@ -727,7 +727,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 2
 --- !u!65 &7869657635386989552
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -739,8 +739,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1874648, y: 1.9438231, z: 1.3555493}
-  m_Center: {x: 0.09373242, y: 0.98244464, z: 0.17777467}
+  m_Size: {x: 1.3767496, y: 1.9438231, z: 1.3555493}
+  m_Center: {x: -0.0009099841, y: 0.98244464, z: 0.17777467}
 --- !u!114 &7055337151414484943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,10 +754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  moveSpeed: 10
-  detectionRange: 10
+  moveSpeed: 11.6
   dmgPerHit: 5
-  attackRange: 4
+  attackRange: 3.86
   attackSpeed: 1.5
 --- !u!1001 &7660242322995645696
 PrefabInstance:

@@ -19,7 +19,7 @@ public class TeammateController : MonoBehaviour, Entity
     private const int        WAVES_PER_UPGRADE = 3;
 
     [Header ("Customisations")]
-    [SerializeField] [Range(50f, 150f)] private float health;
+    [SerializeField] [Range(100f, 500f)] private float health;
     [SerializeField] [Range(1f, 8f)]    private float moveSpeed;
     [SerializeField] [Range(7f, 14f)]   private float detectionRange;
 
@@ -43,6 +43,16 @@ public class TeammateController : MonoBehaviour, Entity
     public float DetectionRange => detectionRange;
 
     public static event Action<Vector3> OnDeath;
+
+    private void OnEnable()
+    {
+        PlayerInfo.OnPlayerDamaged += FollowPlayerState;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInfo.OnPlayerDamaged -= FollowPlayerState;
+    }
 
     private void Awake()
     {
@@ -104,7 +114,7 @@ public class TeammateController : MonoBehaviour, Entity
             }
         }
 
-        m_weaponController.UseWeapon();
+        // m_weaponController.UseWeapon();
     }
 
     public void TakeDamage(float dmg)
@@ -131,6 +141,21 @@ public class TeammateController : MonoBehaviour, Entity
     public void SetEnemy(Zombie zombie)
     {
         m_enemy = zombie;
+    }
+
+    // If called, go into "follow player" state if in "patrol" state
+    public void FollowPlayerState(float dummyVar)
+    {
+        float chance = 80f;
+        float rand = UnityEngine.Random.Range(0f, 100f);
+
+        if (chance <= rand)
+        {
+            if (m_stateMachine.GetCurrentState() == "TeammatePatrol")
+            {
+                m_stateMachine.ChangeState("TeammateFollowPlayer");
+            }
+        }
     }
 
     private void OnDrawGizmos()

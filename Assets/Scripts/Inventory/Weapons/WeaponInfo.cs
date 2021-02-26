@@ -117,7 +117,7 @@ public class WeaponInfo : MonoBehaviour
                 m_playerMove.ResetMoveSpeed();
             }
         }
-        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo >= 8 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo >= 16 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             shotgunDist -= Time.deltaTime;
             if (shotgunDist > 0)

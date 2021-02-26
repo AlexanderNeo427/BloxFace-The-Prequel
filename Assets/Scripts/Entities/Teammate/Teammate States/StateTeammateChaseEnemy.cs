@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class StateTeammateChaseEnemy : State
 {
     // How often to set the destination
-    private const float        SET_DEST_BUFFER = 0.4f;
+    private const float        SET_DEST_BUFFER = 0.8f;
 
     // How often to perform enemy check (cause doing it every frame is probably bad)
     private const float        RAYCAST_BUFFER = 0.25f;
