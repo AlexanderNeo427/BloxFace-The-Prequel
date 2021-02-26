@@ -54,11 +54,8 @@ public class FireButton : MonoBehaviour
                         if (m_playerShoot.wT <= 0)
                         {
                             m_playerShoot.Shoot();
-                            GetComponent<AudioSource>().Play();
                             m_playerShoot.wT = m_playerShoot.waitTime;
                         }
-
-                        m_playerShoot.wT -= 1 * Time.deltaTime;
                     }
                 }
             }

@@ -137,7 +137,7 @@ public class WeaponGUIScript : MonoBehaviour
         }
     }
 
-    public static void Reload()
+    public void Reload()
     {
         WeaponInfo.reloadAffirm = true;
     }

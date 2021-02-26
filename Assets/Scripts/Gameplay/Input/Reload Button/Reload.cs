@@ -14,26 +14,16 @@ public class Reload : MonoBehaviour
 
     AudioSource m_AudioSource;
 
+    [SerializeField]
     private WeaponGUIScript weaponGUIScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        weaponGUIScript = GameObject.Find("UICanvas").GetComponent<WeaponGUIScript>();
-
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = GetComponent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
         m_EventSystem = GetComponent<EventSystem>();
-
-        WeaponGUIScript.instance.TptI.SetActive(true);
-        WeaponGUIScript.instance.TspI.SetActive(false);
-        WeaponGUIScript.instance.TsgI.SetActive(false);
-        WeaponGUIScript.instance.TmgI.SetActive(false);
-        WeaponGUIScript.instance.RI.SetActive(false);
-
-        WeaponGUIScript.instance.time = 3f;
-        WeaponGUIScript.instance.t = false;
 
         m_AudioSource = GetComponent<AudioSource>();
     }
@@ -41,63 +31,6 @@ public class Reload : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (WeaponGUIScript.instance.pistolGO.activeSelf)
-        {
-            WeaponGUIScript.instance.TptI.SetActive(true);
-            WeaponGUIScript.instance.TspI.SetActive(false);
-            WeaponGUIScript.instance.TsgI.SetActive(false);
-            WeaponGUIScript.instance.TmgI.SetActive(false);
-        }
-        else if (WeaponGUIScript.instance.shotgunGO.activeSelf)
-        {
-            WeaponGUIScript.instance.TptI.SetActive(false);
-            WeaponGUIScript.instance.TspI.SetActive(true);
-            WeaponGUIScript.instance.TsgI.SetActive(false);
-            WeaponGUIScript.instance.TmgI.SetActive(false);
-        }
-        else if (WeaponGUIScript.instance.sniperGO.activeSelf)
-        {
-            WeaponGUIScript.instance.TptI.SetActive(false);
-            WeaponGUIScript.instance.TspI.SetActive(false);
-            WeaponGUIScript.instance.TsgI.SetActive(true);
-            WeaponGUIScript.instance.TmgI.SetActive(false);
-        }
-        else if (WeaponGUIScript.instance.MGGO.activeSelf)
-        {
-            WeaponGUIScript.instance.TptI.SetActive(false);
-            WeaponGUIScript.instance.TsgI.SetActive(false);
-            WeaponGUIScript.instance.TspI.SetActive(false);
-            WeaponGUIScript.instance.TmgI.SetActive(true);
-        }
-        if (WeaponInfo.ammo <= 0)
-        {
-            WeaponInfo.ammo = 0;
-        }
-        if (WeaponInfo.reloadAffirm)
-        {
-            if (WeaponGUIScript.instance.wT <= 0)
-            {
-                WeaponInfo.ammo++;
-                WeaponInfo.MaxAmmo--;
-                WeaponGUIScript.instance.wT = WeaponGUIScript.instance.waitTime;
-            }
-            WeaponGUIScript.instance.wT -= 1 * Time.deltaTime;
-            WeaponGUIScript.instance.RI.SetActive(true);
-            if (WeaponInfo.ammo >= 100)
-            {
-                WeaponInfo.ammo = 100;
-                WeaponGUIScript.instance.RI.SetActive(false);
-                WeaponInfo.reloadAffirm = false;
-                m_AudioSource.Stop();
-            }
-            else if (WeaponInfo.MaxAmmo <= 0)
-            {
-                WeaponGUIScript.instance.RI.SetActive(false);
-                WeaponInfo.reloadAffirm = false;
-                m_AudioSource.Stop();
-            }
-        }
-
         if (Input.touchCount > 0)
         {
             for (int i = 0; i < Input.touchCount; i++)
@@ -121,7 +54,7 @@ public class Reload : MonoBehaviour
                         {
                             m_AudioSource.loop = true;
                             m_AudioSource.Play();
-                            WeaponGUIScript.Reload();
+                            weaponGUIScript.Reload();
                         }
                     }
                 }

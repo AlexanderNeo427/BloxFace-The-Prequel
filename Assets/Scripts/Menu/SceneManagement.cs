@@ -47,10 +47,10 @@ public class SceneManagement : MonoBehaviour
         SceneManager.LoadScene("Options");
     }
 
-    public void ToCredits()
-    {
-        SceneManager.LoadScene("Credits");
-    }
+    //public void ToCredits()
+    //{
+    //    SceneManager.LoadScene("Credits");
+    //}
 
     public void ToPrevScene()
     {

@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db89e4f2329975043851b4cb216b5d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponGUIScript: {fileID: 1693759129254920724}
 --- !u!114 &1051798669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,12 +501,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693759129254920745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4174b400c763aa648bfbbd14348c9778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapons: []
+  m_playerMove: {fileID: 0}
+  Player: {fileID: 0}
+  Weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1051798675
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1451,6 +1451,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4666613796783331266, guid: 59441f64258e5d9408527622fd0f5b75, type: 3}
   m_PrefabInstance: {fileID: 1257653813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1338457897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3561524395665449368, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1338457903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3561524395665449369, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338457897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f86f1ce61b8ed4cbed9abf46763bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1368462588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2520523977723932044, guid: 6cbb8b4d53df3434791d4a28b772c161, type: 3}
@@ -1463,6 +1479,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 343111733}
     m_Modifications:
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: m_playerMove
+      value: 
+      objectReference: {fileID: 1338457903}
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1338457897}
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: Weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1753932916}
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: Weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 521862525}
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: Weapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1167441317}
+    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: Weapons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1735979603}
     - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: pistolGO
       value: 

@@ -21,7 +21,7 @@ public class MGScript : MonoBehaviour
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButton(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             GetComponent<AudioSource>().Play();

@@ -12,19 +12,23 @@ public class SwapWeapons : MonoBehaviour
     private PointerEventData m_PointerEventData;
     private EventSystem m_EventSystem;
 
+    [SerializeField]
     private PlayerMove m_playerMove;
 
+    public GameObject Player;
     public GameObject[] Weapons;
+
+    private int numCount = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        WeaponInfo.instance.pistol.SetActive(true);
-        WeaponInfo.instance.shotgun.SetActive(false);
-        WeaponInfo.instance.sniper.SetActive(false);
-        WeaponInfo.instance.machineGun.SetActive(false);
+        Weapons[0].SetActive(true);
+        Weapons[1].SetActive(false);
+        Weapons[2].SetActive(false);
+        Weapons[3].SetActive(false);
 
-        m_playerMove = GetComponent<PlayerMove>();
+        //m_playerMove = GetComponent<PlayerMove>();
 
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = GetComponent<GraphicRaycaster>();
@@ -54,9 +58,23 @@ public class SwapWeapons : MonoBehaviour
                 {
                     if (result.gameObject.tag == "Swap Weapons Button")
                     {
-                        ActivateWeapon(0);
+                        switch (Input.GetTouch(i).phase)
+                        {
+                            case TouchPhase.Began:
+                            {
+                                numCount++;
+                                if (numCount > 3)
+                                {
+                                    numCount = 0;
+                                }
+                                ActivateWeapon(numCount);
+
+                                break;
+                            }
+                        }
                     }
                 }
+
             }
         }
     }
@@ -65,8 +83,6 @@ public class SwapWeapons : MonoBehaviour
     {
         foreach (GameObject Weapon in Weapons)
         {
-            Weapon.SetActive(false);
-
             if (index == 0)
             {
                 m_playerMove.ResetMoveSpeed();
@@ -127,26 +143,7 @@ public class SwapWeapons : MonoBehaviour
                     m_playerMove.ResetMoveSpeed();
                 }
             }
-
-            if (Weapons[1].activeSelf && WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
-            {
-                WeaponInfo.instance.shotgunDist -= Time.deltaTime;
-
-                if (WeaponInfo.instance.shotgunDist > 0)
-                {
-                    transform.Translate(Vector3.back * 12.5f * Time.deltaTime);
-                    if (WeaponInfo.instance.In)
-                    {
-                        transform.Translate(Vector3.forward * 12.5f * Time.deltaTime);
-                    }
-                }
-            }
-            else
-            {
-                WeaponInfo.instance.shotgunDist = 0.062f;
-            }
         }
-        Weapons[index].SetActive(true);
     }
 #endif
 
