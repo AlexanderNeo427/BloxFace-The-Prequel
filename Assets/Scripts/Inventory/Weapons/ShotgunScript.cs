@@ -21,7 +21,7 @@ public class ShotgunScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 16 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            WeaponInfo.ammo = WeaponInfo.ammo - 8;
+            WeaponInfo.ammo = WeaponInfo.ammo - 16;
             WeaponInfo.wT = waitTime;
         }
         WeaponInfo.wT -= 1 * Time.deltaTime;

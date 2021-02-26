@@ -16,7 +16,7 @@ public class SniperBulletScript : MonoBehaviour
         dir = bulletRotation * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 290f;
+        dmg = 290f; // Damage should be 290f
     }
 
     void Update()
@@ -24,11 +24,11 @@ public class SniperBulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += 1 * Time.deltaTime;
 
-        if (maxDistance >= 3.0f)
+        if (maxDistance >= 10.0f)
         {
             Destroy(this.gameObject);
         }
-        if (limit >= 3)
+        if (limit >= 10) // limit should be 10 gameobjects
         {
             Destroy(this.gameObject);
         }

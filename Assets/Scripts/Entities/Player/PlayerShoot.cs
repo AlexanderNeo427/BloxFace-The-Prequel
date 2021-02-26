@@ -23,7 +23,7 @@ public class PlayerShoot : MonoBehaviour
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 /*&& !PlayerInfo.reloadAffirm*/)
+        if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             wT = waitTime;

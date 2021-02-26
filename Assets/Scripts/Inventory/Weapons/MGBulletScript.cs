@@ -11,13 +11,13 @@ public class MGBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-5.5f, 5.5f);
+        float yRotation = Random.Range(-10, 10); // Spread should be 10
 
         Quaternion bulletRotatio = Quaternion.Euler(0, yRotation, 0);
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 15f;
+        dmg = 15f; // Damage should be 15f
     }
 
     void Update()
@@ -25,7 +25,7 @@ public class MGBulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += 1 * Time.deltaTime;
 
-        if (maxDistance >= 1.9f)
+        if (maxDistance >= 2f) // Dist should be 2f
         {
             Destroy(this.gameObject);
         }
