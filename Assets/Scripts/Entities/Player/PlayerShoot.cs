@@ -22,10 +22,6 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-#if UNITY_ANDROID
-        Shoot();
-#endif
-
 #if UNITY_STANDALONE
         // Shooting - G
         if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 /*&& !PlayerInfo.reloadAffirm*/)

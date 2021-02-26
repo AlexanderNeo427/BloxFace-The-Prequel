@@ -767,6 +767,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2755158513558443967, guid: 5210a190684231e4893c347de34b39fa, type: 3}
   m_PrefabInstance: {fileID: 3561524394134950766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &521862528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2755158513558443962, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521862525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de430bb118772e3439f4e8da55d8b040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &706634414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1075,6 +1086,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1598731581605506878, guid: 5210a190684231e4893c347de34b39fa, type: 3}
   m_PrefabInstance: {fileID: 3561524394134950766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1167441320 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1598731581605506876, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167441317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c7f181bd6460b44a2f7093fb101d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1194008538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2611607961883478978, guid: 4eac33ad36ed8924ea3922ee2e102879, type: 3}
@@ -1503,6 +1525,22 @@ PrefabInstance:
       propertyPath: Weapons.Array.data[3]
       value: 
       objectReference: {fileID: 1735979603}
+    - target: {fileID: 1051798675, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: m_PistolShoot
+      value: 
+      objectReference: {fileID: 1753932919}
+    - target: {fileID: 1051798675, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: m_MachineGunShoot
+      value: 
+      objectReference: {fileID: 1735979606}
+    - target: {fileID: 1051798675, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: m_ShotgunGunShoot
+      value: 
+      objectReference: {fileID: 521862528}
+    - target: {fileID: 1051798675, guid: 66857c232da86364680dce687dc9492f, type: 3}
+      propertyPath: m_SniperShoot
+      value: 
+      objectReference: {fileID: 1167441320}
     - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: pistolGO
       value: 
@@ -1645,11 +1683,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6390360659536422739, guid: 5210a190684231e4893c347de34b39fa, type: 3}
   m_PrefabInstance: {fileID: 3561524394134950766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1735979606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6390360659536422700, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735979603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704789f63aede994291228d273a1964b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1753932916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4827508879766184889, guid: 5210a190684231e4893c347de34b39fa, type: 3}
   m_PrefabInstance: {fileID: 3561524394134950766}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1753932919 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4827508879766184894, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+  m_PrefabInstance: {fileID: 3561524394134950766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753932916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fe5b616f82c00469c88939de9cc6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1873573536 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5278916283081191631, guid: 10da81fed5558404284755ba37fcc53d, type: 3}
@@ -2378,6 +2438,10 @@ PrefabInstance:
     - target: {fileID: 2755158513558443966, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755158513558443967, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3561524394165567822, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_RootOrder

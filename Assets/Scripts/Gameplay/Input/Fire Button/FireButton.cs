@@ -12,14 +12,18 @@ public class FireButton : MonoBehaviour
     private PointerEventData m_PointerEventData;
     private EventSystem m_EventSystem;
 
-    private PlayerShoot m_playerShoot;
+    [SerializeField]
+    private PlayerShoot m_PistolShoot;
+    [SerializeField]
+    private MGScript m_MachineGunShoot;
+    [SerializeField]
+    private ShotgunScript m_ShotgunGunShoot;
+    [SerializeField]
+    private SniperScript m_SniperShoot;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_playerShoot = GameObject.Find("Pistol").GetComponent<PlayerShoot>();
-        m_playerShoot.wT = m_playerShoot.waitTime;
-
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = GetComponent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
@@ -33,9 +37,6 @@ public class FireButton : MonoBehaviour
         {
             for (int i = 0; i < Input.touchCount; i++)
             {
-                //if (Input.touchCount == 2)
-                //    Debug.Log("2 Buttons Pressed");
-
                 //Set up the new Pointer Event
                 m_PointerEventData = new PointerEventData(m_EventSystem);
                 //Set the Pointer Event Position to that of the mouse position
@@ -51,17 +52,20 @@ public class FireButton : MonoBehaviour
                 {
                     if (result.gameObject.tag == "Fire Button")
                     {
-                        if (m_playerShoot.wT <= 0)
-                        {
-                            m_playerShoot.Shoot();
-                            m_playerShoot.wT = m_playerShoot.waitTime;
-                        }
+                        if (m_PistolShoot.isActiveAndEnabled)
+                            m_PistolShoot.Shoot();
+                        else if (m_ShotgunGunShoot.isActiveAndEnabled)
+                            m_ShotgunGunShoot.Shoot();
+                        else if (m_SniperShoot.isActiveAndEnabled)
+                            m_SniperShoot.Shoot();
+                        else if (m_MachineGunShoot.isActiveAndEnabled)
+                            m_MachineGunShoot.Shoot();
                     }
                 }
             }
         }
 
-        //m_playerShoot.wT -= 1 * Time.deltaTime;
+        //m_PistolShoot.wT -= 1 * Time.deltaTime;
     }
 #endif
 
