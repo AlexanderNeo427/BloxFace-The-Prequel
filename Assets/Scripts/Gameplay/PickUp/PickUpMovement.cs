@@ -44,11 +44,11 @@ public class PickUpMovement : MonoBehaviour
     {
         if (PickUpSpawn.showNum >= 2)
         {
-            MaxTime = 0.375f;
+            MaxTime = 0.5f;
         }
         else
         {
-            MaxTime = 1f;
+            MaxTime = 1.5f;
         }
         LeanTween.moveLocalY(gameObject, -300f, MaxTime);
         if (del <= 0)

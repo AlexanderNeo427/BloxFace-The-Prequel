@@ -11,6 +11,7 @@ public class Pickup : MonoBehaviour
     public Material m1;
     public Material m2;
     int chance;
+    public float timerToDespawn;
 
     // param@ float - Amount of HP the player gains
     public static event Action<float> OnPickupHP;
@@ -24,10 +25,22 @@ public class Pickup : MonoBehaviour
         if (chance == 0)
         {
             gameObject.GetComponent<Renderer>().material = m1;
+            gameObject.transform.localScale *= 0.9f;
         }
         else
         {
             gameObject.GetComponent<Renderer>().material = m2;
+            gameObject.transform.localScale *= 1.1f;
+        }
+    }
+
+    private void Update()
+    {
+        // Despawn object after _ seconds
+        timerToDespawn -= Time.deltaTime;
+        if (timerToDespawn <= 0f)
+        {
+            Destroy(gameObject);
         }
     }
 
