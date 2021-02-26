@@ -19,7 +19,7 @@ public class SniperScript : MonoBehaviour
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 4 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             WeaponInfo.ammo = WeaponInfo.ammo - 4;

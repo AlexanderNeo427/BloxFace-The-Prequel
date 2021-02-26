@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57570c6a2f6054f4abfb3b8c33002c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 99
+  health: 100
   moveSpeed: 3.3
   detectionRange: 14
   weaponController: {fileID: 3535693097402037111}

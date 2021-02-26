@@ -18,7 +18,7 @@ public class ShotgunScript : MonoBehaviour
     void Update()
     {
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 16 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             WeaponInfo.ammo = WeaponInfo.ammo - 8;

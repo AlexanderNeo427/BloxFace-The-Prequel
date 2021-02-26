@@ -22,9 +22,9 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     [SerializeField] [Range(1f, 8f)]
     private float moveSpeed;
 
-    [SerializeField] [Range(3f, 20f)]
+/*    [SerializeField] [Range(3f, 20f)]
     [Tooltip("Distance at which they can detect the player")]
-    private float detectionRange = 10f;
+    private float detectionRange = 10f;*/
 
     [Header("Attack")]
 
@@ -48,7 +48,7 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
     public float Damage         { get { return attackDamage; } }
     public float AttackRange    { get { return attackRange; } }
     public float AttackSpeed    { get { return attackSpeed; } }
-    public float DetectionRange { get { return detectionRange; } }
+    // public float DetectionRange { get { return detectionRange; } }
 
     // Broadcast this entity's position at time of death
     public static event Action<Vector3> OnDeath;
@@ -69,19 +69,19 @@ public class BossZombie : MonoBehaviour, Zombie, Entity
             Debug.LogError("BossZombie Start() : m_playerInfo is NULL");
 
         m_navMeshAgent = GetComponent<NavMeshAgent>();
-        m_navMeshAgent.stoppingDistance = attackRange * 0.6f;
+        m_navMeshAgent.stoppingDistance = this.attackRange * 0.25f;
 
         // Nav mesh agent speed
         float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
-        speed = Mathf.Max(1.25f, speed);
+        speed = Mathf.Max(3f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
         stateMachine = new StateMachine();
-        stateMachine.AddState(new StateBossZombiePatrol(this, m_playerInfo));
+        // stateMachine.AddState(new StateBossZombiePatrol(this, m_playerInfo));
         stateMachine.AddState(new StateBossZombieChase(this, m_playerInfo));
         stateMachine.AddState(new StateBossZombieAttack(this, m_playerInfo));
-        stateMachine.ChangeState("BossZombiePatrol");
+        stateMachine.ChangeState("BossZombieChase");
 
         m_health = health;
     }
