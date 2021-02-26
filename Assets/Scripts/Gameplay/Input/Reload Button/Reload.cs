@@ -70,8 +70,8 @@ public class Reload : MonoBehaviour
 #if UNITY_STANDALONE_WIN
     private void Awake()
     {
-        Destroy(gameObject);
         Destroy(this);
+        Destroy(GameObject.FindGameObjectWithTag("Reload Button"));
     }
 #endif
 

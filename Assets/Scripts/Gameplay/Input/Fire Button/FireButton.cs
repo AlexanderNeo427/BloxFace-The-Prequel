@@ -76,8 +76,8 @@ public class FireButton : MonoBehaviour
 #if UNITY_STANDALONE_WIN
     private void Awake()
     {
-        Destroy(gameObject);
         Destroy(this);
+        Destroy(GameObject.FindGameObjectWithTag("Fire Button"));
     }
 #endif
 

@@ -154,8 +154,8 @@ public class SwapWeapons : MonoBehaviour
 #if UNITY_STANDALONE_WIN
     private void Awake()
     {
-        Destroy(gameObject);
         Destroy(this);
+        Destroy(GameObject.FindGameObjectWithTag("Swap Weapons Button"));
     }
 #endif
 

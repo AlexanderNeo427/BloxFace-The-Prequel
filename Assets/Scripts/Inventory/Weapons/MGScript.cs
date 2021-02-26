@@ -23,9 +23,10 @@ public class MGScript : MonoBehaviour
 
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButton(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
+            AudioManager.instance.Play("Minigun");
             WeaponInfo.ammo--;
             wT = waitTime;
         }
@@ -51,7 +52,7 @@ public class MGScript : MonoBehaviour
                                 Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
                                 WeaponInfo.ammo--;
                                 wT = waitTime;
-                                GetComponent<AudioSource>().Play();
+                                AudioManager.instance.Play("Minigun");
                             }
                             break;
                         }
@@ -62,7 +63,6 @@ public class MGScript : MonoBehaviour
 
 #if UNITY_STANDALONE
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
-        AudioManager.instance.Play("Minigun");
 #endif
     }
 }
