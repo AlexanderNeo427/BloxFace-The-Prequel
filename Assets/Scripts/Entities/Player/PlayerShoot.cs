@@ -24,10 +24,9 @@ public class PlayerShoot : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 /*&& !PlayerInfo.reloadAffirm*/)
+        if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            GetComponent<AudioSource>().Play();
             wT = waitTime;
         }
 #endif
@@ -66,6 +65,6 @@ public class PlayerShoot : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(m_playerInfo.dir.x, m_playerInfo.dir.y, m_playerInfo.dir.z);
         GameObject goBullet = Instantiate(bullet, bulletSpawnPoint.transform.position, rotation);
         goBullet.transform.forward = m_playerInfo.dir;
-#endif
+        AudioManager.instance.Play("Pistol");
     }
 }

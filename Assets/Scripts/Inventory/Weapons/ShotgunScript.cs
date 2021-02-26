@@ -19,7 +19,7 @@ public class ShotgunScript : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 16 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
             GetComponent<AudioSource>().Play();
@@ -64,6 +64,7 @@ public class ShotgunScript : MonoBehaviour
         for (int i = 0; i < 25; ++i)
         {
             Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+            AudioManager.instance.Play("Shotgun");
         }
 #endif
 

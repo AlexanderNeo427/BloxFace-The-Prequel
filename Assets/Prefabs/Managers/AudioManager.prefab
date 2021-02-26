@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2611607961883478976}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 436.66055, y: 239.73732, z: -24.321133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -47,18 +47,20 @@ MonoBehaviour:
   sounds:
   - name: Theme
     clip: {fileID: 8300000, guid: 48f13fd8f7dd5584788502b103920ff4, type: 3}
-    volume: 0.1
+    volume: 0.364
     volumeVariance: 0.2
     pitch: 1.16
     pitchVariance: 0.07
+    SpatialBlend3D: 0
     loop: 1
     source: {fileID: 0}
   - name: MainMenuTheme
     clip: {fileID: 8300000, guid: 901bd23d0ecfaf24da1e203a4972d147, type: 3}
-    volume: 0.1
+    volume: 0.344
     volumeVariance: 0.2
     pitch: 1.16
     pitchVariance: 0.07
+    SpatialBlend3D: 0
     loop: 1
     source: {fileID: 0}
   - name: Multiplier
@@ -67,6 +69,7 @@ MonoBehaviour:
     volumeVariance: 0.2
     pitch: 1.16
     pitchVariance: 0.07
+    SpatialBlend3D: 0
     loop: 0
     source: {fileID: 0}
   - name: ReverseMultiplier
@@ -75,6 +78,52 @@ MonoBehaviour:
     volumeVariance: 0.2
     pitch: 0.5
     pitchVariance: 0.14
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: PickUpSound
+    clip: {fileID: 8300000, guid: 6806c7e1220b5f840b9a06ddd1b3e45a, type: 3}
+    volume: 0.1
+    volumeVariance: 0.2
+    pitch: 0.5
+    pitchVariance: 0.14
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Pistol
+    clip: {fileID: 8300000, guid: 3118736ae17972a48b2c0651df6ccbdd, type: 3}
+    volume: 0.2
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Minigun
+    clip: {fileID: 8300000, guid: 33e230fe4541dd04f8e0f56e770d4af8, type: 3}
+    volume: 0.2
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Shotgun
+    clip: {fileID: 8300000, guid: 2ae6b88ffa4bf294e8f463b7df38d04d, type: 3}
+    volume: 0.2
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Sniper
+    clip: {fileID: 8300000, guid: c93380be9fedb6546923dc29549a5cf1, type: 3}
+    volume: 0.2
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
     loop: 0
     source: {fileID: 0}
   AudioSrc: {fileID: 0}

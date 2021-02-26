@@ -22,15 +22,15 @@ public class AmmoConScript : MonoBehaviour
     {
         if (pistolGO.activeSelf)
         {
-            txt.text = "0";
+            txt.text = " ";
         }
         else if (shotgunGO.activeSelf)
         {
-            txt.text = "8";
+            txt.text = "16";
         }
         else if (sniperGO.activeSelf)
         {
-            txt.text = "4";
+            txt.text = "8";
         }
         else if (MGGO.activeSelf)
         {

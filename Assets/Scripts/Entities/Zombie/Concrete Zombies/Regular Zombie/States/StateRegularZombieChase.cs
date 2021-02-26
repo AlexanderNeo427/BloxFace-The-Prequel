@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class StateRegularZombieChase : State
 {
     // Don't wanna keep recalculating pathfinding every frame
-    private const float   SET_DEST_BUFFER = 0.8f;
+    private const float   SET_DEST_BUFFER = 1.8f;
 
     private RegularZombie m_zombieController;
     private NavMeshAgent  m_navMeshAgent;
@@ -30,7 +30,7 @@ public class StateRegularZombieChase : State
         m_navMeshAgent.updateRotation = true;
 
         m_setSpeedBuffer = 0f;
-        m_setDestBuffer  = SET_DEST_BUFFER;
+        m_setDestBuffer  = 0f;
     }
 
     public override void OnStateUpdate()
@@ -41,21 +41,21 @@ public class StateRegularZombieChase : State
             m_zombieController.stateMachine.ChangeState("RegularZombieAttack");
 
         // Set destination buffer
-        m_setDestBuffer -= Time.deltaTime;
-        if (m_setDestBuffer <= 0f)
+        m_setDestBuffer += Time.deltaTime;
+        if (m_setDestBuffer >= SET_DEST_BUFFER)
         {
-            m_setDestBuffer = SET_DEST_BUFFER;
-            m_navMeshAgent.SetDestination( m_playerInfo.pos );
+            m_setDestBuffer = 0f;
+            m_navMeshAgent.SetDestination(m_playerInfo.pos);
         }
 
         // Set random speed every few seconds
-/*        m_setSpeedBuffer -= Time.deltaTime;
-        if (m_setSpeedBuffer <= 0f)
-        {
-            m_setSpeedBuffer = UnityEngine.Random.Range(2f, 6f);
-            float newSpeed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-3f, 3f);
-            m_navMeshAgent.speed = Mathf.Max(newSpeed, m_navMeshAgent.speed);
-        }*/
+        /*        m_setSpeedBuffer -= Time.deltaTime;
+                if (m_setSpeedBuffer <= 0f)
+                {
+                    m_setSpeedBuffer = UnityEngine.Random.Range(2f, 6f);
+                    float newSpeed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-3f, 3f);
+                    m_navMeshAgent.speed = Mathf.Max(newSpeed, m_navMeshAgent.speed);
+                }*/
     }
 
     public override void OnStateExit()

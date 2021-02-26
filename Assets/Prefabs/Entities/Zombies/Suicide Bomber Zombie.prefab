@@ -5489,7 +5489,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &432559944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5502,11 +5502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7cb69dfce17f24780638c0b204c0e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 150
-  moveSpeed: 4.7
-  detectionRange: 10.8
-  explosionDamage: 9.1
-  blastRadius: 8
+  health: 50
+  moveSpeed: 2.7
+  explosionDamage: 9.6
+  blastRadius: 6.9
 --- !u!65 &642194725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5518,8 +5517,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3386579, y: 2.0383482, z: 1.1592698}
-  m_Center: {x: 0.046925306, y: 1.0209007, z: 0.034532785}
+  m_Size: {x: 2.0342295, y: 2.0383482, z: 1.3498294}
+  m_Center: {x: 0.018168092, y: 1.0209007, z: -0.007887721}
 --- !u!1 &5539086514491295016
 GameObject:
   m_ObjectHideFlags: 0

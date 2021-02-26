@@ -18,7 +18,7 @@ public class ShotgunBulletScript : MonoBehaviour
         dir = bulletRotatio * transform.forward;
 
         transform.localRotation *= Quaternion.Euler(90, 0, 0);
-        dmg = 10f;
+        dmg = 10f; // Damage should be 10f
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class ShotgunBulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += 1 * Time.deltaTime;
 
-        if (maxDistance >= 0.1f)
+        if (maxDistance >= 0.075f) // dist should be 0.075f
         {
             Destroy(this.gameObject);
         }

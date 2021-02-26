@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Deprecated, remove this during the merge
+
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,10 +8,10 @@ using UnityEngine.AI;
 public class StateBossZombiePatrol : State
 {
     // How often to check whether the player is within line of sight
-    private const float     SPHERECAST_BUFFER = 0.25f;
+    private const float     SPHERECAST_BUFFER = 0.2f;
 
     // How many rays to cast to check player in line-of-sight
-    private const int       NUM_RAYS = 22;
+    private const int       NUM_RAYS = 28;
 
     // How often to recalculate the NavMesh path
     private const float     SET_DEST_BUFFER = 0.75f;
@@ -56,7 +58,7 @@ public class StateBossZombiePatrol : State
         {
             m_spherecastBuffer = SPHERECAST_BUFFER;
 
-            float FOV = 225f;
+            float FOV = 360f;
             float dTheta = FOV / NUM_RAYS;
             Vector3 pos = m_zombieController.transform.position;
             Vector3 dir = m_zombieController.transform.forward;
@@ -115,4 +117,4 @@ public class StateBossZombiePatrol : State
 
         return Vector3.Distance(myPos, playerPos);
     }
-}
+}*/

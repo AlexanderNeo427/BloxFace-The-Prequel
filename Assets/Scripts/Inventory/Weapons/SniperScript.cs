@@ -20,10 +20,9 @@ public class SniperScript : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 4 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            GetComponent<AudioSource>().Play();
             WeaponInfo.ammo = WeaponInfo.ammo - 4;
             wT = waitTime;
         }
@@ -59,6 +58,7 @@ public class SniperScript : MonoBehaviour
 
 #if UNITY_STANDALONE
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
-#endif
+        AudioManager.instance.Play("Sniper");
+#endif UNITY_STANDALONE
     }
 }

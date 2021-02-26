@@ -8,8 +8,8 @@ using UnityEngine;
  */
 public class PlayerInfo : MonoBehaviour, Entity
 {
-    [SerializeField] [Range (50f, 250f)]
-    private float playerHealth = 100f;
+    [SerializeField] [Range (250f, 1000f)]
+    private float playerHealth = 300f;
 
     private float m_maxHP;
     private float m_health;
