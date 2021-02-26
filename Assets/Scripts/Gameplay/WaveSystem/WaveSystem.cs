@@ -209,6 +209,9 @@ public class WaveSystem : MonoBehaviour
     // Determine what enemies can spawn depending on which round it is
     private int DetermineEnemy()
     {
+        Vector3 spawnPos = WaypointManager.Instance.GetRandomWaypoint();
+        spawnPos += new Vector3(0f, 1f, 0f);
+
         if (waveCount < 3)
         {
             return 0;
@@ -217,7 +220,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase2 == false)
             {
-                Instantiate(Shotgun, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
+                Instantiate(Shotgun, spawnPos, Quaternion.identity);
                 ResetTimer = 60f;
                 spawnInterval = 0.15f;
                 Phase2 = true;
@@ -229,7 +232,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase3 == false)
             {
-                Instantiate(Sniper, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
+                Instantiate(Sniper, spawnPos, Quaternion.identity);
                 ResetTimer = 120f;
                 spawnInterval = 0.30f;
                 Phase3 = true;
@@ -241,7 +244,7 @@ public class WaveSystem : MonoBehaviour
         {
             if (Phase4 == false)
             {
-                Instantiate(MiniGun, WaypointManager.Instance.GetRandomWaypoint(), Quaternion.identity);
+                Instantiate(MiniGun, spawnPos, Quaternion.identity);
                 ResetTimer = 240f;
                 spawnInterval = 0.45f;
                 Phase4 = true;

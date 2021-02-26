@@ -34,11 +34,7 @@ public class AudioManager : MonoBehaviour
 			s.source = gameObject.AddComponent<AudioSource>();
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
-
-			if (s.name == "Theme")
-            {
-				s.source.spatialBlend = 0.8f;
-			}
+			s.source.spatialBlend = s.SpatialBlend3D;
 		}
 	}
 

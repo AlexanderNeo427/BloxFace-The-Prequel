@@ -51,6 +51,9 @@ public class StateTeammateShoot : State
 
     public override void OnStateUpdate()
     {
+        // Fire gun
+        m_weaponController.UseWeapon();
+
         // State transition(s)
         if ((Zombie)m_enemy == null)
         {
@@ -86,12 +89,21 @@ public class StateTeammateShoot : State
 
         m_controller.transform.rotation = newRotation;
 
+        // Set destination
+        m_setDestBuffer -= Time.deltaTime;
+        if (m_setDestBuffer <= 0f)
+        {
+            m_setDestBuffer = SET_DEST_BUFFER;
+            m_navMeshAgent.SetDestination( enemyPos );
+        }
+
         // Check if objects blocking line-of-sight
         // If so, change into "chase" state
         m_raycastBuffer -= Time.deltaTime;
         if (m_raycastBuffer <= 0f)
         {
             Vector3 rayOrigin = m_controller.transform.position;
+            rayOrigin.y = 1f;
             Vector3 rayDir = targetDir;
             Ray ray = new Ray(rayOrigin, rayDir);
             float dist = m_controller.DetectionRange;
@@ -103,11 +115,12 @@ public class StateTeammateShoot : State
             if ( hit )
             {
                 GameObject other = hitInfo.collider.gameObject;
-                bool canSeeEnemy = other.gameObject.CompareTag("Enemy");
+                bool canSeeEnemy = other.CompareTag("Enemy");
 
                 if (!canSeeEnemy)
                     m_controller.m_stateMachine.ChangeState("TeammateChaseEnemy");
             }
+        }
             /*RaycastHit hitInfo;
             bool foundEnemy = false;
             float FOV = 70f;
@@ -138,18 +151,7 @@ public class StateTeammateShoot : State
 
             if (!foundEnemy)
                 m_controller.m_stateMachine.ChangeState("TeammateChaseEnemy");*/
-        }
 
-        // Fire gun
-        m_weaponController.UseWeapon();
-
-        // Set destination
-        m_setDestBuffer -= Time.deltaTime;
-        if (m_setDestBuffer <= 0f)
-        {
-            m_setDestBuffer = SET_DEST_BUFFER;
-            m_navMeshAgent.SetDestination( enemyPos );
-        }
     }
 
     public override void OnStateExit()

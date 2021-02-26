@@ -24,7 +24,6 @@ public class MGScript : MonoBehaviour
         if (Input.GetMouseButton(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            GetComponent<AudioSource>().Play();
             WeaponInfo.ammo--;
             wT = waitTime;
         }
@@ -35,5 +34,6 @@ public class MGScript : MonoBehaviour
     public void Shoot()
     {
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+        AudioManager.instance.Play("Minigun");
     }
 }
