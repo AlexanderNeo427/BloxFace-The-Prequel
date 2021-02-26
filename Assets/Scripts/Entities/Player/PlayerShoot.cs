@@ -66,5 +66,6 @@ public class PlayerShoot : MonoBehaviour
         GameObject goBullet = Instantiate(bullet, bulletSpawnPoint.transform.position, rotation);
         goBullet.transform.forward = m_playerInfo.dir;
         AudioManager.instance.Play("Pistol");
+#endif
     }
 }

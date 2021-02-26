@@ -59,6 +59,6 @@ public class SniperScript : MonoBehaviour
 #if UNITY_STANDALONE
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
         AudioManager.instance.Play("Sniper");
-#endif UNITY_STANDALONE
+#endif
     }
 }
