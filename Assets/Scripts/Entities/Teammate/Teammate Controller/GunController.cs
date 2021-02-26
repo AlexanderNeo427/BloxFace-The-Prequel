@@ -68,7 +68,7 @@ public class GunController : MonoBehaviour, IShootable, IUnlockable
 
     public void PlayWeaponSound()
     {
-        m_audioSource.Play();
+        //m_audioSource.Play();
     }
 
     public bool HasAmmo()
