@@ -12,7 +12,7 @@ public class StateBossZombieChase : State
     private const int    NUM_RAYS = 22;
 
     // How often to recalculate the NavMesh path to target
-    private const float  SET_DEST_BUFFER = 0.75f;
+    private const float  SET_DEST_BUFFER = 1.8f;
 
     // How long will try chasing the player before giving up
     private const float  CHASE_TIME = 6f;
@@ -43,13 +43,13 @@ public class StateBossZombieChase : State
 
         // Nav mesh agent speed
         float speed = m_zombieController.MoveSpeed + UnityEngine.Random.Range(-5, 5f);
-        speed = Mathf.Max(1.25f, speed);
+        speed = Mathf.Max(3f, speed);
         m_navMeshAgent.speed = speed;
 
         m_raycastBuffer  = RAYCAST_BUFFER;
         m_setSpeedBuffer = 0f;
         m_chaseTime      = 0f;
-        m_setDestBuffer  = SET_DEST_BUFFER;
+        m_setDestBuffer  = 0f;
     }
 
     public override void OnStateUpdate()
@@ -85,10 +85,10 @@ public class StateBossZombieChase : State
         }
 
         // Set destination buffer
-        m_setDestBuffer -= Time.deltaTime;
-        if (m_setDestBuffer <= 0f)
+        m_setDestBuffer += Time.deltaTime;
+        if (m_setDestBuffer >= SET_DEST_BUFFER)
         {
-            m_setDestBuffer = SET_DEST_BUFFER;
+            m_setDestBuffer = 0f;
             m_navMeshAgent.SetDestination( m_playerInfo.pos );
         }
 

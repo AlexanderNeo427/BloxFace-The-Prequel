@@ -79,6 +79,7 @@ public class StateTeammateFollowPlayer : State
                 if (other.CompareTag("Player"))
                 {
                     m_controller.m_stateMachine.ChangeState("TeammatePatrol");
+                    return;
                 }
 
                 Zombie zombieComponent = other.GetComponent<Zombie>();

@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 7522851017076094765, guid: 4954a5aca5eb8014d8d26c28832e1531, type: 3}
-  health: 100
+  health: 300
   moveSpeed: 1.9
   attackDamage: 9.3
   attackRange: 18.8

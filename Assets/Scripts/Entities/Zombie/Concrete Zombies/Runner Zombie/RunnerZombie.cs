@@ -73,7 +73,7 @@ public class RunnerZombie : MonoBehaviour, Zombie, Entity
 
         // Nav mesh agent speed
         float speed = moveSpeed + UnityEngine.Random.Range(-5, 5f);
-        speed = Mathf.Max(1.25f, speed);
+        speed = Mathf.Max(3f, speed);
         m_navMeshAgent.speed = speed;
 
         // Add states here
