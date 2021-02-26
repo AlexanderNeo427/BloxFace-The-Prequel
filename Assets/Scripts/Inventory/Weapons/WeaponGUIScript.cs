@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponGUIScript : MonoBehaviour
 {
+    public static WeaponGUIScript instance;
+
     public GameObject pistolGO;
     public GameObject shotgunGO;
     public GameObject sniperGO;
@@ -20,10 +22,10 @@ public class WeaponGUIScript : MonoBehaviour
     public GameObject TmgI;
     public GameObject RI;
 
-    private float time;
-    private bool t;
-    private float waitTime = 0.05f;
-    private float wT = 0.05f;
+    public float time;
+    public bool t;
+    public float waitTime = 0.05f;
+    public float wT = 0.05f;
 
     AudioSource m_AudioSource;
 

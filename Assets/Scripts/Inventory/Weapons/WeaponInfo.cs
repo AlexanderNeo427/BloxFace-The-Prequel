@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class WeaponInfo : MonoBehaviour
 {
+    public static WeaponInfo instance;
+
     public GameObject pistol;
     public GameObject shotgun;
     public GameObject sniper;
@@ -19,12 +21,12 @@ public class WeaponInfo : MonoBehaviour
 
     public static int ammo = 100;
     public static int MaxAmmo = 10;
-    private float shotgunDist = 0.062f;
+    public float shotgunDist = 0.062f;
     public static int grenadeAmount = 3;
     public static float reloadTime = 1.5f;
     public static bool reloadAffirm = false;
     public static float wT = 0f;
-    private bool In = false;
+    public bool In = false;
 
     private PlayerMove m_playerMove;
 

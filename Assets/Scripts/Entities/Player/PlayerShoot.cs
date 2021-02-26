@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public GameObject bulletSpawnPoint;
-    public float waitTime;
-    private float wT;
+    public float waitTime = 0.5f;
+    public float wT = 0.5f;
     public GameObject bullet;
 
     private PlayerInfo m_playerInfo;
