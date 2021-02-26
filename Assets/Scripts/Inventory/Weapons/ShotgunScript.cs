@@ -49,7 +49,7 @@ public class ShotgunScript : MonoBehaviour
                                     Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
                                 }
 
-                                GetComponent<AudioSource>().Play();
+                                AudioManager.instance.Play("Shotgun");
                                 WeaponInfo.ammo -= 8;
                                 WeaponInfo.wT = waitTime;
                             }

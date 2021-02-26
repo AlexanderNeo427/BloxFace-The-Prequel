@@ -51,8 +51,8 @@ public class PlayerShoot : MonoBehaviour
                             Quaternion rotation = Quaternion.Euler(m_playerInfo.dir.x, m_playerInfo.dir.y, m_playerInfo.dir.z);
                             GameObject goBullet = Instantiate(bullet, bulletSpawnPoint.transform.position, rotation);
                             goBullet.transform.forward = m_playerInfo.dir;
-
-                            GetComponent<AudioSource>().Play();
+                            
+                            AudioManager.instance.Play("Pistol");
                             wT = waitTime;
                         }
                         break;

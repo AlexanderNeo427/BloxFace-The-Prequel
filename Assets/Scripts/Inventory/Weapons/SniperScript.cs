@@ -46,8 +46,8 @@ public class SniperScript : MonoBehaviour
                             {            
                                 Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);                                
                                 WeaponInfo.ammo -= 4;
-                                wT = waitTime;
-                                GetComponent<AudioSource>().Play();
+                                wT = waitTime;                               
+                                AudioManager.instance.Play("Sniper");
                             }
                             break;
                         }
