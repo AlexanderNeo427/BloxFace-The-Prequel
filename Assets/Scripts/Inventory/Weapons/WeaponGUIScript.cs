@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponGUIScript : MonoBehaviour
 {
+    public static WeaponGUIScript instance;
+
     public GameObject pistolGO;
     public GameObject shotgunGO;
     public GameObject sniperGO;
@@ -14,16 +16,17 @@ public class WeaponGUIScript : MonoBehaviour
     //public GameObject sniperUI;
     //public GameObject MGUI;
 
-    public GameObject TptI;
-    public GameObject TsgI;
-    public GameObject TspI;
-    public GameObject TmgI;
-    public GameObject RI;
+    public GameObject TptI; // Translucent Pistol Image
+    public GameObject TsgI; // Translucent Shotgun Image
+    public GameObject TspI; // Translucent Sniper Image
+    public GameObject TmgI; // Translucent MiniGun Image
+    public GameObject RI; // Reloading Image
+    public GameObject Ifin;  // Infinity Image
 
-    private float time;
-    private bool t;
-    private float waitTime = 0.05f;
-    private float wT = 0.05f;
+    public float time;
+    public bool t;
+    public float waitTime = 0.05f;
+    public float wT = 0.05f;
 
     AudioSource m_AudioSource;
 
@@ -40,6 +43,7 @@ public class WeaponGUIScript : MonoBehaviour
         TsgI.SetActive(false);
         TmgI.SetActive(false);
         RI.SetActive(false);
+        Ifin.SetActive(true);
 
         time = 3f;
         t = false;
@@ -61,6 +65,7 @@ public class WeaponGUIScript : MonoBehaviour
             TsgI.SetActive(false);
             TspI.SetActive(false);
             TmgI.SetActive(false);
+            Ifin.SetActive(true);
         }
         else if (shotgunGO.activeSelf)
         {
@@ -73,6 +78,7 @@ public class WeaponGUIScript : MonoBehaviour
             TsgI.SetActive(true);
             TspI.SetActive(false);
             TmgI.SetActive(false);
+            Ifin.SetActive(false);
         }
         else if (sniperGO.activeSelf)
         {
@@ -85,6 +91,7 @@ public class WeaponGUIScript : MonoBehaviour
             TsgI.SetActive(false);
             TspI.SetActive(true);
             TmgI.SetActive(false);
+            Ifin.SetActive(false);
         }
         else if (MGGO.activeSelf)
         {
@@ -97,6 +104,7 @@ public class WeaponGUIScript : MonoBehaviour
             TsgI.SetActive(false);
             TspI.SetActive(false);
             TmgI.SetActive(true);
+            Ifin.SetActive(false);
         }
         if (Input.GetKey(KeyCode.R) && WeaponInfo.ammo < 100 && WeaponInfo.MaxAmmo > 0)
         {
@@ -108,13 +116,12 @@ public class WeaponGUIScript : MonoBehaviour
         {
             WeaponInfo.ammo = 0;
         }
-        if (WeaponInfo.reloadAffirm)
+        if (WeaponInfo.reloadAffirm) // Reload Function
         {
             if (wT <= 0)
             {
                 WeaponInfo.ammo++;
                 WeaponInfo.MaxAmmo--;
-                //GetComponent<AudioSource>().Play();
                 wT = waitTime;
             }
             wT -= 1 * Time.deltaTime;
@@ -135,7 +142,7 @@ public class WeaponGUIScript : MonoBehaviour
         }
     }
 
-    public static void Reload()
+    public void Reload()
     {
         WeaponInfo.reloadAffirm = true;
     }

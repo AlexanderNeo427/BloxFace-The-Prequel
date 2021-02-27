@@ -10,6 +10,10 @@ TagManager:
   - Teammate
   - Canvas
   - Bullet
+  - Fire Button
+  - Reload Button
+  - Swap Weapons Button
+  - Joystick Button
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,4 @@ public class PickUpSpawn : MonoBehaviour
         GameObject pu = Instantiate(pickUp, new Vector3(0, -600, 0), Quaternion.identity) as GameObject;
         pu.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
     }
-
-
 }

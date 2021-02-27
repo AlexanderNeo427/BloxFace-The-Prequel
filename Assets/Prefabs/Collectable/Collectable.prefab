@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m1: {fileID: 2100000, guid: e2b75a105dfcd4648a5742d7590560b8, type: 2}
   m2: {fileID: 2100000, guid: 440d326c9cd532f4594ae6c490a34304, type: 2}
+  timerToDespawn: 8
 --- !u!114 &8409467553958278069
 MonoBehaviour:
   m_ObjectHideFlags: 0

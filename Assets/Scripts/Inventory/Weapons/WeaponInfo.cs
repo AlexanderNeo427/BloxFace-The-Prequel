@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class WeaponInfo : MonoBehaviour
 {
+    public static WeaponInfo instance;
+
     public GameObject pistol;
     public GameObject shotgun;
     public GameObject sniper;
@@ -19,12 +21,12 @@ public class WeaponInfo : MonoBehaviour
 
     public static int ammo = 100;
     public static int MaxAmmo = 10;
-    private float shotgunDist = 0.062f;
+    public float shotgunDist = 0.062f;
     public static int grenadeAmount = 3;
     public static float reloadTime = 1.5f;
     public static bool reloadAffirm = false;
     public static float wT = 0f;
-    private bool In = false;
+    public bool In = false;
 
     private PlayerMove m_playerMove;
 
@@ -56,7 +58,7 @@ public class WeaponInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1)) // Sets the pistol as active weapon
         {
             m_playerMove.ResetMoveSpeed();
             //GetComponent<AudioSource>().Play();
@@ -68,13 +70,13 @@ public class WeaponInfo : MonoBehaviour
         else if (Input.GetKey(KeyCode.Alpha2))
         {
             m_playerMove.ResetMoveSpeed();
-            if (SGAccess)
+            if (SGAccess) // Sets the shotgun as active weapon if shotgun was picked up
             {
                 //GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 shotgun.SetActive(true);
             }
-            else
+            else // else the pistol is set active
             {
                 pistol.SetActive(true);
                 shotgun.SetActive(false);
@@ -86,13 +88,13 @@ public class WeaponInfo : MonoBehaviour
         {
             m_playerMove.ResetMoveSpeed();
             shotgun.SetActive(false);
-            if (SPAccess)
+            if (SPAccess) // Sets the sniper as active weapon if sniper was picked up
             {
-               // GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 sniper.SetActive(true);
             }
-            else
+            else // else the pistol is set active
             {
                 pistol.SetActive(true);
                 sniper.SetActive(false);
@@ -103,27 +105,28 @@ public class WeaponInfo : MonoBehaviour
         {
             shotgun.SetActive(false);
             sniper.SetActive(false);
-            if (MGAccess)
+            if (MGAccess) // Sets the minigun as active weapon if minigun was picked up
             {
-               // GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().Play();
                 pistol.SetActive(false);
                 machineGun.SetActive(true);
-                m_playerMove.SetMoveSpeed(5f);
+                m_playerMove.SetMoveSpeed(9.75f);
             }
-            else
+            else // else the pistol is set active
             {
                 pistol.SetActive(true);
                 machineGun.SetActive(false);
                 m_playerMove.ResetMoveSpeed();
             }
         }
+        // This function puts knockback when shooting shotgun
         if (shotgun.activeSelf && Input.GetMouseButton(0) && ammo >= 16 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             shotgunDist -= Time.deltaTime;
             if (shotgunDist > 0)
             {
                 transform.Translate(Vector3.back * 12.5f * Time.deltaTime);
-                if (In)
+                if (In) // if player is colliding with a box, no knockback is applied
                 {
                     transform.Translate(Vector3.forward * 12.5f * Time.deltaTime);
                 }
@@ -137,7 +140,7 @@ public class WeaponInfo : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall")) // Checks whether or not if colliding with box
         {
             In = true;
         }

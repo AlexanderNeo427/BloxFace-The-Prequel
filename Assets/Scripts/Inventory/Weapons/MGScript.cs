@@ -6,7 +6,7 @@ public class MGScript : MonoBehaviour
 {
     public GameObject bulletSpawnPoint;
     public float waitTime;
-    private float wT;
+    public float wT;
     public GameObject bullet;
     private PlayerMove m_playerMove;
 
@@ -20,20 +20,49 @@ public class MGScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+#if UNITY_STANDALONE
         // Shooting - G
         if (Input.GetMouseButton(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
         {
             Shoot();
-            GetComponent<AudioSource>().Play();
+            AudioManager.instance.Play("Minigun");
             WeaponInfo.ammo--;
             wT = waitTime;
         }
+#endif
+
         wT -= 1 * Time.deltaTime;
     }
 
     // Shooting function - G
     public void Shoot()
     {
+#if UNITY_ANDROID
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                switch (Input.GetTouch(i).phase)
+                {
+                    case TouchPhase.Moved:
+                        {
+                            if (wT <= 0 && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
+                            {
+                                Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+                                WeaponInfo.ammo--;
+                                wT = waitTime;
+                                AudioManager.instance.Play("Minigun");
+                            }
+                            break;
+                        }
+                }
+            }
+        }
+#endif
+
+#if UNITY_STANDALONE
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
+#endif
     }
 }
