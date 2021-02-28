@@ -19,8 +19,8 @@ public class WeaponInfo : MonoBehaviour
     public static bool SPAccess = false;
     public static bool MGAccess = false;
 
-    public static int ammo = 100;
-    public static int MaxAmmo = 10;
+    public static int ammo = 150; // ammo starts at 150
+    public static int MaxAmmo = 20; // maxAmmo starts at 20
     public float shotgunDist = 0.062f;
     public static int grenadeAmount = 3;
     public static float reloadTime = 1.5f;
@@ -41,7 +41,7 @@ public class WeaponInfo : MonoBehaviour
 
     void IncreaseMaxAmmo()
     {
-        MaxAmmo += 10;
+        MaxAmmo += 15; // Ammo increases by 15
     }
 
     // Start is called before the first frame update
