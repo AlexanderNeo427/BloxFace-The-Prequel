@@ -24,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) /*&& PlayerInfo.ammo > 0*/ && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && wT <= 0 && !WeaponInfo.reloadAffirm) // Should no longer shoot while reloading
         {
             Shoot();
             wT = waitTime;

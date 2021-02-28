@@ -21,17 +21,21 @@ public class SceneManagement : MonoBehaviour
 
     public void ToMainMenu()
     {
+        PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Main Menu");
 
-        AudioManager.instance.Play("MainMenuTheme");
-        AudioManager.instance.StopPlaying("Theme");
+        if (PreviousSceneTracker.Instance.prevScene != "Options")
+        {
+            AudioManager.instance.Play("MainMenuTheme");
+            AudioManager.instance.StopPlaying("Theme");
+        }
 
         //FindObjectOfType<AudioManager>().StopPlaying("Theme");
         //FindObjectOfType<AudioManager>().Play("MainMenuTheme");
     }
     public void ToInGame()
     {
-        //PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
+        PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Game");
         AudioManager.instance.Play("Theme");
         AudioManager.instance.StopPlaying("MainMenuTheme");
@@ -44,6 +48,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ToOptions()
     {
+        PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Options");
     }
 
