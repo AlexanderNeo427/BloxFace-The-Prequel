@@ -21,14 +21,10 @@ public class SettingsMenu : MonoBehaviour
     public GameObject PauseMenuUI;
     public GameObject PauseButtonUI;
     public GameObject InventoryUI;
+    public GameObject PopUpTextUI;
 
     void Start()
     {
-        Button btn1 = EnableSettingsButton.GetComponent<Button>();
-        Button btn2 = DisableSettingsButton.GetComponent<Button>();
-        btn1.onClick.AddListener(TaskOnClick);
-        btn2.onClick.AddListener(TaskOnClick);
-
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -52,6 +48,14 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
+
+        if (SceneManager.GetActiveScene().name == "Options")
+            return;
+
+        Button btn1 = EnableSettingsButton.GetComponent<Button>();
+        Button btn2 = DisableSettingsButton.GetComponent<Button>();
+        btn1.onClick.AddListener(TaskOnClick);
+        btn2.onClick.AddListener(TaskOnClick);
     }
 
     public void Update()
@@ -94,6 +98,7 @@ public class SettingsMenu : MonoBehaviour
         PauseMenuUI.SetActive(false);
         PauseButtonUI.SetActive(false);
         InventoryUI.SetActive(false);
+        PopUpTextUI.SetActive(false);
         //Time.timeScale = 1f;
         SettingsIsActive = true;
     }
@@ -104,6 +109,7 @@ public class SettingsMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
         PauseButtonUI.SetActive(false);
         InventoryUI.SetActive(false);
+        PopUpTextUI.SetActive(false);
         //Time.timeScale = 0f;
         SettingsIsActive = false;
     }
