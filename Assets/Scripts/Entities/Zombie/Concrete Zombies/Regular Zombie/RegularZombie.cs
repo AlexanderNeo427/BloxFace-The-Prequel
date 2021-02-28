@@ -101,13 +101,18 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     public void TakeDamage(float dmg)
     {
-        m_health -= dmg;
-        OnDamaged?.Invoke( transform.position, dmg );
-
         if (m_health <= 0f)
+            return;
+
+        if (m_health - dmg <= 0f)
         {
-            OnDeath?.Invoke( transform.position );
-            Destroy( this.gameObject );
+            OnDeath?.Invoke(transform.position);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            m_health -= dmg;
+            OnDamaged?.Invoke( transform.position, dmg );
         }
     }
 
