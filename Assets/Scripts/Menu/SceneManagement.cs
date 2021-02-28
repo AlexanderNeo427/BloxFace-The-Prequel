@@ -21,6 +21,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ToMainMenu()
     {
+        AudioManager.instance.Play("Button");
         PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Main Menu");
 
@@ -35,6 +36,7 @@ public class SceneManagement : MonoBehaviour
     }
     public void ToInGame()
     {
+        AudioManager.instance.Play("Button");
         PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Game");
         AudioManager.instance.Play("Theme");
@@ -48,6 +50,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ToOptions()
     {
+        AudioManager.instance.Play("Button");
         PreviousSceneTracker.Instance.prevScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene("Options");
     }
@@ -59,7 +62,8 @@ public class SceneManagement : MonoBehaviour
 
     public void ToPrevScene()
     {
-        if(SceneManager.GetActiveScene().name == "Options")
+        AudioManager.instance.Play("Button");
+        if (SceneManager.GetActiveScene().name == "Options")
         {
             if(SceneManager.GetActiveScene().buildIndex == 0)
             {
@@ -76,6 +80,7 @@ public class SceneManagement : MonoBehaviour
 
     public void ToExitGame()
     {
+        AudioManager.instance.Play("Button");
         #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
         #else

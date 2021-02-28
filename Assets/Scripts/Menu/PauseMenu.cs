@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        AudioManager.instance.Play("Button");
         pauseMenuUI.SetActive(false);
         WaveCanvasUI.SetActive(true);
         BloodScreenUI.SetActive(true);
@@ -45,6 +46,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        AudioManager.instance.Play("Button");
         pauseMenuUI.SetActive(true);
         WaveCanvasUI.SetActive(false);
         BloodScreenUI.SetActive(false);

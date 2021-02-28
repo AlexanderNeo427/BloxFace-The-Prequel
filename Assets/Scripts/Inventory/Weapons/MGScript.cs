@@ -20,7 +20,6 @@ public class MGScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
 #if UNITY_STANDALONE
         // Shooting - G
         if (Input.GetMouseButton(0) && WeaponInfo.ammo > 0 && wT <= 0 && !WeaponInfo.reloadAffirm)
@@ -29,6 +28,11 @@ public class MGScript : MonoBehaviour
             AudioManager.instance.Play("Minigun");
             WeaponInfo.ammo--;
             wT = waitTime;
+        }
+
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo <= 0)
+        {
+            AudioManager.instance.Play("EmptyGun");
         }
 #endif
 
@@ -54,6 +58,12 @@ public class MGScript : MonoBehaviour
                                 wT = waitTime;
                                 AudioManager.instance.Play("Minigun");
                             }
+
+                            if (WeaponInfo.ammo <= 0)
+                            {
+                                AudioManager.instance.Play("EmptyGun");
+                            }
+
                             break;
                         }
                 }

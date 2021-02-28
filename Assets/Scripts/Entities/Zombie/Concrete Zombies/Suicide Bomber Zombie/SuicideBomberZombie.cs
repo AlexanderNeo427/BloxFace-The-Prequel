@@ -87,6 +87,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
     public void Attack()
     {
+        AudioManager.instance.Play("Explosion");
         OnSuicideZombieExplode?.Invoke( transform.position, blastRadius, explosionDamage );
         Destroy( this.gameObject );
     }

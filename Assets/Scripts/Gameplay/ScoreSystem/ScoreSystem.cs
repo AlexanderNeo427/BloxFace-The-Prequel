@@ -4,6 +4,7 @@ public class ScoreSystem : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultiplierText;
+    public TextMeshProUGUI FinalScoreText;
 
     public int ScoreValue = 0;
     private int ScoreMultiplier = 1;
@@ -16,6 +17,7 @@ public class ScoreSystem : MonoBehaviour
         SuicideBomberZombie.OnDeath += AddScoreSuicide;
         BossZombie.OnDeath += AddScoreBoss;
         RunnerZombie.OnDeath += AddScoreRunner;
+        PlayerInfo.OnPlayerDamaged += OnHitDecreaseMultiplier;
     }
 
     private void OnDisable()
@@ -24,6 +26,7 @@ public class ScoreSystem : MonoBehaviour
         SuicideBomberZombie.OnDeath -= AddScoreSuicide;
         BossZombie.OnDeath -= AddScoreBoss;
         RunnerZombie.OnDeath -= AddScoreRunner;
+        PlayerInfo.OnPlayerDamaged -= OnHitDecreaseMultiplier;
     }
 
     // Update is called once per frame
@@ -48,6 +51,8 @@ public class ScoreSystem : MonoBehaviour
 
         ScoreText.SetText(ScoreValue.ToString("00000000000000"));
         MultiplierText.SetText(ScoreMultiplier.ToString() + "x");
+
+        FinalScoreText.SetText("Final Score: " + ScoreValue.ToString());
     }
 
     // Add score and Add to multiplier
@@ -65,6 +70,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreRunner(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -79,6 +85,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreSuicide(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -93,6 +100,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreBoss(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -107,6 +115,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     // Decrease Multiplier if player is hit or take too long to continue the killing streak
     void DecreaseMultiplier()
     {
@@ -115,5 +124,15 @@ public class ScoreSystem : MonoBehaviour
         // Half the multiplier
         if (ScoreMultiplier > 1)
             ScoreMultiplier /= 2;
+    }
+    void OnHitDecreaseMultiplier(float dummyVariable)
+    {
+        AudioManager.instance.Play("Ugh");
+        // Rest the multiplier when hit
+        if (ScoreMultiplier > 1)
+        {
+            AudioManager.instance.Play("ReverseMultiplier");
+            ScoreMultiplier = 1;
+        }
     }
 }

@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc0066bddd9e6946b1923bac9c7aa4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystickBG: {fileID: 1693759129417109854}
+  joystickButton: {fileID: 1693759129521554840}
 --- !u!1 &1693759128621508511
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db89e4f2329975043851b4cb216b5d7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponGUIScript: {fileID: 1693759129254920724}
 --- !u!114 &1051798669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +507,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4174b400c763aa648bfbbd14348c9778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerMove: {fileID: 0}
+  Player: {fileID: 0}
+  Weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1051798675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,6 +526,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fac81ea538ea14b865745d96c36221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PistolShoot: {fileID: 0}
+  m_MachineGunShoot: {fileID: 0}
+  m_ShotgunGunShoot: {fileID: 0}
+  m_SniperShoot: {fileID: 0}
 --- !u!1 &1693759129417109854
 GameObject:
   m_ObjectHideFlags: 0
