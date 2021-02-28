@@ -49,6 +49,9 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
+        if (SceneManager.GetActiveScene().name == "Options")
+            return;
+
         Button btn1 = EnableSettingsButton.GetComponent<Button>();
         Button btn2 = DisableSettingsButton.GetComponent<Button>();
         btn1.onClick.AddListener(TaskOnClick);
