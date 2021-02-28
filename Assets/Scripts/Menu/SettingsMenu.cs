@@ -94,6 +94,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void EnableSettings()
     {
+        AudioManager.instance.Play("Button");
         SettingsUI.SetActive(true);
         PauseMenuUI.SetActive(false);
         PauseButtonUI.SetActive(false);
@@ -105,6 +106,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void DisableSettings()
     {
+        AudioManager.instance.Play("Button");
         SettingsUI.SetActive(false);
         PauseMenuUI.SetActive(true);
         PauseButtonUI.SetActive(false);

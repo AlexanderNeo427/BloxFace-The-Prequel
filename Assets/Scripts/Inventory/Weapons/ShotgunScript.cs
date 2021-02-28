@@ -26,7 +26,13 @@ public class ShotgunScript : MonoBehaviour
             WeaponInfo.ammo -= 12; // Shotgun takes 12 ammo
             WeaponInfo.wT = waitTime;
         }
+
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo < 12 )
+        {
+            AudioManager.instance.Play("EmptyGun");
+        }
 #endif  
+
         WeaponInfo.wT -= 1 * Time.deltaTime;
     }
 
@@ -42,7 +48,7 @@ public class ShotgunScript : MonoBehaviour
                 {
                     case TouchPhase.Began:
                         {
-                            if (WeaponInfo.ammo >= 8 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
+                            if (WeaponInfo.ammo >= 12 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
                             {
                                 for (int j = 0; j < 25; ++j)
                                 {
@@ -50,9 +56,13 @@ public class ShotgunScript : MonoBehaviour
                                 }
 
                                 AudioManager.instance.Play("Shotgun");
-                                WeaponInfo.ammo -= 8;
+                                WeaponInfo.ammo -= 12;
                                 WeaponInfo.wT = waitTime;
                             }
+
+                            if (WeaponInfo.ammo <= 12)
+                                AudioManager.instance.Play("EmptyGun");
+
                             break;
                         }
                 }

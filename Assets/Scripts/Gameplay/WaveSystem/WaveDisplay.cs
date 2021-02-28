@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
 
+// Wave Display
+//
+// To display things like wave count, Enemies left and timer to next wave
+
 public class WaveDisplay : MonoBehaviour
 {
     // Various Texts

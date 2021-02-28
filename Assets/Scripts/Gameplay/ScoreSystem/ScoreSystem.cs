@@ -4,6 +4,7 @@ public class ScoreSystem : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI MultiplierText;
+    public TextMeshProUGUI FinalScoreText;
 
     public int ScoreValue = 0;
     private int ScoreMultiplier = 1;
@@ -50,6 +51,8 @@ public class ScoreSystem : MonoBehaviour
 
         ScoreText.SetText(ScoreValue.ToString("00000000000000"));
         MultiplierText.SetText(ScoreMultiplier.ToString() + "x");
+
+        FinalScoreText.SetText("Final Score: " + ScoreValue.ToString());
     }
 
     // Add score and Add to multiplier
@@ -124,6 +127,7 @@ public class ScoreSystem : MonoBehaviour
     }
     void OnHitDecreaseMultiplier(float dummyVariable)
     {
+        AudioManager.instance.Play("Ugh");
         // Rest the multiplier when hit
         if (ScoreMultiplier > 1)
         {

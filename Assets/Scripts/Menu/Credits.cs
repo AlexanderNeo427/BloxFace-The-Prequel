@@ -34,6 +34,7 @@ public class Credits : MonoBehaviour
 
     public void EnableCredits()
     {
+        AudioManager.instance.Play("Button");
         CreditsUI.SetActive(true);
         Time.timeScale = 1f;
         CreditIsActive = true;
@@ -41,6 +42,7 @@ public class Credits : MonoBehaviour
 
     public void DisableCredits()
     {
+        AudioManager.instance.Play("Button");
         CreditsUI.SetActive(false);
         Time.timeScale = 0f;
         CreditIsActive = false;

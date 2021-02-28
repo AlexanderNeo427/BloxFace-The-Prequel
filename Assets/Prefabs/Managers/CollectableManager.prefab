@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d3e59d29ec1f740926b171dec6bd50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnChance: 100
+  spawnChance: 25
   collectablePrefab: {fileID: 4392566390259940684, guid: fed7549928d437846bd2f8d57723a70d, type: 3}

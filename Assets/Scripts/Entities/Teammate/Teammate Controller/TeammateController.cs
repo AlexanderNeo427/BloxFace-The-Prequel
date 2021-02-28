@@ -16,7 +16,7 @@ public class TeammateController : MonoBehaviour, Entity
     private const float      CHECK_WAVE_TIME = 4f;
 
     // How many waves before upgrading guns
-    private const int        WAVES_PER_UPGRADE = 3;
+    private const int        WAVES_PER_UPGRADE = 4;
 
     [Header ("Customisations")]
     [SerializeField] [Range(100f, 500f)] private float health;

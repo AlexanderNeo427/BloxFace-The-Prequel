@@ -23,10 +23,17 @@ public class SniperScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 6 && wT <= 0 && !WeaponInfo.reloadAffirm) // Sniper takes 6 ammo
         {
             Shoot();
+            AudioManager.instance.Play("Sniper");
             WeaponInfo.ammo = WeaponInfo.ammo - 6; // Sniper takes 6 ammo
             wT = waitTime;
         }
+
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo < 6)
+        {
+            AudioManager.instance.Play("EmptyGun");
+        }
 #endif
+
         wT -= 1 * Time.deltaTime;
     }
 
@@ -42,13 +49,19 @@ public class SniperScript : MonoBehaviour
                 {
                     case TouchPhase.Began:
                         {
-                            if (wT <= 0 && WeaponInfo.ammo >= 4 && !WeaponInfo.reloadAffirm)
+                            if (wT <= 0 && WeaponInfo.ammo >= 6 && !WeaponInfo.reloadAffirm)
                             {            
                                 Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);                                
-                                WeaponInfo.ammo -= 4;
+                                WeaponInfo.ammo -= 6;
                                 wT = waitTime;                               
                                 AudioManager.instance.Play("Sniper");
                             }
+
+                            if (WeaponInfo.ammo < 6)// Sniper takes 6 ammo
+                            {
+                                AudioManager.instance.Play("EmptyGun");
+                            }
+
                             break;
                         }
                 }
@@ -58,7 +71,6 @@ public class SniperScript : MonoBehaviour
 
 #if UNITY_STANDALONE
         Instantiate(bullet.transform, bulletSpawnPoint.transform.position, bulletSpawnPoint.transform.rotation);
-        AudioManager.instance.Play("Sniper");
 #endif
     }
 }

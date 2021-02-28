@@ -126,4 +126,49 @@ MonoBehaviour:
     SpatialBlend3D: 0
     loop: 0
     source: {fileID: 0}
+  - name: EmptyGun
+    clip: {fileID: 8300000, guid: 0d0af1f87bd3da042b9e47410d97fa3e, type: 3}
+    volume: 0.457
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Button
+    clip: {fileID: 8300000, guid: 2707276cda7752a448aa5bd2b1669c86, type: 3}
+    volume: 0.457
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Ugh
+    clip: {fileID: 8300000, guid: b3d91faf1cbf0cc45978ab7ee451b5bc, type: 3}
+    volume: 0.305
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Dying
+    clip: {fileID: 8300000, guid: 704fc42ebe74ee54ab8dafdcdfd0fcc9, type: 3}
+    volume: 0.305
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 06ebe386a27452948a671ca0e4d79232, type: 3}
+    volume: 0.305
+    volumeVariance: 0.2
+    pitch: 1
+    pitchVariance: 0.08
+    SpatialBlend3D: 0
+    loop: 0
+    source: {fileID: 0}
   AudioSrc: {fileID: 0}
