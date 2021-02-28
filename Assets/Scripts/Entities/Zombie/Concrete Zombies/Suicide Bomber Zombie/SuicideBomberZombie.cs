@@ -98,6 +98,7 @@ public class SuicideBomberZombie : MonoBehaviour, Zombie, Entity
 
         if (m_health - dmg <= 0f)
         {
+            m_health = -Mathf.Epsilon;
             OnDeath?.Invoke(transform.position);
             Destroy(this.gameObject);
         }

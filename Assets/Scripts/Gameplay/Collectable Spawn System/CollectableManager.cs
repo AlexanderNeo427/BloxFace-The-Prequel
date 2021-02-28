@@ -5,33 +5,33 @@ using UnityEngine;
 public class CollectableManager : Singleton<CollectableManager>
 {
     [Header("Customisations")]
-    [SerializeField][Range (0.0f, 100f)][Tooltip("Chance of spawning pickups (after every zombie death)")]
+    [SerializeField] [Range(0.0f, 100f)] [Tooltip("Chance of spawning pickups (after every zombie death)")]
     private float spawnChance = 20f;
 
-    [Header ("References")]
+    [Header("References")]
     [SerializeField] private GameObject collectablePrefab;
 
     private void OnEnable()
     {
         // Subscribe to events here
-        RegularZombie.OnDeath += SpawnCollectable;
+        RegularZombie.OnDeath       += SpawnCollectable;
         SuicideBomberZombie.OnDeath += SpawnCollectable;
-        RegularZombie.OnDeath += SpawnCollectable;
-        RunnerZombie.OnDeath += SpawnCollectable;
+        BossZombie.OnDeath          += SpawnCollectable;
+        RunnerZombie.OnDeath        += SpawnCollectable;
     }
 
-    private void OnDisable()
+    private void OnDisabl()
     {
         // Unsubscribe from events here
-        RegularZombie.OnDeath -= SpawnCollectable;
+        RegularZombie.OnDeath       -= SpawnCollectable;
         SuicideBomberZombie.OnDeath -= SpawnCollectable;
-        RegularZombie.OnDeath -= SpawnCollectable;
-        RunnerZombie.OnDeath -= SpawnCollectable;
+        BossZombie.OnDeath          -= SpawnCollectable;
+        RunnerZombie.OnDeath        -= SpawnCollectable;
     }
 
     private void SpawnCollectable(Vector3 pos)
     {
-        Vector3 spawnPos = new Vector3(pos.x, 0.4f, pos.z);
+        Vector3 spawnPos = new Vector3(pos.x, 0.8f, pos.z);
         float randNum = Random.Range(0f, 100f);
 
         if (randNum <= spawnChance)
