@@ -101,6 +101,11 @@ public class RegularZombie : MonoBehaviour, Zombie, Entity
 
     public void TakeDamage(float dmg)
     {
+        if (m_health <= 0f) // Won't take dmg when dead
+        {
+            return;
+        }
+
         m_health -= dmg;
         OnDamaged?.Invoke( transform.position, dmg );
 

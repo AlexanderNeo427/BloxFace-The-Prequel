@@ -11,7 +11,7 @@ public class ShotgunBulletScript : MonoBehaviour
 
     void Start()
     {
-        float yRotation = Random.Range(-40, 40);
+        float yRotation = Random.Range(-50, 50);
         float xRotation = Random.Range(-4, 4);
 
         Quaternion bulletRotatio = Quaternion.Euler(xRotation, yRotation, 0);
@@ -26,7 +26,7 @@ public class ShotgunBulletScript : MonoBehaviour
         transform.Translate(dir * Time.deltaTime * speed, Space.World);
         maxDistance += 1 * Time.deltaTime;
 
-        if (maxDistance >= 0.075f) // dist should be 0.075f
+        if (maxDistance >= 0.1f) // dist should be 0.1f
         {
             Destroy(this.gameObject);
         }

@@ -1016,6 +1016,8 @@ MonoBehaviour:
   shotgun: {fileID: 2755158513558443967}
   sniper: {fileID: 1598731581605506878}
   machineGun: {fileID: 6390360659536422739}
+  shotgunDist: 0.062
+  In: 0
 --- !u!65 &2110501623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1182,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2829041726977996794, guid: c94c858b4a314d44683418d5d84f4a7b, type: 3}
+      propertyPath: waitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2829041727526725447, guid: c94c858b4a314d44683418d5d84f4a7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.06
@@ -1252,6 +1258,14 @@ PrefabInstance:
     - target: {fileID: 8328231233632859418, guid: 75ff432d64c4743428300f3b7d86dc69, type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 8328231233632859421, guid: 75ff432d64c4743428300f3b7d86dc69, type: 3}
+      propertyPath: waitTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8328231233632859421, guid: 75ff432d64c4743428300f3b7d86dc69, type: 3}
+      propertyPath: wT
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ff432d64c4743428300f3b7d86dc69, type: 3}
@@ -1339,6 +1353,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3561524395665449362}
     m_Modifications:
+    - target: {fileID: 1680222556843272929, guid: 6ac4f129619fedc4eb8725e69ee1d508, type: 3}
+      propertyPath: waitTime
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1680222556843272932, guid: 6ac4f129619fedc4eb8725e69ee1d508, type: 3}
       propertyPath: m_Name
       value: Shotgun

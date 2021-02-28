@@ -19,11 +19,11 @@ public class ShotgunScript : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 16 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 12 && WeaponInfo.wT <= 0 && !WeaponInfo.reloadAffirm) // Shotgun takes 12 ammo
         {
             Shoot();
             AudioManager.instance.Play("Shotgun");
-            WeaponInfo.ammo -= 16;
+            WeaponInfo.ammo -= 12; // Shotgun takes 12 ammo
             WeaponInfo.wT = waitTime;
         }
 #endif  
