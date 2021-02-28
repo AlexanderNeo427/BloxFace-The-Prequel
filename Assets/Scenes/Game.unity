@@ -890,11 +890,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4101356355461238472, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
   m_PrefabInstance: {fileID: 376284527}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1034831907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1693759129521554840, guid: 66857c232da86364680dce687dc9492f, type: 3}
-  m_PrefabInstance: {fileID: 1414344544}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1043680964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,14 +1304,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 343111733}
     m_Modifications:
-    - target: {fileID: 1051798668, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: weaponGUIScript
-      value: 
-      objectReference: {fileID: 1577692349}
-    - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: Weapons.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1051798669, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: m_playerMove
       value: 
@@ -1357,18 +1344,6 @@ PrefabInstance:
       propertyPath: m_SniperShoot
       value: 
       objectReference: {fileID: 1167441319}
-    - target: {fileID: 1469737321133186081, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1693759128474597310, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: joystickBG
-      value: 
-      objectReference: {fileID: 1487566359}
-    - target: {fileID: 1693759128474597310, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: joystickButton
-      value: 
-      objectReference: {fileID: 1034831907}
     - target: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: pistolGO
       value: 
@@ -1473,10 +1448,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1693759129254920745, guid: 66857c232da86364680dce687dc9492f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6738338566374194471, guid: 66857c232da86364680dce687dc9492f, type: 3}
       propertyPath: pistolGO
       value: 
@@ -1505,27 +1476,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3258831854946824539, guid: dbfe4d898c0eb2e4fb1d30f10c122cb9, type: 3}
   m_PrefabInstance: {fileID: 3258831854646032556}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1487566359 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1693759129417109854, guid: 66857c232da86364680dce687dc9492f, type: 3}
-  m_PrefabInstance: {fileID: 1414344544}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1487874666 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4101356356464906525, guid: 526f0c24a2382ca44a9f9276d92ac39c, type: 3}
   m_PrefabInstance: {fileID: 376284527}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1577692349 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1693759129254920724, guid: 66857c232da86364680dce687dc9492f, type: 3}
-  m_PrefabInstance: {fileID: 1414344544}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18986ce8c1536a458fe3248a0f6f822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1735979603 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6390360659536422739, guid: 5210a190684231e4893c347de34b39fa, type: 3}
