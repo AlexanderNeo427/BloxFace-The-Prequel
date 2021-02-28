@@ -26,11 +26,11 @@ public class AmmoConScript : MonoBehaviour
         }
         else if (shotgunGO.activeSelf)
         {
-            txt.text = "16";
+            txt.text = "12"; // Shotgun Takes 12 ammo
         }
         else if (sniperGO.activeSelf)
         {
-            txt.text = "8";
+            txt.text = "6"; // Sniper takes 6 ammo
         }
         else if (MGGO.activeSelf)
         {

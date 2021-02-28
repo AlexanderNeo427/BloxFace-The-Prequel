@@ -20,10 +20,10 @@ public class SniperScript : MonoBehaviour
     {
 #if UNITY_STANDALONE
         // Shooting - G
-        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 8 && wT <= 0 && !WeaponInfo.reloadAffirm)
+        if (Input.GetMouseButtonDown(0) && WeaponInfo.ammo >= 6 && wT <= 0 && !WeaponInfo.reloadAffirm) // Sniper takes 6 ammo
         {
             Shoot();
-            WeaponInfo.ammo = WeaponInfo.ammo - 4;
+            WeaponInfo.ammo = WeaponInfo.ammo - 6; // Sniper takes 6 ammo
             wT = waitTime;
         }
 #endif
