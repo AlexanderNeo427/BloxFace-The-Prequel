@@ -16,6 +16,7 @@ public class ScoreSystem : MonoBehaviour
         SuicideBomberZombie.OnDeath += AddScoreSuicide;
         BossZombie.OnDeath += AddScoreBoss;
         RunnerZombie.OnDeath += AddScoreRunner;
+        PlayerInfo.OnPlayerDamaged += OnHitDecreaseMultiplier;
     }
 
     private void OnDisable()
@@ -24,6 +25,7 @@ public class ScoreSystem : MonoBehaviour
         SuicideBomberZombie.OnDeath -= AddScoreSuicide;
         BossZombie.OnDeath -= AddScoreBoss;
         RunnerZombie.OnDeath -= AddScoreRunner;
+        PlayerInfo.OnPlayerDamaged -= OnHitDecreaseMultiplier;
     }
 
     // Update is called once per frame
@@ -65,6 +67,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreRunner(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -79,6 +82,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreSuicide(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -93,6 +97,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     void AddScoreBoss(Vector3 dummyVariable)
     {
         MultiplierText.fontSize = 60f;
@@ -107,6 +112,7 @@ public class ScoreSystem : MonoBehaviour
         // Reset timer
         timer = 6.0f;
     }
+
     // Decrease Multiplier if player is hit or take too long to continue the killing streak
     void DecreaseMultiplier()
     {
@@ -115,5 +121,14 @@ public class ScoreSystem : MonoBehaviour
         // Half the multiplier
         if (ScoreMultiplier > 1)
             ScoreMultiplier /= 2;
+    }
+    void OnHitDecreaseMultiplier(float dummyVariable)
+    {
+        // Rest the multiplier when hit
+        if (ScoreMultiplier > 1)
+        {
+            AudioManager.instance.Play("ReverseMultiplier");
+            ScoreMultiplier = 1;
+        }
     }
 }
