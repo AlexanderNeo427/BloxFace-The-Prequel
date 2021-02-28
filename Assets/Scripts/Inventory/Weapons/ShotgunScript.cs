@@ -23,7 +23,7 @@ public class ShotgunScript : MonoBehaviour
         {
             Shoot();
             AudioManager.instance.Play("Shotgun");
-            WeaponInfo.ammo -= 8;
+            WeaponInfo.ammo -= 16;
             WeaponInfo.wT = waitTime;
         }
 #endif  
