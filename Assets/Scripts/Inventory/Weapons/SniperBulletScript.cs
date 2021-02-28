@@ -43,28 +43,41 @@ public class SniperBulletScript : MonoBehaviour
         else if (other.gameObject.CompareTag("Enemy"))
         {
             limit++;
+            // Updated dmg given
             RegularZombie regularZombie = other.gameObject.GetComponent<RegularZombie>();
             if (regularZombie != null)
             {
-                regularZombie.TakeDamage( dmg );
+                if (regularZombie.GetCurrentHP() > 0f)
+                {
+                    regularZombie.TakeDamage(dmg);
+                }
             }
 
             SuicideBomberZombie suicideBomberZombie = other.gameObject.GetComponent<SuicideBomberZombie>();
             if (suicideBomberZombie != null)
             {
-                suicideBomberZombie.TakeDamage(dmg);
+                if (suicideBomberZombie.GetCurrentHP() > 0f)
+                {
+                    suicideBomberZombie.TakeDamage(dmg);
+                }
             }
 
             RunnerZombie runnerZombie = other.gameObject.GetComponent<RunnerZombie>();
             if (runnerZombie != null)
             {
-                runnerZombie.TakeDamage(dmg);
+                if (runnerZombie.GetCurrentHP() > 0f)
+                {
+                    runnerZombie.TakeDamage(dmg);
+                }
             }
 
             BossZombie bossZombie = other.gameObject.GetComponent<BossZombie>();
             if (bossZombie != null)
             {
-                bossZombie.TakeDamage(dmg);
+                if (bossZombie.GetCurrentHP() > 0f)
+                {
+                    bossZombie.TakeDamage(dmg);
+                }
             }
         }
     }
