@@ -1297,6 +1297,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2520523977723932044, guid: 6cbb8b4d53df3434791d4a28b772c161, type: 3}
   m_PrefabInstance: {fileID: 2520523978553424240}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1373103037 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1693759128474597311, guid: 66857c232da86364680dce687dc9492f, type: 3}
+  m_PrefabInstance: {fileID: 1414344544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1414344544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2326,6 +2331,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3561524395665449369, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: movementJoystickRect
+      value: 
+      objectReference: {fileID: 1373103037}
+    - target: {fileID: 3561524395665449369, guid: 5210a190684231e4893c347de34b39fa, type: 3}
+      propertyPath: movementJoystick
+      value: 
+      objectReference: {fileID: 1373103037}
     - target: {fileID: 6390360659536422739, guid: 5210a190684231e4893c347de34b39fa, type: 3}
       propertyPath: m_IsActive
       value: 0
